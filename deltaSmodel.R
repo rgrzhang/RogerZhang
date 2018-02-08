@@ -1,9 +1,9 @@
 library(deSolve)
 ## Vector Field for SIR model
-SIR.vector.field <- function(t, vars=c(S,I,R), parms=c(R_0,1/gamma,delta)) {
+SIR.vector.field <- function(t, vars=c(S,I,R), parms=c(R_0,1/gamma,delta,mu,sigma)) {
   with(as.list(c(parms, vars)), {
-    dS <- -gamma*R_0*S*I-delta*S # dS/dt
-    dI <- gamma*R_0*S*I - gamma*I+delta*S # dI/dt
+    dS <- -gamma*R_0*S*I-delta*S+sigma*(S+R) # dS/dt
+    dI <- gamma*R_0*S*I - gamma*I+delta*S-mu*I # dI/dt
     dR <- gamma*I #dR/dt
     vec.fld <- c(dS=dS, dI=dI, dR=dR)
     return(list(vec.fld)) # ode() requires a list
@@ -32,7 +32,7 @@ Rep_nums <- c(1.2,1.5,1.8,2,3,4)
 for (i in 1:length(Rep_nums)) {
   draw.soln(ic=c(S=S0,I=I0,R=R0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=Rep_nums[i],gamma=1/4,delta=0.01),
+            parms=c(R_0=Rep_nums[i],gamma=1/4,delta=0.01,mu=0.3,sigma=0.03),
             lty=i # use a different line style for each solution
   )
 }
