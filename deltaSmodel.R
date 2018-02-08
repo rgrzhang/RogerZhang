@@ -1,11 +1,19 @@
 library(deSolve)
 ## Vector Field for SIR model
+<<<<<<< HEAD
 SIR.vector.field <- function(t, vars=c(S,I,R), parms=c(R_0,1/gamma,delta,mu,sigma)) {
   with(as.list(c(parms, vars)), {
     dS <- -gamma*R_0*S*I-delta*S+sigma*(S+R) # dS/dt
     dI <- gamma*R_0*S*I - gamma*I+delta*S-mu*I # dI/dt
+=======
+SIR.vector.field <- function(t, vars=c(S,I,R,Q), parms=c(R_0,1/gamma,delta)) {
+  with(as.list(c(parms, vars)), {
+    dS <- -gamma*R_0*S*I-delta*S # dS/dt
+    dQ <- gamma*R_0*S*I + delta*S # cumulative cases
+    dI <- dQ - gamma*I # dI/dt
+>>>>>>> 3a392cfd724b446fd2b2231282bb35631105eb3b
     dR <- gamma*I #dR/dt
-    vec.fld <- c(dS=dS, dI=dI, dR=dR)
+    vec.fld <- c(dS=dS, dI=dI, dR=dR, dQ=dQ)
     return(list(vec.fld)) # ode() requires a list
   })
 }
