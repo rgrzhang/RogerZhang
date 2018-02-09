@@ -17,8 +17,10 @@
 - I plotted I using `delta` = (0.1,0.3,0.5,0.8) with fixed `R0`.
     - Clearly a larger delta value is going to give a sharper slope in the early stage of epidemics. 
     - Delta being the proportion of population being intensional infected, thus we should take delta<1?
+        - [DE] delta is _not_ a proportion; it is the _rate_, per susceptible, at which susceptibles are moved to the infected class (in the absense of contact with infecteds)
 
-- Since the additional terms delta*S gives a continuous decrease behavior of `S`, when `I`=0, `dS/dt` = `-delta*S` gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->infinity, regardless of what values of delta is.
+- Since the additional terms delta*S gives a continuous decrease behavior of `S`, when `I`=0, `dS/dt` = `-delta*S` gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->1, regardless of what values of delta is.
+    - 
 
 - With the additional delta term, the value of threshold `R0` = 1 for having an epidemics has to change to a lower value.
     - The existance of this intensional infection will turn the non-spreading disease into an epidemics. Then there is no point of having this extra action.
@@ -26,3 +28,10 @@
 
 - Side comment: If we consider the intentional infection to be a some kind of vaccine, we may still what to consider the latency period? A normal latency period sends people form S to I, but for intension infection, those people go to R.
 
+# Notes from David
+
+- `1/delta` is the mean time spent in the S class, in the absense of contact with infecteds.
+- you can calculate, as a function of `delta` or `1/delta`, the time until `1-R = 10^(-6)`, for example.  This can be interpretted as the time to extinction.  So you can then plot time to extintion against `delta` and conclude something about the effects of intentional infection.
+- in a more elaborate version of the model, with vital dynamics, you could look at the depth of troughs between recurrent epidemics as function of `delta`.  The deeper those troughs, the higher probability of eradication.
+- if you recast the model as a stochastic process (using the Gillespie algorithm, or adaptive tau) then you can actually calculate the distribution of time to extinction.
+- it would be useful to keep track, not just of `Q` but the number infected by contact vs the number infected intentionally.  For that you need to have another equation, say `dQdelta/dt = - delta*S`
