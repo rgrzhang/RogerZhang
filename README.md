@@ -14,13 +14,13 @@
 
 ### Roger's progress
 
-- I plotted I using 'delta' = (0.1,0.3,0.5,0.8) with fixed 'R0'.
+- I plotted I using `delta` = (0.1,0.3,0.5,0.8) with fixed `R0`.
     - Clearly a larger delta value is going to give a sharper slope in the early stage of epidemics. 
     - Delta being the proportion of population being intensional infected, thus we should take delta<1?
 
-- Since the additional terms delta*S gives a continuous decrease behavior of 'S', when 'I'=0, 'dS/dt' = '-delta*S' gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->infinity, regardless of what values of delta is.
+- Since the additional terms delta*S gives a continuous decrease behavior of `S`, when `I`=0, `dS/dt` = `-delta*S` gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->infinity, regardless of what values of delta is.
 
-- With the additional delta term, the value of threshold 'R0' = 1 for having an epidemics has to change to a lower value.
+- With the additional delta term, the value of threshold `R0` = 1 for having an epidemics has to change to a lower value.
     - The existance of this intensional infection will turn the non-spreading disease into an epidemics. Then there is no point of having this extra action.
     - For intensional infection as a method of "vaccination", we may consider this as 'S'--under intensional infection -->'R'. (considering in most cases, intensional infection still provide immunity without causing severe illness)
 
