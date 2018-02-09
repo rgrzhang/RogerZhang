@@ -1,10 +1,7 @@
 library(deSolve)
 ## Vector Field for SIR model
 <<<<<<< HEAD
-SIR.vector.field <- function(t, vars=c(S,I,R), parms=c(R_0,1/gamma,delta,mu,sigma)) {
-  with(as.list(c(parms, vars)), {
-    dS <- -gamma*R_0*S*I-delta*S+sigma*(S+R) # dS/dt
-    dI <- gamma*R_0*S*I - gamma*I+delta*S-mu*I # dI/dt
+
 =======
 SIR.vector.field <- function(t, vars=c(S,I,R,Q), parms=c(R_0,1/gamma,delta)) {
   with(as.list(c(parms, vars)), {
@@ -36,15 +33,15 @@ S0 <- 1 - I0
 R0 <- 1 - I0 - S0
 
 ## draw solutions for several values of parameter R_0:
-Rep_nums <- c(1.2,1.5,1.8,2,3,4)
-for (i in 1:length(Rep_nums)) {
+vary_delta <- c(0.5,1,1.5,2,3,4)
+for (i in 1:length(vary_delta)) {
   draw.soln(ic=c(S=S0,I=I0,R=R0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=Rep_nums[i],gamma=1/4,delta=0.01,mu=0.3,sigma=0.03),
+            parms=c(R_0=0.5,gamma=1/4,delta=vary_delta[i],mu=0.3,sigma=0.03),
             lty=i # use a different line style for each solution
   )
 }
-legend("topright",legend=Rep_nums,col=Rep_nums,lty=1:6)
+legend("topright",legend=vary_delta,col=vary_delta,lty=1:6)
 
 
   
