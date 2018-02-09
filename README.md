@@ -19,8 +19,7 @@
     - Delta being the proportion of population being intensional infected, thus we should take delta<1?
         - [DE] delta is _not_ a proportion; it is the _rate_, per susceptible, at which susceptibles are moved to the infected class (in the absense of contact with infecteds)
 
-- Since the additional terms delta*S gives a continuous decrease behavior of `S`, when `I`=0, `dS/dt` = `-delta*S` gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->1, regardless of what values of delta is.
-    - 
+- Since the additional terms `delta*S` gives a continuous decrease behavior of `S`, when `I=0`, `dS/dt = -delta*S` gives an exponantial liked behavior, thus the solution of that model will asymptotically approach $S=0$, meaning final size Q(t)->1, regardless of what values of delta is.
 
 - With the additional delta term, the value of threshold `R0` = 1 for having an epidemics has to change to a lower value.
     - The existance of this intensional infection will turn the non-spreading disease into an epidemics. Then there is no point of having this extra action.
