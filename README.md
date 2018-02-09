@@ -18,7 +18,7 @@
     - Clearly a larger delta value is going to give a sharper slope in the early stage of epidemics. 
     - Delta being the proportion of population being intensional infected, thus we should take delta<1?
 
-- Since the additional terms delta*S gives a continuous decrease behavior of S, when I¡Ö0, dS/dt = -delta*S gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->$\infty$, regardless of what values of delta is.
+- Since the additional terms delta*S gives a continuous decrease behavior of S, when I\approx 0, dS/dt = -delta*S gives an exponantial liked behavior, thus the solution of that model will asymptotically approach S=0, meaning final size Q(t)->$\infty$, regardless of what values of delta is.
 
 - With the additional delta term, the value of threshold R_0 = 1 for having an epidemics has to change to a lower value.
     - The existance of this intensional infection will turn the non-spreading disease into an epidemics. Then there is no point of having this extra action.
