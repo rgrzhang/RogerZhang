@@ -1,47 +1,44 @@
 library(deSolve)
 ## Vector Field for SIR model
-
-SIR.vector.field <- function(t, vars=c(S,I,R,Q), parms=c(R_0,1/gamma,delta)) {
+SIR.vector.field <- function(t, vars=c(S,I,R,Q,X), parms=c(R_0,1/gamma,delta,mu)) {
   with(as.list(c(parms, vars)), {
-    dS <- -gamma*R_0*S*I-delta*S # dS/dt
-    dQ <- gamma*R_0*S*I + delta*S # cumulative cases
+    dS <- -gamma*R_0*S*I # dS/dt
+    dQ <- gamma*R_0*S*I# cumulative cases
+    dX <- gamma*R_0*S*I#cumulative normally infected cases
     dI <- dQ - gamma*I # dI/dt
     dR <- gamma*I #dR/dt
-    vec.fld <- c(dS=dS, dI=dI, dR=dR, dQ=dQ)
+    vec.fld <- c(dS=dS, dI=dI, dR=dR, dQ=dQ, dX=dX)
     return(list(vec.fld)) # ode() requires a list
   })
 }
 
-draw.soln <- function(ic=c(S=1,I=0,Q=0,R=0), tmax=1,
+draw.soln <- function(ic=c(S=1,I=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"Q"], col=vary_delta[i], lwd=3,... )
+  lines(times, soln[,"Q"], col=vary_delta[i], lwd=2,... )
 }
 
 ## Plot solutions of the SIR model
 tmax <- 100 # end time for numerical integration of the ODE
 ## draw box for plot:
 plot(0,0,xlim=c(0,tmax),ylim=c(0,1),
-     type="n",xlab="Time (t)",ylab="Prevalence (I)",las=1)
+     type="n",xlab="Time (t)",ylab="I",las=1)
 ## initial conditions:
 I0 <- 0.001
 S0 <- 1 - I0
 R0 <- 1 - I0 - S0
 Q0 <- I0
-
+X0 <- Q0
 ## draw solutions for several values of parameter R_0:
-vary_delta <- c(0.1,0.3,0.5,0.8,1)
+vary_delta <- c(1,1.5,2)
+
 for (i in 1:length(vary_delta)) {
-  draw.soln(ic=c(S=S0,I=I0,R=R0,Q=Q0), tmax=tmax,
+  draw.soln(ic=c(S=S0,I=I0,R=R0,Q=Q0,X=X0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=2,gamma=1/4,delta=vary_delta[i],mu=0.3,sigma=0.03),
+            parms=c(R_0=2,gamma=1/4,delta=vary_delta[i],mu=0.1),
             lty=i # use a different line style for each solution
   )
 }
-legend("topright",legend=vary_delta,col=vary_delta,lty=1:6)
+legend("topleft",legend=vary_delta,col=vary_delta,lty=1:3)
 
-
-
-  
-                             

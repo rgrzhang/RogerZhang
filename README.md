@@ -34,3 +34,13 @@
 - in a more elaborate version of the model, with vital dynamics, you could look at the depth of troughs between recurrent epidemics as function of `delta`.  The deeper those troughs, the higher probability of eradication.
 - if you recast the model as a stochastic process (using the Gillespie algorithm, or adaptive tau) then you can actually calculate the distribution of time to extinction.
 - it would be useful to keep track, not just of `Q` but the number infected by contact vs the number infected intentionally.  For that you need to have another equation, say `dQdelta/dt = - delta*S`
+
+## 16 Feb 2018
+
+- The idea of having intensional infection is to "burn out" `S` so we can protect majority of the population.
+    - In some extreme cases, if `delta` is too small, say for example: when `R0`=1.5 (`Z`= 60%). But by the end of the epidemics, only 20% of population is intensionally infected, then we could expect the effect of that be small.
+    - In the above example, though the suseptable is not really being burnt out, but by reducing `S` more rapidly than normal. We may call this senario a "non-competitive" case.
+    - On the other hand, if we can have a large enough `delta` to force the model into a competitive behavior, then we could have a much higher impact on the normally infected cases.
+
+- So, for each `R0`, there exists a threshold between competitive and non-competitive. That could related to the idea of vaccinating (1-1/R0) of S to avoid epidemics.
+- I've also encountered a problem with using R. In sometimes, including now, I'm unable to plot some functions with some values of `delta`. I'm unable to plot the function where `delta`<1. I have no idea why....
