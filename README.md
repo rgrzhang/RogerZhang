@@ -35,6 +35,7 @@
 - if you recast the model as a stochastic process (using the Gillespie algorithm, or adaptive tau) then you can actually calculate the distribution of time to extinction.
 - it would be useful to keep track, not just of `Q` but the number infected by contact vs the number infected intentionally.  For that you need to have another equation, say `dQdelta/dt = - delta*S`
 - another approach would be to intentionally infect only newborns, so the outflow from the dS/dt equation due to intentional infection would be -nu p where p is the proportion intentionally infected.  These individuals go into I rather than R (where they go in the normal SIR model).  That's actually a nice model to compare.  It directly addresses the question "What if we intentionally infect people when we don't yet have a vaccine?"
+    - do all the standard equilibrium and stability analyses for this model and compare the endemic equilibrium proportion with what you get for vaccination.  Have a plot with `p` going from `0` to `1` on the x-axis and the endemic equilibrium of each model on the y-axis.  You can also plot the period of damped oscillations and the decay rate (or e-folding time) of damped oscillations for each of these models.
 
 ## 16 Feb 2018
 
