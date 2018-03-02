@@ -45,3 +45,13 @@
 
 - So, for each `R0`, there exists a threshold between competitive and non-competitive. That could related to the idea of vaccinating (1-1/R0) of S to avoid epidemics.
 - I've also encountered a problem with using R. In sometimes, including now, I'm unable to plot some functions with some values of `delta`. I'm unable to plot the function where `delta`<1. I have no idea why....
+
+
+## 2 Mar 2018
+
+- Plotted again, `I` vs `t`, with introduction of intensional infection only applied on new-borns, with a proportion of `p`.
+    - At this point, it is meaningless to count `Q`(cumulative infected cases) and `X`(cumulative normally infected cases) ,as they both go to infinity.
+    - The effect of this method is affected by `R_0`, with a HUGE `R_0` value, i.e.20, differences in p has almost no effect.
+    - I don't see an obvious oscillation...
+
+- In normal cases, X tends to increase and eventually goes to infinity. But introduction of p still would slow down the increase, in extreme case, when p=1, it converges (make sense...)
