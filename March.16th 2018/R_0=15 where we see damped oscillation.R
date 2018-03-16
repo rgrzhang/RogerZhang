@@ -17,15 +17,15 @@ draw.soln <- function(ic=c(S=1,I=0,R=0,Q=0,X=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"I"], lwd=2,... )
+  lines(times, soln[,"S"], lwd=2,... )
   return(invisible(as.data.frame(soln)))
 }
 
 ## Plot solutions of the SIR model
-tmax <- 50 # end time for numerical integration of the ODE
+tmax <- 100 # end time for numerical integration of the ODE
 ## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,0.05),
-     type="n",xlab="Time (t)",ylab="I",las=1)
+plot(0,0,xlim=c(0,tmax),ylim=c(0,0.5),
+     type="n",xlab="Time (t)",ylab="S",las=1)
 ## initial conditions:
 I0 <- 0.001
 S0 <- 1 - I0
@@ -38,7 +38,7 @@ vary_p <- c(0,0.2,0.4,0.5,0.6,0.8,1)
 for (i in 1:length(vary_p)) {
   draw.soln(ic=c(S=S0,I=I0,R=R0,Q=Q0,X=X0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=10,gamma=1,delta=0,mu=1/80,p=vary_p[i]),
+            parms=c(R_0=4,gamma=1,delta=0,mu=1/80,p=vary_p[i]),
             col=i,
             lty=i # use a different line style for each solution
   )

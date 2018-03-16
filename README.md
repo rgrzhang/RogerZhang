@@ -56,3 +56,18 @@
     - I don't see an obvious oscillation...
 
 - In normal cases, X tends to increase and eventually goes to infinity. But introduction of p still would slow down the increase, in extreme case, when p=1, it converges (make sense...)
+
+## 15 Mar 2018
+
+- After doing stability analysis, I showed that DFE is GAS. The EE is hard to analyze symbolically, since the complexity of the equations are almost not doable by hand.
+    - However, by using P values (0, 0.2, 0.4, 0.5, 0.6, 0.8, 1), I numerically determined that EE is at least LAS. For global analysis, I may require a Lyapunov's function. But again, the length of equations are off the chart...But I believe itis likely that my system is topoligically equivalent to the original one. So EE should be GAS as well.
+    - The point of bifurcation may not be `R_0`=1 as we had before.
+
+- With the choice of `beta`=4, `gamma`=1, and `mu`=1/80, eigenvalues of Jacobian at EE all reture both negative real, except when P=0. Meaning no damped oscillation.
+    - I believe with another choice of the parameters, with a higher P value, damped oscillation behavior could occur. Test was done at `beta`=10, damped oscillation behavior was observed when P = 0.2, but not for P greater than that.
+    - When `beta`=10, corresponding R_0 = 9.9, this is way higher than most of known diseases.
+
+- I am curious about whether we can obvserve periodic behavior of I indirectly from looking at S. It is hard to believe that S could be stationary while I is oscilating.
+
+- As for the e-folding time. I plotted it. But it looks abnormal. It somehow behaves like a hyperbola.
+
