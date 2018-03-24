@@ -6,3 +6,7 @@ mu=1/80
 epsilon=mu/(1+mu)
 r=((R__0*epsilon*P-epsilon)/(1-R__0*P)+(1-R__0*P)/(R__0-1))
 plot(x=P,y=1/r)
+points(x=0.05598765221, y=0, col = "red")
+
+plot(x=P,y=r)
+points(x=0.05598765221, y=0, col = "red",type = 2)
