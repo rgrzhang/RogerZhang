@@ -71,3 +71,12 @@
 
 - As for the e-folding time. I plotted it. But it looks abnormal. It somehow behaves like a hyperbola.
 
+## 23 March 2018
+
+- Please take a look at the "computation" pdf file. I made a simple computation on the system to show if there is a damped oscillation. However I find it hard to find the eigenvalues of Jacobian.
+
+- I also made a plot "comparision between intensional infection and vaccination". The thinner line is vaccination and thick line is intensional infection.
+    - This time I made some major adjustment. I seperated the intensional infected cases and normally infected cases. It is meaningful to look at the cumulative NORMALLY infected cases only.
+    - After plotting the normally infected cases and infected cases of vaccination. I indeed see a much lower proportion in normally infected cases. 
+    - Generally speaking, in my model, intensional infection takes a lower proportion of treatment compare to vaccination, to control the final size. (See the graph when p=0.1, intensional infection can reach a final size and no longer growing, meaning there is almost no new cases coming in, while vaccination final size still diverge to infinity)
+    - The above observation may be able to explain the benefit of intensional infection, IF the intensional infected cases can pass on to someone else and act like a vaccine that can be passed on by normal contact.
