@@ -80,3 +80,5 @@
     - After plotting the normally infected cases and infected cases of vaccination. I indeed see a much lower proportion in normally infected cases. 
     - Generally speaking, in my model, intensional infection takes a lower proportion of treatment compare to vaccination, to control the final size. (See the graph when p=0.1, intensional infection can reach a final size and no longer growing, meaning there is almost no new cases coming in, while vaccination final size still diverge to infinity)
     - The above observation may be able to explain the benefit of intensional infection, IF the intensional infected cases can pass on to someone else and act like a vaccine that can be passed on by normal contact.
+
+- Also, continue from last week's topic. To show I vs t graph stabilizes in the long run. I change the max time to 1000.
