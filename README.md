@@ -82,3 +82,17 @@
     - The above observation may be able to explain the benefit of intensional infection, IF the intensional infected cases can pass on to someone else and act like a vaccine that can be passed on by normal contact.
 
 - Also, continue from last week's topic. To show I vs t graph stabilizes in the long run. I change the max time to 1000.
+
+## 29 March 2018
+
+- Last time you asked me why I would be interested in cumulative normally infected cases only. 
+    
+    - We talked about the idea of making a choice: whether practice intensional infection (which means 100% infected), but at a lower risk of dying (in the case of diseases like smallpox), or taking the risk of being normally infected (for example 40%), but a much higher death rate.
+    
+    - Thus, in our model, there are 2 different kinds of infected states: I_N(Normally infected) and I_T(Intesionally infected). I'll explain why they should be completely separated.
+    
+    - That being said, our idea of intensional infection is much different from normal vaccination, most significantly because the ones being intensionally infected could infect others, so those ones being infected are also in the intensionally infected state, therefore can no longer being normally infected (An individual does not change state). So using your analogy, it is just like a vaccine that transmits
+    
+    - Thus, to see the advantage of this method over vaccination, it is necessary to do a direct comparison between final size. That should tell us, at the end of epidemics, what is the overall casualty. And of course, the real casualty in our method/model are the ones being normally infected.
+
+    - I think there are two ways of proceeding with this idea: 1. Like I'm doing right now, we only apply intensional infection/vaccination to the new borns, with a certain proportion. We can look at the final size, when the models reach E.E. As well as looking at the I_N value at E.E.. 2. The more realistic model should be trying to infect Susceptibles, with a certain rate.
