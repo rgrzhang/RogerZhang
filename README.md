@@ -96,3 +96,6 @@
     - Thus, to see the advantage of this method over vaccination, it is necessary to do a direct comparison between final size. That should tell us, at the end of epidemics, what is the overall casualty. And of course, the real casualty in our method/model are the ones being normally infected.
 
     - I think there are two ways of proceeding with this idea: 1. Like I'm doing right now, we only apply intensional infection/vaccination to the new borns, with a certain proportion. We can look at the final size, when the models reach E.E. As well as looking at the I_N value at E.E.. 2. The more realistic model should be trying to infect Susceptibles, with a certain rate.
+
+        - [DE, 1 Apr 2018] I agree that both these approaches should be investigated, but it is not clear that the second is more realistic.  It can be extremely difficult (or expensive) to identify susceptible individuals, so it might be easier and cheaper to simply "vaccinate" without regard to whether the individual has been infected previously.  If the person _was_ infected previously, they would be immune and would not suffer from the "vaccination" with live pathogen.
+
