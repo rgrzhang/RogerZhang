@@ -22,22 +22,17 @@ SIR.vector.field <- function(t, vars, parms) {
 
 draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
-                      func, parms, ... ) {
+                      func, parms, doPlot=TRUE, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"I_N"], lwd=1,...)
+  if (doPlot) lines(times, soln[,"I_N"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
 
-## Plot solutions of the SIR model
-tmax <- 1000 # end time for numerical integration of the ODE
-## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,0.06),
-     type="n",main="Normally infected cases (Intensionally infect proportion of S)",xlab="Time (t)",ylab="I_N",las=1)
 ## initial conditions:
 I_T0 <- 0.0005
 I_N0 <- 0.0005
-S0 <- 1 - (I_T0+I_N0)
+S0 <- 0.55 ##1 - (I_T0+I_N0)
 R0 <- 1 - (I_T0+I_N0) - S0
 V0 <- 0.001
 Q0 <- I_T0+I_N0
@@ -45,15 +40,42 @@ X0 <- Q0
 V_c0 <- V0
 S_v0 <- 1 - V_c0
 ## draw solutions for several values of parameter R_0:
-vary_p <- c(0,0.1,0.2,0.5,0.8)
+##vary_p <- c(0,0.1,0.2,0.5,0.8)
+vary_p <- seq(0,0.0001,length=5)
 
+## set parameter values
+R_0 <- 1.8
+gamma <- 365/14 # two week mean infectious period
+delta <- 0
+mu <- 1/50 # 50 year mean lifetime
+
+## Plot solutions of the SIR model
+tmax <- 20 # end time for numerical integration of the ODE
+## run one simulation to get sensible ylim
+out <- draw.soln(ic=c(S=S0,I_N=I_N0,I_T=I_T0,R=R0,Q=Q0,X=X0,V=V0,V_c=V_c0,S_v=S_v0), tmax=tmax,
+            func=SIR.vector.field,
+            parms=c(R_0=R_0,gamma=gamma,delta=delta,mu=mu,p=0),
+            doPlot=FALSE
+            )
+ymin <- min(out[["I_N"]],na.rm=TRUE)
+ymax <- max(out[["I_N"]],na.rm=TRUE)
+## draw box for plot:
+plot(0,0,xlim=c(0,tmax),ylim=c(0,ymax),
+     type="n",main="Normally infected cases (Intensionally infect proportion of S)",xlab="Time (t)",ylab="I_N",las=1)
+
+legend("topleft", bty="n", title="Parameters",
+       legend=c(paste0("R_0 = ",R_0),
+                paste0("gamma = ",gamma),
+                paste0("delta = ", delta),
+                paste0("mu = ", mu)))
+                                                   
 for (i in 1:length(vary_p)) {
   draw.soln(ic=c(S=S0,I_N=I_N0,I_T=I_T0,R=R0,Q=Q0,X=X0,V=V0,V_c=V_c0,S_v=S_v0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=1.8,gamma=1,delta=0,mu=1/80,p=vary_p[i]),
+            parms=c(R_0=R_0,gamma=gamma,delta=delta,mu=mu,p=vary_p[i]),
             col=i,
             lty=i # use a different line style for each solution
   )
 }
-legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p))
-
+legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p),
+       title="p",bty="n")
