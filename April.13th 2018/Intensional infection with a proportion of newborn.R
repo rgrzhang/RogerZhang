@@ -22,8 +22,7 @@ draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"V_c"], lwd=2,...)
-  lines(times, soln[,"X"], lwd=1,...)
+  lines(times, soln[,"I_N"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
@@ -31,7 +30,7 @@ draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
 ## Plot solutions of the SIR model
 tmax <- 1000 # end time for numerical integration of the ODE
 ## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,1.5),
+plot(0,0,xlim=c(0,tmax),ylim=c(0,0.1),
      type="n",main="Final Size comparison, Intensional infection and Vaccination",xlab="Time (t)",ylab="Cumulated cases",las=1)
 ## initial conditions:
 I_T0 <- 0.0005

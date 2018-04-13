@@ -3,14 +3,16 @@ library(deSolve)
 SIR.vector.field <- function(t, vars, parms) {
   ##SIR.vector.field <- function(t, vars=c(S=S,I=I,R=R,Q=Q,X=X), parms=c(R_0=R_0,gamma=gamma,delta=delta,mu=mu,p=p)) {
     with(as.list(c(parms, vars)), {
-    dS <- mu*(1-p) -gamma*R_0*S*(I_N+I_T) -mu*S# dS/dt
-    dQ <- gamma*R_0*S*(I_N+I_T) + mu*p # cumulative cases
+    ## Summary: In intensional infection cases, I divided the infected further into normally infected and intensionally infected. 
+    ##          While the normally infected cases are the real casualties.
+    dS <- mu -gamma*R_0*S*(I_N+I_T) -p*S -mu*S# dS/dt
+    dQ <- gamma*R_0*S*(I_N+I_T)+p*S + mu*p # cumulative cases
     dX <- gamma*R_0*S*I_N #cumulative normally infected cases
-    dI_T <- mu*p+gamma*R_0*S*I_T - gamma*I_T-mu*I_T # intensional infected cases, and cases which is infected by them
+    dI_T <- p*S+gamma*R_0*S*I_T - gamma*I_T-mu*I_T # intensional infected cases, and cases which is infected by them
     dI_N <- gamma*R_0*S*I_N - gamma*I_N-mu*I_N # Normally infected cases
     dR <- gamma*(I_T+I_N)-mu*R #dR/dt
     
-    dS_v <- mu*(1-p)-gamma*R_0*S_v*V - mu*(S_v)
+    dS_v <- mu-gamma*R_0*S_v*V -p*(S_v) - mu*(S_v)
     dV <- gamma*R_0*S_v*V - gamma*V-mu*V # Prevalence of vaccination
     dV_c <- gamma*R_0*S_v*V #cumulative infected cases with normal vaccination
     vec.fld <- c(dS=dS, dI_N=dI_N,dI_T=dI_T, dR=dR, dQ=dQ, dX=dX, dV=dV,dV_c=dV_c,dS_v=dS_v)
@@ -22,8 +24,7 @@ draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"V_c"], lwd=2,...)
-  lines(times, soln[,"X"], lwd=1,...)
+  lines(times, soln[,"I_N"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
@@ -31,8 +32,8 @@ draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
 ## Plot solutions of the SIR model
 tmax <- 1000 # end time for numerical integration of the ODE
 ## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,1.5),
-     type="n",main="Final Size comparison, Intensional infection and Vaccination",xlab="Time (t)",ylab="Cumulated cases",las=1)
+plot(0,0,xlim=c(0,tmax),ylim=c(0,0.06),
+     type="n",main="Normally infected cases (Intensionally infect proportion of S)",xlab="Time (t)",ylab="I_N",las=1)
 ## initial conditions:
 I_T0 <- 0.0005
 I_N0 <- 0.0005
