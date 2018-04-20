@@ -24,7 +24,7 @@ draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, doPlot=TRUE, ... ) {
   soln <- ode(ic, times, func, parms)
-  if (doPlot) lines(times, soln[,"I_N"], lwd=1,...)
+  if (doPlot) lines(times, soln[,"I_T"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
@@ -45,9 +45,10 @@ vary_p <- seq(0,0.0001,length=5)
 
 ## set parameter values
 R_0 <- 1.8
-gamma <- 1 # two week mean infectious period will lead to trouble. So I chose 1 for now
+gamma <- 365/200 # two week mean infectious period will lead to trouble. So I chose 1 for now
 delta <- 0
 mu <- 1/50 # 50 year mean lifetime
+epsilon <- mu/(gamma+mu)
 
 ## Plot solutions of the SIR model
 tmax <- 2400 # end time for numerical integration of the ODE
@@ -80,4 +81,5 @@ for (i in 1:length(vary_p)) {
 legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p),
        title="p",bty="n")
 
-abline(h=0.004248364,col="cyan")
+Ieqm <- epsilon*(1-1/R_0)
+abline(h=Ieqm,col="cyan")
