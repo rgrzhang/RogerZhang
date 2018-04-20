@@ -45,12 +45,12 @@ vary_p <- seq(0,0.0001,length=5)
 
 ## set parameter values
 R_0 <- 1.8
-gamma <- 365/14 # two week mean infectious period
+gamma <- 1 # two week mean infectious period will lead to trouble. So I chose 1 for now
 delta <- 0
 mu <- 1/50 # 50 year mean lifetime
 
 ## Plot solutions of the SIR model
-tmax <- 20 # end time for numerical integration of the ODE
+tmax <- 2400 # end time for numerical integration of the ODE
 ## run one simulation to get sensible ylim
 out <- draw.soln(ic=c(S=S0,I_N=I_N0,I_T=I_T0,R=R0,Q=Q0,X=X0,V=V0,V_c=V_c0,S_v=S_v0), tmax=tmax,
             func=SIR.vector.field,
@@ -63,7 +63,7 @@ ymax <- max(out[["I_N"]],na.rm=TRUE)
 plot(0,0,xlim=c(0,tmax),ylim=c(0,ymax),
      type="n",main="Normally infected cases (Intensionally infect proportion of S)",xlab="Time (t)",ylab="I_N",las=1)
 
-legend("topleft", bty="n", title="Parameters",
+legend("top", bty="n", title="Parameters",
        legend=c(paste0("R_0 = ",R_0),
                 paste0("gamma = ",gamma),
                 paste0("delta = ", delta),
@@ -79,3 +79,5 @@ for (i in 1:length(vary_p)) {
 }
 legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p),
        title="p",bty="n")
+
+abline(h=0.004248364,col="cyan")

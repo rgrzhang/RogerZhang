@@ -2,7 +2,7 @@ library(deSolve)
 ## Vector Field for SIR model
 SIR.vector.field <- function(t, vars, parms) {
   ##SIR.vector.field <- function(t, vars=c(S=S,I=I,R=R,Q=Q,X=X), parms=c(R_0=R_0,gamma=gamma,delta=delta,mu=mu,p=p)) {
-  with(as.list(c(parms, vars)), {
+    with(as.list(c(parms, vars)), {
     ## Summary: In intensional infection cases, I divided the infected further into normally infected and intensionally infected. 
     ##          While the normally infected cases are the real casualties.
     dS <- mu -gamma*R_0*S*(I_N+I_T) -p*S -mu*S# dS/dt
@@ -22,34 +22,38 @@ SIR.vector.field <- function(t, vars, parms) {
 
 draw.soln <- function(ic=c(S=1,I_T=0,I_N=0,R=0,Q=0,X=0,V=0,V_c=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
-                      func, parms, doPlot=TRUE, ... ) {
+                      func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"Q"], col=vary_delta[i], lwd=3,... )
+  lines(times, soln[,"I_N"], lwd=1,...)
+  
+  return(invisible(as.data.frame(soln)))
 }
 
 ## Plot solutions of the SIR model
-tmax <- 100 # end time for numerical integration of the ODE
+tmax <- 1000 # end time for numerical integration of the ODE
 ## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,1),
-     type="n",xlab="Time (t)",ylab="Prevalence (I)",las=1)
+plot(0,0,xlim=c(0,tmax),ylim=c(0,0.06),
+     type="n",main="Normally infected cases (Intensionally infect proportion of S)",xlab="Time (t)",ylab="I_N",las=1)
 ## initial conditions:
-I0 <- 0.001
-S0 <- 1 - I0
-R0 <- 1 - I0 - S0
-Q0 <- I0
-
+I_T0 <- 0.0005
+I_N0 <- 0.0005
+S0 <- 1 - (I_T0+I_N0)
+R0 <- 1 - (I_T0+I_N0) - S0
+V0 <- 0.001
+Q0 <- I_T0+I_N0
+X0 <- Q0
+V_c0 <- V0
+S_v0 <- 1 - V_c0
 ## draw solutions for several values of parameter R_0:
-vary_delta <- c(0.1,0.3,0.5,0.8,1)
-for (i in 1:length(vary_delta)) {
-  draw.soln(ic=c(S=S0,I=I0,R=R0,Q=Q0), tmax=tmax,
+vary_p <- c(0,0.1,0.2,0.5,0.8)
+
+for (i in 1:length(vary_p)) {
+  draw.soln(ic=c(S=S0,I_N=I_N0,I_T=I_T0,R=R0,Q=Q0,X=X0,V=V0,V_c=V_c0,S_v=S_v0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=2,gamma=1/4,delta=vary_delta[i],mu=0.3,sigma=0.03),
+            parms=c(R_0=1.8,gamma=1,delta=0,mu=1/80,p=vary_p[i]),
+            col=i,
             lty=i # use a different line style for each solution
   )
 }
-legend("topright",legend=vary_delta,col=vary_delta,lty=1:6)
+legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p))
 
-
-
-  
-                             
