@@ -5,6 +5,9 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{color}
+\newcommand{\de}[1]{$\langle${{\color{cyan}\slshape{\bfseries DE:} #1}$\rangle$}}
+\newcommand{\rz}[1]{$\langle${{\color{magenta}\slshape{\bfseries RZ:} #1}$\rangle$}}
 
 \setlength{\parindent}{4em}
 \setlength{\parskip}{1em}
@@ -15,15 +18,16 @@
 \begin{document}
 \maketitle
 
+\de{There is some rate at which susceptibles are intentionally infected, say $r$, so there is a term $-rS$ in the dimensional SIR equations.  We are expressing the SIR model in dimenionless form, so let $\eta=r/(\gamma+\mu)$ and then we get the following.}
+
 Here is the system we are investigating:
-\begin{flushleft}
 \begin{align}
-\frac{\mathrm{d}S}{\mathrm{d}\tau}&=\epsilon -\mathcal{R}_0 SI-\frac{r}{\gamma+\mu} S-\epsilon S\\
-\frac{\mathrm{d}I}{\mathrm{d}\tau}&=\frac{r}{\gamma+\mu}S+\mathcal{R}_0 SI-I\\
+\frac{\mathrm{d}S}{\mathrm{d}\tau}&=\epsilon -\mathcal{R}_0 SI-\eta S-\epsilon S\\
+\frac{\mathrm{d}I}{\mathrm{d}\tau}&=\eta S+\mathcal{R}_0 SI-I\\
 \frac{\mathrm{d}R}{\mathrm{d}\tau}&=(1-\epsilon)I-\epsilon R
 \end{align}
 
-Here $\gamma$ is mean infectious period, $\mu$ is birth/death rate, $r$ is rate of intensional infection. $\epsilon=\frac{\mu}{\gamma+\mu}$,$\mathcal{R}_0$ is the basic reproduction number.
+Here $\gamma$ is mean infectious period, $\mu$ is birth/death rate, $r$ is rate of intensional infection. $\epsilon=\frac{\mu}{\gamma+\mu}$, $\mathcal{R}_0$ is the basic reproduction number.
 
 Since last time we discussed that, it is not very meaningful to divide $I$ into $I_T$ and $I_N$. Thus, I just used I this time to investigate the system's equilibrium, stability and other properties.
 
@@ -64,8 +68,5 @@ I then tried to use Wolfram Alpha to compute the eigenvalues for me and I got th
   \centering
   \includegraphics[width=1\textwidth] {Figures/Eigenvalues.png}
 \end{figure}
-
-\end{flushleft}
-
 
 \end{document}

@@ -110,4 +110,16 @@
 
 - The correct interpretation of this horizontal line at p=0 should be the following:
 
-    - When p=0, there is no intentional infection, thus I=I_N+I_T=I_N. Thus, the horizontal line should go through the asymptotical value of I_N at p=0, and it does.
+- When p=0, there is no intentional infection, thus I=I_N+I_T=I_N. Thus, the horizontal line should go through the asymptotical value of I_N at p=0, and it does.
+
+### David's thoughts 27 Apr 2018
+
+- your equilibrium analysis should begin by finding _all_ equilibria, include disease free.  The stability of the DFE is what determines the eradication theshold in terms of $\eta$.
+
+- get an expression for ${\mathcal R}_0$ for the intentional infection model, which is not the same as for the stadard SIR model.  It is the ${\mathcal R}_0$ of the intensional infection model that determines the eradication threshold (and the stability of the endemic equilibrium).
+
+- since the expression for the eigenvalues of the Jacobian are complicated, choose smallpox parameter for $\epsilon$ and ${\mathcal R}_0$ (i.e., ${\mathcal R}_0\approx4.5$ and then plot the discrimant and the real part of the eigenvalues as a function of $\eta$.  Take mean lifetime $1/\mu=50$ years, and mean infectious period $1/\gamma=22$ days.  This will give us insight about how the dynamics depend on $\eta$.  You can also show how this depends on ${\mathcal R}_0$ and $\epsilon$ by choosing different values for these in different panels.
+
+- Think about and develop an argument for what a sensible range for $\eta$ is.
+
+- write $\epsilon - \epsilon{\mathcal R}_0$ as $-\epsilon({\mathcal R}_0 - 1)$ because this is easy to interpret and recognize the sign.
