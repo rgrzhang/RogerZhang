@@ -100,7 +100,7 @@
         - [DE, 1 Apr 2018] I agree that both these approaches should be investigated, but it is not clear that the second is more realistic.  It can be extremely difficult (or expensive) to identify susceptible individuals, so it might be easier and cheaper to simply "vaccinate" without regard to whether the individual has been infected previously.  If the person _was_ infected previously, they would be immune and would not suffer from the "vaccination" with live pathogen.
 
 
-## 27 March 2018
+## 27 April 2018
 
 - Here is my answer to why the horizontal line does not go through the asymptotical value of I when p=0
 
