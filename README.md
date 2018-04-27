@@ -99,3 +99,15 @@
 
         - [DE, 1 Apr 2018] I agree that both these approaches should be investigated, but it is not clear that the second is more realistic.  It can be extremely difficult (or expensive) to identify susceptible individuals, so it might be easier and cheaper to simply "vaccinate" without regard to whether the individual has been infected previously.  If the person _was_ infected previously, they would be immune and would not suffer from the "vaccination" with live pathogen.
 
+
+## 27 March 2018
+
+- Here is my answer to why the horizontal line does not go through the asymptotical value of I when p=0
+
+    - Since we're plotting I_T vs t, at p=0, I_T should stay at 0. For all positive time.
+    - The mistake I made last time was to set initial value of I_T = 0.0005. In fact, it should be just I_T=0.
+    - After making the adjustment, now I_T is constant at 0.
+
+- The correct interpretation of this horizontal line at p=0 should be the following:
+
+    - When p=0, there is no intentional infection, thus I=I_N+I_T=I_N. Thus, the horizontal line should go through the asymptotical value of I_N at p=0, and it does.

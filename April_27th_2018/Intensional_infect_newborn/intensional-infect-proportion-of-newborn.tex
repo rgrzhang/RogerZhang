@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Intensional infect proportion of newborn, finding eigenvalues}
+
+\begin{document}
+\maketitle
+\begin{align}
+\frac{\mathrm{d}S}{d\tau}&=\epsilon(1-p)- \mathcal{R}_0  SI-\epsilon S \\
+\frac{\mathrm{d}I}{d\tau}&=\mathcal{R}_0 SI+\epsilon p-I
+\end{align}
+
+So to find the E.E. Letting both equal to 0, solve get:
+\begin{align}
+I &= \frac{\epsilon(\mathcal{R}_0 -1)+ \epsilon \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}}{2\mathcal{R}_0}\\
+S &=\frac{1}{\mathcal{R}_0}-\frac{2p}{(\mathcal{R}_0 -1)+ \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}}\\
+\mathcal{R}_0 I &= \frac{\epsilon(\mathcal{R}_0 -1)+ \epsilon \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}}{2}\\
+\mathcal{R}_0 S &= 1-\frac{2p \mathcal{R}_0}{(\mathcal{R}_0 -1)+ \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}}
+\end{align}
+
+Jacobian is the following.
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\mathcal{R}_0 I-\epsilon       & -\mathcal{R}_0 S \\
+    \ \mathcal{R}_0 I       & \mathcal{R}_0 S-1 \\
+\end{bmatrix}
+\end{equation}
+
+Now for simplicity, let $(\mathcal{R}_0 -1)+ \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}$ = $K$
+
+So we get:
+\begin{align}
+\mathcal{R}_0 I &= \frac{\epsilon K}{2}\\
+\mathcal{R}_0 S &= 1-\frac{2p \mathcal{R}_0}{K}
+\end{align}
+
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\frac{\epsilon K}{2}-\epsilon       & -1+\frac{2p \mathcal{R}_0}{K} \\
+    \ \frac{\epsilon K}{2}       & -\frac{2p \mathcal{R}_0}{K} \\
+\end{bmatrix}
+\end{equation}
+
+The eigenvalues of this Jacobian is:
+
+\begin{equation}
+\lambda = \frac{-\epsilon K^2-2\epsilon K -4p\mathcal{R}_0 \pm \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
+\end{equation}
+
+Reminder: $K=(\mathcal{R}_0 -1)+ \sqrt{(\mathcal{R}_0-1)^2+4\mathcal{R}_0 p}$
+
+\end{document}
