@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{color}
+\newcommand{\de}[1]{$\langle${{\color{cyan}\slshape{\bfseries DE:} #1}$\rangle$}}
+\newcommand{\rz}[1]{$\langle${{\color{magenta}\slshape{\bfseries RZ:} #1}$\rangle$}}
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+\title{Intensional infect proportion of susceptible}
+
+\begin{document}
+\maketitle
+
+\de{There is some rate at which susceptibles are intentionally infected, say $r$, so there is a term $-rS$ in the dimensional SIR equations.  We are expressing the SIR model in dimenionless form, so let $\eta=r/(\gamma+\mu)$ and then we get the following.}
+
+Here is the system we are investigating:
+\begin{align}
+\frac{\mathrm{d}S}{\mathrm{d}\tau}&=\epsilon -\mathcal{R}_0 SI-\eta S-\epsilon S\\
+\frac{\mathrm{d}I}{\mathrm{d}\tau}&=\eta S+\mathcal{R}_0 SI-I\\
+\frac{\mathrm{d}R}{\mathrm{d}\tau}&=(1-\epsilon)I-\epsilon R
+\end{align}
+
+Here $\gamma$ is mean infectious period, $\mu$ is birth/death rate, $r$ is rate of intensional infection. $\epsilon=\frac{\mu}{\gamma+\mu}$, $\mathcal{R}_0$ is the basic reproduction number.
+
+Since last time we discussed that, it is not very meaningful to divide $I$ into $I_T$ and $I_N$. Thus, I just used I this time to investigate the system's equilibrium, stability and other properties.
+\section{EE}
+Endemic equilibrium is the following:
+
+\begin{align}
+I &= \frac{-(\eta+\epsilon-\epsilon\mathcal{R}_0)+\sqrt{(\eta+\epsilon-\epsilon\mathcal{R}_0)^2+4\mathcal{R}_0\epsilon \eta}}{2\mathcal{R}_0}\\
+S &= \frac{1}{\mathcal{R}_0}-\frac{2\eta}{\mathcal{R}_0(-(\eta+\epsilon-\epsilon\mathcal{R}_0)+\sqrt{(\eta+\epsilon-\epsilon\mathcal{R}_0)^2+4\mathcal{R}_0\epsilon \eta}+2\eta)}
+\end{align}
+
+Jacobian is the following.
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\mathcal{R}_0 I-\eta-\epsilon       & -\mathcal{R}_0 S \\
+    \ \eta+\mathcal{R}_0 I       & \mathcal{R}_0 S-1 \\
+\end{bmatrix}
+\end{equation}
+
+Again, for simplicity. Let $G=-(\eta+\epsilon-\epsilon\mathcal{R}_0)+\sqrt{(\eta+\epsilon-\epsilon\mathcal{R}_0)^2+4\mathcal{R}_0\epsilon \eta}$.
+
+So Jacobian at E.E. is:
+
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ \frac{G}{2}-\eta-\epsilon       & -1+\frac{2L}{G+2\eta} \\
+    \ \eta+\frac{G}{2}       & -\frac{2\eta}{G+2\eta} \\
+\end{bmatrix}
+\end{equation}
+
+\section{DFE}
+Here is the analysis on Disease Free Equilibrium (DFE).
+
+Certainly at DFE, $S=1$ and $I=0$. By using the same Jacobian, we get the following:
+
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\eta-\epsilon       & -\mathcal{R}_0 \\
+    \ \eta       & \mathcal{R}_0 -1 \\
+\end{bmatrix}
+\end{equation}
+
+The corresponding eigenvalues are:
+\begin{align}
+\lambda_1 &=\frac{-(\eta-\mathcal{R}_0+\epsilon+1)+ \sqrt{(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))}}{2}\\
+\lambda_2 &=\frac{-(\eta-\mathcal{R}_0+\epsilon+1)- \sqrt{(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))}}{2}
+\end{align}
+
+Now we want to analyze the with specific values of each parameter.
+
+A reasonable choice would be using smallpox, considering its background of intensional infection in human history.
+
+The following values are used: $\mu=\frac{1}{50*365}$, $\gamma=\frac{1}{22}$, $\mathcal{R}_0=4.5$. Also, $\epsilon=0.0012$
+
+As for value of $\eta$, it is reasonable to assume the average number of days before an individual to be intensionally infected is between 30-60 days. Thus our range of $\eta$ could vary from 0.36623 - 0.73245. Thus, we can conclude that $(\eta+\epsilon(1-\mathcal{R}_0))>0$. As a result, we can also claim that the real part of eigenvalues are always negative. Thus, the DFE is stable. 
+
+Now we are interested in the discriminant of eigenvalue.
+\begin{align}
+\Delta &=(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))=(\eta-3.5)^2-4(\eta-0.0042)\\
+\Delta &=\eta^2-11\eta+12.2668
+\end{align}
+
+If we try to find the $\eta$-intercept of (12), we get:
+\begin{align}
+\eta_1 &= 1.2593\\
+\eta_2 &= 9.7407
+\end{align}
+The above calculation, we can conclude that with a slower rate of intensional infection ($\eta<1.2593$), DFE is stable. In my opinion, it is unlikely for $\eta>9.7407$ since this means the average time before being intensional infected is about 2 day. Thus, it is meaningless to discuss any $\eta$ values greater than that.
+
+At $\eta\approx 1.2593$, it should be point of where the dynamic of infected individuals start to have damped oscillation. This correspond to an average time before being intensional infected of 17.45 days.
+
+\end{document}
