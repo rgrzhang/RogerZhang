@@ -47,58 +47,83 @@ Jacobian is the following.
 \end{bmatrix}
 \end{equation}
 
-Again, for simplicity. Let $G=-(\eta+\epsilon-\epsilon\mathcal{R}_0)+\sqrt{(\eta+\epsilon-\epsilon\mathcal{R}_0)^2+4\mathcal{R}_0\epsilon \eta}$.
+Again, for simplicity. Let $G=-(\eta+\epsilon-\epsilon\mathcal{R}_0)+\sqrt{(\eta+\epsilon-\epsilon\mathcal{R}_0)^2+4\mathcal{R}_0\epsilon \eta}$. Notice, $G>0$, if $\epsilon,\eta\neq 0$
 
 So Jacobian at E.E. is:
 
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
-    \ \frac{G}{2}-\eta-\epsilon       & -1+\frac{2L}{G+2\eta} \\
+    \ \frac{G}{2}-\eta-\epsilon       & -1+\frac{2\eta}{G+2\eta} \\
     \ \eta+\frac{G}{2}       & -\frac{2\eta}{G+2\eta} \\
 \end{bmatrix}
 \end{equation}
 
-\section{DFE}
-Here is the analysis on Disease Free Equilibrium (DFE).
+Thus, eigenvalues of of Jacobian are the following:
 
-Certainly at DFE, $S=1$ and $I=0$. By using the same Jacobian, we get the following:
-
-\begin{equation}
-\mathcal{J} =
-\begin{bmatrix}
-    \ -\eta-\epsilon       & -\mathcal{R}_0 \\
-    \ \eta       & \mathcal{R}_0 -1 \\
-\end{bmatrix}
-\end{equation}
-
-The corresponding eigenvalues are:
 \begin{align}
-\lambda_1 &=\frac{-(\eta-\mathcal{R}_0+\epsilon+1)+ \sqrt{(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))}}{2}\\
-\lambda_2 &=\frac{-(\eta-\mathcal{R}_0+\epsilon+1)- \sqrt{(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))}}{2}
+\lambda_{1,2} &= \frac{-(G^2+4\eta G+2\epsilon G+4\eta^2+4\epsilon\eta+4\eta) }{4(G+2\eta)}\\
+& \pm \frac{\sqrt{((G^2+4\eta G+2\epsilon G+4\eta^2+4\epsilon\eta+4\eta)^2-4(2G^3+12\eta G^2+24\eta^2 G+8\epsilon\eta G+16\eta^3+16\epsilon\eta^2)}}{4(G+2\eta)}
 \end{align}
 
-Now we want to analyze the with specific values of each parameter.
+Since $G,\eta >0$, we can conclude that Re($\lambda$)$<0$, thus E.E. is stable.
+
+Now we are interested in equation (9), if the discriminant is positive/negative. Which could indicate whether there is a damped oscillation.
+
+Now we want to analyze with specific values of each parameter.
 
 A reasonable choice would be using smallpox, considering its background of intensional infection in human history.
 
-The following values are used: $\mu=\frac{1}{50*365}$, $\gamma=\frac{1}{22}$, $\mathcal{R}_0=4.5$. Also, $\epsilon=0.0012$
 
-As for value of $\eta$, it is reasonable to assume the average number of days before an individual to be intensionally infected is between 30-60 days. Thus our range of $\eta$ could vary from 0.36623 - 0.73245. Thus, we can conclude that $(\eta+\epsilon(1-\mathcal{R}_0))>0$. As a result, we can also claim that the real part of eigenvalues are always negative. Thus, the DFE is stable. 
+\subsection{Take $\epsilon$ to be the variable}
+The following values are used: $\mu=\frac{1}{50*365}$, $\gamma=\frac{1}{22}$, $\mathcal{R}_0=4.5$. Also, $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$
 
-Now we are interested in the discriminant of eigenvalue.
+So now, $G=-(\eta-0.0042)+\sqrt{(\eta-0.0042)^2+0.0216\eta}$
+
 \begin{align}
-\Delta &=(\eta-\mathcal{R}_0+\epsilon+1)^2-4(\eta+\epsilon(1-\mathcal{R}_0))=(\eta-3.5)^2-4(\eta-0.0042)\\
-\Delta &=\eta^2-11\eta+12.2668
+\lambda_{1,2} &= \frac{-(G^2+4\eta G+0.0024 G+4\eta^2+0.0048\eta+4\eta) }{4(G+2\eta)}\\
+& \pm \frac{\sqrt{((G^2+4\eta G+0.0024 G+4\eta^2+0.0048\eta+4\eta))^2-4(2G^3+12\eta G^2+24\eta^2 G+0.0096\eta G+16\eta^3+0.0192\eta^2)}}{4(G+2\eta)}
 \end{align}
 
-If we try to find the $\eta$-intercept of (12), we get:
-\begin{align}
-\eta_1 &= 1.2593\\
-\eta_2 &= 9.7407
-\end{align}
-The above calculation, we can conclude that with a slower rate of intensional infection ($\eta<1.2593$), DFE is stable. In my opinion, it is unlikely for $\eta>9.7407$ since this means the average time before being intensional infected is about 2 day. Thus, it is meaningless to discuss any $\eta$ values greater than that.
+So I plotted the discriminant using Mathematica, here is what I got:
 
-At $\eta\approx 1.2593$, it should be point of where the dynamic of infected individuals start to have damped oscillation. This correspond to an average time before being intensional infected of 17.45 days.
+\begin{figure}[h!]
+  \caption{Plot discriminant with $\eta$ to be the variable.}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/Discriminant_plot_S.pdf}
+\end{figure}
+
+The $\eta$-intercept of this plot is $\eta_1=0.000704619$, $\eta_2=0.840164$, $\eta_3=1.13557$. The corresponding interpretations are: average time before being intentional infected are 31184.95, 26.15, 19.35 days, respectively.
+
+Realistically, it should not take 85 years to intentionally infect an individual. so we can reject $\eta_1=0.000704619$.
+
+Thus, if we are intentionally infecting slower than $\eta_2$ or faster than $\eta_3$, there is no damped oscillation, or otherwise there is.
+
+For value of $\eta$, it is reasonable to assume the average number of days before an individual to be intentionally infected is between 30-60 days. Thus our range of $\eta$ could vary from 0.36623 - 0.73245. Thus, from this range, we should get a positive discriminant value, hence, there is no damped oscillation.
+
+\subsection{Take $\mathcal{R}_0$ as variable}
+
+This time, I again take $\mu=\frac{1}{80*365}$, $\gamma=\frac{1}{22}$, $\epsilon=\frac{\mu}{\mu+\gamma}=0.000753$. 
+
+Now I take $\eta=0.4885$, as it correspond to the average number of days before an individual get intentionally infected being 45 days.
+
+Again, I did the plot of discriminant.
+
+\begin{figure}
+  \caption{Plot discriminant with $\mathcal{R}_0$ to be the variable.}
+  \includegraphics[width=1\textwidth]{Figures/Plot_R_S.pdf}
+\end{figure}
+
+The plotting result shows that discriminant is always positive,for a reasonable $\mathcal{R}_0$ value. Thus, if we take $\eta=0.4885$, there is never going to be a damped oscillation.
+
+The value of discriminant is much more sensitive to $\eta$ than to $\mathcal{R}_0$.
+
+\section{DFE}
+
+Disease free equilibrium is the equilibrium when there is nobody infected in the system, which means, $I=0$
+
+Thus we have $\frac{\mathrm{d}I}{\mathrm{d}\tau}=\eta S+\mathcal{R}_0 SI-I=\eta S=0$
+
+In our case, there is no DFE. When $I=0$, we are still intensionally infecting susceptible,  therefore, there is no equilibrium in which $I=0$.
 
 \end{document}
