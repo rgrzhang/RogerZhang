@@ -1,0 +1,184 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.2}
+\newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
+\newcommand{\R}{\mathcal{R}}
+\title{Intensional infect proportion of newborn, finding eigenvalues}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Primarily, there are two strategies when performing intentional infection on a population level. One is to intentionally infect newborns, since it is much easier to identify newborn individuals, in contrast with identify and intentionally infect susceptible individuals, which is our second approach. In this document, we discuss and analyze the basic modeling of our first approach.
+
+\section{System of differential equations}
+To begin with, the following assumptions are made:
+\begin{itemize}
+\item There is no unnatural death due to the disease.
+\item Birth and natural death rate are the same, so the total population remains constant.
+\item The latent period is short enough to be ignored.
+\item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
+\end{itemize}
+
+With the assumptions above, we now setup our system of equations.
+S, I and R represent the proportion of susceptible, infected and recovered with respect to total population.
+\begin{equation}\label{1}
+\begin{split}
+\dbyd{S}{t}&=\mu(1-p)- \beta SI-\mu S \\
+\dbyd{I}{t}&=\beta SI+\mu p-\gamma I -\mu I\\
+\dbyd{R}{t}&=\gamma I-\mu R
+\end{split}
+\end{equation}
+
+Where $\beta$ is transmission rate, $\gamma$ is recovery rate, $\mu$ is birth/death rate, $p$ is the probability of intensional infection on newborns.
+
+For simplicity, we now convert the system into dimensionless form using dimensionless time coordinate. 
+
+\begin{equation}
+\tau=(\gamma+\mu)t
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \\
+\dbyd{I}{\tau}&=\R_0 SI+\epsilon p-I
+\end{split}
+\end{equation}
+
+Where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$ 
+\section{Endemic Equilibrium}
+To find the E.E. We need to let both equations in (3) equal to 0, after solving, we get:
+\begin{align}
+I &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\\
+S &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\\
+\R_0 I &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2}\\
+\R_0 S &= 1-\frac{2p \R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}
+\end{align}
+
+To analyze the local stability of the endemic equilibrium, we need to use the Jacobian matrix.
+
+Jacobian is the following.
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\R_0 I-\epsilon       & -\R_0 S \\
+    \ \R_0 I       & \R_0 S-1 \\
+\end{bmatrix}
+\end{equation}
+
+Now for simplicity, let $(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}$ = $K$. Notice, $K>0$ if $p\neq 0$
+
+Now we get:
+\begin{align}
+\R_0 I &= \frac{\epsilon K}{2}\\
+\R_0 S &= 1-\frac{2p \R_0}{K}
+\end{align}
+Thus, the Jacobian evaluated at endemic equilibrium is the following:
+\begin{equation}
+\mathcal{J}|_{E.E.} =
+\begin{bmatrix}
+    \ -\frac{\epsilon K}{2}-\epsilon       & -1+\frac{2p \R_0}{K} \\
+    \ \frac{\epsilon K}{2}       & -\frac{2p \R_0}{K} \\
+\end{bmatrix}
+\end{equation}
+
+The eigenvalues of this Jacobian is:
+
+\begin{equation}
+\lambda = \frac{-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0) \pm \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
+\end{equation}
+
+Since $\sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}\leq |\epsilon K^2+2\epsilon K +4p\mathcal{R}_0|$, we can conclude that Re($\lambda$)$<0$ for all $p\neq 0$. Thus the endemic equilibrium is always stable.
+
+But to fully understand the dynamics of the system, we are also interested in whether it is possible to have a complex eigenvalue, which will lead to damped oscillation. That require us to zoom in and take a close look at the discriminant of the eigenvalue.
+
+Although it is hard to determine the sign of discriminant analytically, we can still plot the value of discriminant as a function of other parameter, i.e. $p$ or $\R_0$
+
+\subsection{Take $p$ as the variable}
+
+We will start our analysis with specific values of each parameter. Given the variolation history of smallpox, it is reasonable to use the parameters of smallpox as an example.
+
+The following values are used (need reference): 
+\begin{enumerate}
+\item With 50 years of average life span, $\mu=\frac{1}{50*365}$.
+\item 22 days of mean infectious period, $\gamma=\frac{1}{22}$.
+\item $\R_0=4.5$.
+\end{enumerate}
+Therefore, we can calculate $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$
+
+I plotted the discriminant with Mathematica, range of $p$ is $[0,1]$.
+
+\begin{figure}[H]
+  \caption{Plot discriminant with $p$ to be the variable.}
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/Discriminant_plot_newborn.pdf}
+\end{figure}
+
+The $p$-intercept of this graph is $p=0.103995$. Meaning, with a proportion of 0.103995 or less, there is going to be a damped oscillation.
+
+\subsection{Take $\R_0$ as the variable}
+It is also interesting to investigate the effect of $\R_0$ on discriminant. Since it is often the case where people have limited resources and ability to apply such medical treatment.
+
+Again, we take $\mu=\frac{1}{50*365}$, $\gamma=\frac{1}{22}$, $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$.
+
+We made an array of plots by taking $p=0.1,0.2,0.3...$
+
+\begin{figure}[H]
+  \caption{Plot discriminant with $\R_0$ to be the variable.$p=0.1$, the $R_0$ -intercept is $\R_0 = 0, 5.74966$}
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/Plot_R_0_p_0_1.pdf}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Plot discriminant with $\R_0$ to be the variable.$p=0.2$, the $\R_0$ -intercept is $\R_0 = 0, 17.0518$}
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/Plot_R_0_p_0_2.pdf}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Plot discriminant with $\mathcal{R}_0$ to be the variable.$p=0.3$, the $\mathcal{R}_0$ -intercept is $\mathcal{R}_0 = 0, 37.4537$}
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/Plot_R_0_p_0_3.pdf}
+\end{figure}
+
+For $p=0.4$ or higher, the graphs look similar, but with even higher value for the discriminant and larger value for $\R_0$-intercept.
+
+Thus, it is evident that a larger $\R_0$ value will eventually lead to damped oscillation, but the threshold for this to happen increases as $p$ increases.
+
+\section{DFE}
+
+Disease free equilibrium is the equilibrium when there is nobody infected in the system, which means, $I=0$
+
+Again, we solve equations (3) by letting both $\dbyd{S}{\tau}$ and $\dbyd{I}{\tau}$ equal to 0. But this time, since it is disease free, $I=0$ as well.
+
+Thus, we obtain:
+\begin{equation}
+\dbyd{I}{\tau}=\epsilon p=0
+\end{equation}
+Since $\epsilon\neq0$, it is necessary that $p=0$. But this is the case when there is no intentional infection, and there is no solution to this system if $p\neq0$. Therefore, we can conclude that there is no disease free equilibrium(DFE) for this model if $p\neq0$
+
+\section{I at E.E.}
+
+\begin{figure}[H]
+  \caption{Infected population at E.E. as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange curve is for $p=0$, which is the endemic equilibrium for basic SIR model.}
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/I_at_E_E_SIR_vs_Int.pdf}
+\end{figure}
+
+A non-zero $p$ value will increase the proportion infected at endemic equilibrium. The amount increased has a direct relationship with $p$. 
+
+To know how much $I|_{E.E.}$ has increased, it is helpful to see the ratio between different $I$ values at different $p$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.1\textwidth]{Figures/I_at_E_E__Ratio_plot.pdf}
+  \caption{Ratio of $I$ at E.E. between intentional infection cases and basic SIR model, as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange line is horizontal line at 1.}
+\end{figure}
+
+\end{document}
