@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{lineno}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.2}
@@ -11,6 +12,8 @@
 \title{Intensional infect proportion of newborn, finding eigenvalues}
 
 \begin{document}
+\linenumbers
+
 \maketitle
 
 \section{Introduction}
@@ -20,14 +23,14 @@ Primarily, there are two strategies when performing intentional infection on a p
 \section{System of differential equations}
 To begin with, the following assumptions are made:
 \begin{itemize}
-\item There is no unnatural death due to the disease.
+\item There is no disease induced mortality.
 \item Birth and natural death rate are the same, so the total population remains constant.
 \item The latent period is short enough to be ignored.
 \item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
 \end{itemize}
 
 With the assumptions above, we now setup our system of equations.
-S, I and R represent the proportion of susceptible, infected and recovered with respect to total population.
+$S$, $I$ and $R$ represent the proportion of susceptible, infected and recovered with respect to total population.
 \begin{equation}\label{1}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta SI-\mu S \\
@@ -36,43 +39,50 @@ S, I and R represent the proportion of susceptible, infected and recovered with 
 \end{split}
 \end{equation}
 
-Where $\beta$ is transmission rate, $\gamma$ is recovery rate, $\mu$ is birth/death rate, $p$ is the probability of intensional infection on newborns.
+Here, $\beta$ is the transmission rate, $\gamma$ is the recovery rate,
+$\mu$ is the \emph{per capita} rate of birth and death, $p$ is the
+proportion of newborns that are intentionally infected.
 
-For simplicity, we now convert the system into dimensionless form using dimensionless time coordinate. 
-
+For simplicity, we now convert the system into dimensionless form using dimensionless time coordinate,
 \begin{equation}
-\tau=(\gamma+\mu)t
+\tau=(\gamma+\mu)t \,,
 \end{equation}
-
-\begin{equation}
-\begin{split}
-\dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \\
-\dbyd{I}{\tau}&=\R_0 SI+\epsilon p-I
-\end{split}
-\end{equation}
-
-Where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$ 
-\section{Endemic Equilibrium}
-To find the E.E. We need to let both equations in (3) equal to 0, after solving, we get:
+which yields
+\begin{subequations}
 \begin{align}
-I &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\\
-S &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\\
-\R_0 I &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2}\\
-\R_0 S &= 1-\frac{2p \R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}
+\dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \,,\\
+\dbyd{I}{\tau}&=\R_0 SI+\epsilon p-I \,,
+\end{align}
+\end{subequations}
+where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
+
+\section{Endemic Equilibrium}
+
+To find the endemic equilibrium (EE), we need to let both equations in (3) equal to 0, after solving, we get:
+\begin{align}
+\hat{I} &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0
+    p}}{2\R_0} \\
+\hat{S} &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}} 
 \end{align}
 
-To analyze the local stability of the endemic equilibrium, we need to use the Jacobian matrix.
-
-Jacobian is the following.
+To analyze the local stability of the EE, we need to use the Jacobian matrix,
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
     \ -\R_0 I-\epsilon       & -\R_0 S \\
     \ \R_0 I       & \R_0 S-1 \\
-\end{bmatrix}
+\end{bmatrix} \,.
 \end{equation}
 
-Now for simplicity, let $(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}$ = $K$. Notice, $K>0$ if $p\neq 0$
+Now for simplicity, let 
+%
+\begin{linenomath*}
+\begin{equation}\label{E:}
+K = (\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
+\end{equation}
+\end{linenomath*}
+%
+Notice, $K>0$ if $p\neq 0$.
 
 Now we get:
 \begin{align}
@@ -81,7 +91,7 @@ Now we get:
 \end{align}
 Thus, the Jacobian evaluated at endemic equilibrium is the following:
 \begin{equation}
-\mathcal{J}|_{E.E.} =
+\mathcal{J}|_{EE} =
 \begin{bmatrix}
     \ -\frac{\epsilon K}{2}-\epsilon       & -1+\frac{2p \R_0}{K} \\
     \ \frac{\epsilon K}{2}       & -\frac{2p \R_0}{K} \\
@@ -94,20 +104,30 @@ The eigenvalues of this Jacobian is:
 \lambda = \frac{-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0) \pm \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
 \end{equation}
 
-Since $\sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}\leq |\epsilon K^2+2\epsilon K +4p\mathcal{R}_0|$, we can conclude that Re($\lambda$)$<0$ for all $p\neq 0$. Thus the endemic equilibrium is always stable.
+If the discriminant is positive, then since
+%
+\begin{linenomath*}
+\begin{multline}\label{}
+\sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon
+  K^3+8\epsilon Kp\mathcal{R}_0)} \\
+ \leq \left|\epsilon K^2+2\epsilon K +4p\mathcal{R}_0\right|  \,,
+\end{multline}
+\end{linenomath*}
+%
+we can conclude that $\Re(\lambda)<0$ for all $p\neq 0$. If the discriminant is negative then $\Re(\lambda)<0$ as well.  Thus the EE is always stable.
 
-But to fully understand the dynamics of the system, we are also interested in whether it is possible to have a complex eigenvalue, which will lead to damped oscillation. That require us to zoom in and take a close look at the discriminant of the eigenvalue.
+But to fully understand the dynamics of the system, we are also interested in whether it is possible to have a complex eigenvalue, which will lead to damped oscillation. That requires us to look more closely at the discriminant of the eigenvalue.
 
 Although it is hard to determine the sign of discriminant analytically, we can still plot the value of discriminant as a function of other parameter, i.e. $p$ or $\R_0$
 
-\subsection{Take $p$ as the variable}
+\subsection{Dependence of discriminant on proportion intentionally infected ($p$)}
 
 We will start our analysis with specific values of each parameter. Given the variolation history of smallpox, it is reasonable to use the parameters of smallpox as an example.
 
 The following values are used (need reference): 
 \begin{enumerate}
-\item With 50 years of average life span, $\mu=\frac{1}{50*365}$.
-\item 22 days of mean infectious period, $\gamma=\frac{1}{22}$.
+\item With 50 years of average life span, $\mu=\frac{1}{50*365}$ per day.
+\item 22 days of mean infectious period, $\gamma=\frac{1}{22}$ per day.
 \item $\R_0=4.5$.
 \end{enumerate}
 Therefore, we can calculate $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$
@@ -163,22 +183,22 @@ Thus, we obtain:
 \end{equation}
 Since $\epsilon\neq0$, it is necessary that $p=0$. But this is the case when there is no intentional infection, and there is no solution to this system if $p\neq0$. Therefore, we can conclude that there is no disease free equilibrium(DFE) for this model if $p\neq0$
 
-\section{I at E.E.}
+\section{I at EE}
 
 \begin{figure}[H]
-  \caption{Infected population at E.E. as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange curve is for $p=0$, which is the endemic equilibrium for basic SIR model.}
+  \caption{Infected population at EE as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange curve is for $p=0$, which is the endemic equilibrium for basic SIR model.}
   \centering
   \includegraphics[width=1.1\textwidth]{Figures/I_at_E_E_SIR_vs_Int.pdf}
 \end{figure}
 
 A non-zero $p$ value will increase the proportion infected at endemic equilibrium. The amount increased has a direct relationship with $p$. 
 
-To know how much $I|_{E.E.}$ has increased, it is helpful to see the ratio between different $I$ values at different $p$.
+To know how much $I|_{EE}$ has increased, it is helpful to see the ratio between different $I$ values at different $p$.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1.1\textwidth]{Figures/I_at_E_E__Ratio_plot.pdf}
-  \caption{Ratio of $I$ at E.E. between intentional infection cases and basic SIR model, as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange line is horizontal line at 1.}
+  \caption{Ratio of $I$ at EE between intentional infection cases and basic SIR model, as a function of $\R_0$, blue curves are for intentional infections with $p=0.3,0.2,0.1$, from top to bottom. Orange line is horizontal line at 1.}
 \end{figure}
 
 \end{document}
