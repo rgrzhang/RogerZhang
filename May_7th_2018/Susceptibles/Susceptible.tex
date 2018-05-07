@@ -169,27 +169,13 @@ Thus we have:
 
 This system only has a solution if $\eta=0$ or $S=0$. However, if $\eta=0$, this is again the basic SIR model, which we are not going to consider, thus $S=0$.
 
-So the disease free equilibrium(DFE) is: $(S,I)=(0,0)$, this is the case where all individuals in the population have entered Recovery stage ($R$)
-
-The stability of DFE also depends on Jacobian matrix.
+However, the other equation is now not satisfied. By substituting $S=0$ into $\dbyd{S}{\tau}$, we get:
 
 \begin{equation}
-\mathcal{J}|_{E.E.}=
-\begin{bmatrix}
-    \ -\eta-\epsilon       & 0 \\
-    \ \eta       & -1 \\
-\end{bmatrix}
+\dbyd{S}{\tau}=\epsilon\neq0
 \end{equation}
 
-The eigenvalues are:
-\begin{equation}
-\begin{split}
-\lambda_1&=-\eta-\epsilon\\
-\lambda_2&=-1
-\end{split}
-\end{equation}
-
-Due to the positivity of both $\eta$ and $\epsilon$, we can conclude that DFE is stable.
+Consequently, we are able to conclude that disease free equilibrium does not exist for this model as well.
 
 \section{I at E.E.}
 
