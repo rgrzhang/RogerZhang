@@ -39,7 +39,7 @@ vary_p <- c(0,0.2,0.4,0.6,0.8,1)
 for (i in 1:length(vary_p)) {
   draw.soln(ic=c(S=S0,V=V0,I=I0,M=M0,R=R0), tmax=tmax,
             func=SIR.vector.field,
-            parms=c(R_0=4.5,gamma=1/22,p=vary_p[i],mu=0.0012),
+            parms=c(R_0=4.5,gamma=1/22,p=vary_p[i],mu=0.0000548),
             col=i,
             lty=i # use a different line style for each solution
   )

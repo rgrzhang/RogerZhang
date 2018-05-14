@@ -16,6 +16,8 @@
 
 \maketitle
 
+\section{Motivation}
+In history, before vaccination became a developed technology, humanity has limited power when encountering viral infection. Intentional infection however, act as a precursor of vaccination, was introduced long ago. Although people did not fully understand the detailed mechanism of intentional infections before modern centuries, this method was used extensively to battle some deadly disease, smallpox as a famous representative. There are different strategies in vaccination. Some vaccinations are applied to younglings, for example, polio. Other vaccination may be applied to adults, flu vaccination is a commonly seen one. In fact, same strategies may be used in intentional infection as well.
 \section{Introduction}
 
 Primarily, there are two strategies when performing intentional infection on a population level. One is to intentionally infect newborns, since it is much easier to identify newborn individuals, in contrast with identify and intentionally infect susceptible individuals, which is our second approach. In this document, we discuss and analyze the basic modeling of our first approach.
@@ -84,11 +86,6 @@ K = (\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
 %
 Notice, $K>0$ if $p\neq 0$.
 
-Now we get:
-\begin{align}
-\R_0 I &= \frac{\epsilon K}{2}\\
-\R_0 S &= 1-\frac{2p \R_0}{K}
-\end{align}
 Thus, the Jacobian evaluated at endemic equilibrium is the following:
 \begin{equation}
 \mathcal{J}|_{EE} =
@@ -142,7 +139,7 @@ I plotted the discriminant with Mathematica, range of $p$ is $[0,1]$.
 
 The $p$-intercept of this graph is $p=0.103995$. Meaning, with a proportion of 0.103995 or less, there is going to be a damped oscillation.
 
-\subsection{Take $\R_0$ as the variable}
+\subsection{Dependence of discriminant on basic reproduction number ($\R_0$)}
 It is also interesting to investigate the effect of $\R_0$ on discriminant. Since it is often the case where people have limited resources and ability to apply such medical treatment.
 
 Again, we take $\mu=\frac{1}{50*365}$, $\gamma=\frac{1}{22}$, $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$.
