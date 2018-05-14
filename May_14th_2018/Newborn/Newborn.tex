@@ -11,6 +11,11 @@
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
 \newcommand{\R}{\mathcal{R}}
 \title{Intensional infect proportion of newborn, with disease induced mortality rate}
+\usepackage{color}
+\newcommand{\david}[1]{\textcolor{blue}{$\langle${\slshape{\bfseries David:} #1 }$\rangle$}}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newcommand{\pmV}{p_{V}}
+\newcommand{\pmI}{p_{I}}
 
 \begin{document}
 \linenumbers
@@ -55,7 +60,9 @@ For simplicity, we now convert the system into dimensionless form using dimensio
 \end{equation}
 
 As the result, we obtain,
-
+\david{Do not use hard-coded specific values of case fatality
+  proportions.  Use symbols. $\pmV$, $\pmI$ for ``probability of
+  mortality in $V$ or $I$ classes respectively}
 \begin{subequations}\label{1}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0 S(V+I)-\epsilon S\,, \\
@@ -70,6 +77,9 @@ where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
 
 \section{Endemic Equilibrium}
 
+\david{Instead, begin by finding ALL equilibria then categorize the
+  according to what they mean.}
+
 To find endemic equilibrium, first we let equation (3c) equal to 0, we get: $I=0$ or $S=\frac{1}{\R_0}$. If $S=\frac{1}{\R_0}$, then by substituting into (3b), we get:
 \begin{equation}
 \dbyd{V}{\tau}=\epsilon p = 0.
@@ -81,9 +91,10 @@ We use this to substitute back into equation (3a) and (3b), and letting all equa
 
 \begin{subequations}
 \begin{align}
-\hat{S}&= \frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\,,\\
-\hat{V}&= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \\
-\hat{I}&=0\,,\\
+\hat{S}&= \frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0
+         p}}\,, \label{eq:Shat}\\
+\hat{V}&= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:Vhat}\\
+\hat{I}&=0\,, \label{eq:Ihat}
 \end{align}
 \end{subequations}
 
@@ -100,24 +111,20 @@ Stability analysis rely on Jacobian Matrix,
 Eigenvalues of Jacobian are given as follow,
 \begin{subequations}
 \begin{align}
-\lambda_1&=-1+\R_0 S\\
+\lambda_1&=-1+\R_0 S \label{eq:lambda1}\\
 \lambda_2&=\frac{-1-\epsilon+\R_0 S-\R_0 V-i\R_0-\sqrt{(-1-\epsilon+\R_0 S-\R_0 V-i\R_0)^2+4(-\epsilon-i\R_0+\epsilon\R_0 S-\R_0 V)}}{2}\\
 \lambda_3&=\frac{-1-\epsilon+\R_0 S-\R_0 V-i\R_0+\sqrt{(-1-\epsilon+\R_0 S-\R_0 V-i\R_0)^2+4(-\epsilon-i\R_0+\epsilon\R_0 S-\R_0 V)}}{2}
 \end{align}
 \end{subequations}
 
-By using equation (5a), we acquire the following:
-\begin{equation}
-\hat{S}=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\,,
-\end{equation}
+By using \autoref{eq:Shat} and \autoref{eq:lambda1}, we obtain:
 Thus,
 \begin{equation}
-\R_0\hat{S}=1-\frac{2p\R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}
+-1+\R_0 S = - \frac{2p\R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}<0
 \end{equation}
-\begin{equation}
--1+\R_0 S=\frac{2p\R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}<0
-\end{equation}
-Therefore,
+Therefore, \david{eigenvalues must be written in $a+ib$ form, where
+  $a,b$ are real.}
+\david{You have not calculated the real parts of $\lambda_2$ and $\lambda_3$.}
 \begin{subequations}
 \begin{align}
 \Re(\lambda_1) &=-1+\R_0 S<0\,,\\
@@ -135,12 +142,29 @@ By substituting $V=0$ into equation (3b), we have,
 \end{equation}
 Again, since $\epsilon$ and $p$ are both non-zero parameters, this system has no solution. Hence, there is no DFE for this system.
 \section{Mortality rate at Endemic equilibrium}
-When performing epidemic analysis, it is important to observe the mortality rate of the population, since this parameter is crucial to the severeness of this disease. Here, we emphasize the mortality rate at EE.
+When performing epidemic analysis, it is important to observe the mortality rate of the population, since this parameter is crucial to the severity of this disease. Here, we emphasize the mortality rate at EE.
 
 By substituting the corresponding values at EE into equation (3d), we obtain,
 \begin{equation}
 \dbyd{M}{\tau}=0.01(1-\epsilon)V=\frac{0.01(1-\epsilon)\epsilon(\R_0 -1)+ 0.01(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,,
 \end{equation}
+This function increases as $p$ increases, i.e., the mortality rate
+increases as the proportion intentionally infected is increased.
+The relationship between mortality rate and $p$ is shown in
+\autoref{fig:dMdt}, for the specific parameter values listed in \autoref{tab:params}
+
+\begin{table}
+\begin{center}
+\caption{Model parameters and smallpox values.}
+\label{tab:params}
+\smallskip
+\begin{tabular}{c|c|r}
+{\bfseries Symbol} & {\bfseries Meaning} & {\bfseries Value} \\\hline
+$\mu$ & Natural \emph{per capita} death rate & $\frac{1}{50*365}$ per day \\
+\end{tabular}
+\end{center}
+\end{table}
+
 The following values are used (need reference): 
 \begin{enumerate}
 \item With 50 years of average life span, $\mu=\frac{1}{50*365}$ per day.
@@ -156,6 +180,7 @@ So we plot $\dbyd{M}{\tau}$ as a function of $p$,
   \centering
   \includegraphics[width=1\textwidth]{Figures/Plot_dmdt_as_f_of_p.pdf}
   \caption{$\dbyd{M}{\tau}$ at EE as a function of $p$.}
+\label{fig:dMdt}
 \end{figure}
 From the graph, we can claim that mortality per unit time is higher if $p$ is higher. Since $I$ approaches 0 at EE, there is almost no disease induced mortality from individuals that are not variolated. It is evident that in the long run, a higher rate of intentional infection will lead to more disease induced death.
 
