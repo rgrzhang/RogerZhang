@@ -8,7 +8,7 @@ SIR.vector.field <- function(t, vars, parms) {
       dM <- 0.01*gamma*V+0.3*gamma*I # disease induced mortality
       dR <- 0.99*gamma*V+0.7*gamma*I-mu*R #dR/dt
    
-    vec.fld <- c(dS=dS, dV=dV, dI=dI, dR=dR, dM=dM)
+    vec.fld <- c(dS=dS, dV=dV, dI=dI, dM=dM, dR=dR)
     return(list(vec.fld)) # ode() requires a list
   })
 }
