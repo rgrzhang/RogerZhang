@@ -1,5 +1,7 @@
 # RogerZhang
 
+github repo is at https://github.com/rgrzhang/RogerZhang
+
 ## 2 Feb 2018
 
 ### David's suggestions
