@@ -1,2 +1,8 @@
 ## R history files
 .Rhistory
+
+## TeX junk
+*.aux
+*.log
+*.out
+*.blg
