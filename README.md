@@ -125,3 +125,9 @@ github repo is at https://github.com/rgrzhang/RogerZhang
 - Think about and develop an argument for what a sensible range for $\eta$ is.
 
 - write $\epsilon - \epsilon{\mathcal R}_0$ as $-\epsilon({\mathcal R}_0 - 1)$ because this is easy to interpret and recognize the sign.
+
+### David's thoughts 22 May 2018
+
+- add a different ${\mathcal R}_0$ for intentional infection (${\mathcal R}_V$) and different recovery rate $\gamma_V$
+- then you can look at how various things depend on the ratio of reproduction numbers and/or ratio of recovery rates
+
