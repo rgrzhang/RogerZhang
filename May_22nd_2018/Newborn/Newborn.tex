@@ -9,6 +9,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.2}
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
+\newcommand\dsided[2]{{\mathrm d{#1}}/{\mathrm d{#2}}}
 \newcommand{\R}{\mathcal{R}}
 \title{Intensional infect proportion of newborn, with disease induced mortality rate}
 \usepackage{color}
@@ -161,9 +162,15 @@ By substituting the corresponding values at EE into equation (3d), we obtain,
 \begin{equation}
 \dbyd{M}{\tau}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
 \end{equation}
-\autoref{eq:dMdt} reveals 3 important points. First, Mortality rate does increases as proportion of intentional infection increases. It is important to notice, though it is more beneficial to increase the proportion at the beginning of epidemics to prevent a severe outbreak, it might lead to heavier casualties in the long run. Second, as expected, the probability of mortality plays a major role in the mortality rate. Meaning intentional infection is not applicable if $\pmV$ is too high. Third, mortality rate also increases as $\R_0$ increases. 
+\autoref{eq:dMdt} reveals 3 important points. 
 
-More specifically, if we consider the case of smallpox, where the values in \autoref{tab:params} are used.
+First, the mortality rate at the EE does increase as the proportion  $p$ of individuals who are intentionally infected is increased.  Nevertheless, the total mortality over any period will be less with intentional infection if the mortality rate form intentional infection is much lower than the disease-induced mortality rate from natural infection.  Consequently, it may be beneficial to have high $p$ during an initial outbreak, but once an equilibrium is reached, it is likely to be better to avoid intentional infection.  
+
+Second, as expected, the probability $\pmV$ of mortality due to intentional infection plays a major role in the mortality rate at the EE. Meaning intentional infection is unwise if $\pmV$ is too high. 
+
+Third, mortality rate $\dsided{M}{\tau}$ also increases as $\R_0$ increases. 
+
+More specifically, we now consider the case of smallpox, i.e., the parameter values in \autoref{tab:params}.
 
 \begin{table}[H]
 \begin{center}
@@ -183,6 +190,7 @@ Therefore, we can calculate $\epsilon=\frac{\mu}{\mu+\gamma}=0.0012$
 \begin{equation}
 \dbyd{M}{\tau}=0.00111111(0.00420902+\frac{100375\sqrt{12.25+18p}}{83466496})\,,
 \end{equation}
+\david{write that as $a + b\sqrt{c + d p}$, where $a,b,c,d$ are number given to three significant figures.}
 So we plot $\dbyd{M}{\tau}$ as a function of $p$,
 \begin{figure}[H]
   \centering
@@ -193,9 +201,9 @@ So we plot $\dbyd{M}{\tau}$ as a function of $p$,
 
 A major observation from this plot is, the magnitude of mortality rate at endemic equilibrium is far less than natural death rate. That is,
 \begin{equation}
-\dbyd{M}{t}|_{EE}<<\epsilon 
+\left. \dbyd{M}{t}\right|_{\rm EE} \ll \epsilon 
 \end{equation}
-Therefore, such an insignificant rate of death at EE can give us a conclusion that the total disease induced mortality may eventually be close to not increasing anymore. We demonstrate the total mortality counts as a function of time, using parameters from \autoref{tab:params}.
+Consequently, once an equilbirium is reached, disease induced mortality will be negligible.  In \autoref{fig:dMdt} we demonstrate the total mortality counts as a function of time, using parameters from \autoref{tab:params}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{Figures/Mortality_counts.png}
