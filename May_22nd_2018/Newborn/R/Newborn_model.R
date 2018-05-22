@@ -17,31 +17,32 @@ draw.soln <- function(ic=c(S=1,V=0,I=0,M=0,R=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"I"], lwd=1,...)
+  lines(times, soln[,"M"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
 
 ## Plot solutions of the SIR model
-tmax <- 5000 # end time for numerical integration of the ODE
-## draw box for plot:
-plot(0,0,xlim=c(0,tmax),ylim=c(0,1),
-     type="n",main="Mortality counts",xlab="Time (t)",ylab="M",las=1)
-## initial conditions:
-V0 <- 0
-I0 <- 0.001
-S0 <- 1 - I0
-R0 <- 0
-M0 <- 0
-## draw solutions for several values of parameter R_0:
-vary_p <- c(0,0.2,0.4,0.6,0.8,1)
-
-for (i in 1:length(vary_p)) {
-  draw.soln(ic=c(S=S0,V=V0,I=I0,M=M0,R=R0), tmax=tmax,
+plot_pvals <- function( tmax=5000, # end time for numerical integration of the ODE
+                       V0=0, I0=0.001, S0=1 - I0, R0=0, M0=0, # initial conditions
+                       vary_p=c(0,0.2,0.4,0.6,0.8,1),  # p values to use
+                       ylim=c(0,1), 
+                       ... ) {
+    ## draw box for plot:
+    plot(0,0,xlim=c(0,tmax),ylim=ylim,
+         type="n",main="Mortality counts",xlab="Time (t)",ylab="M",las=1)
+    for (i in 1:length(vary_p)) {
+        draw.soln(ic=c(S=S0,V=V0,I=I0,M=M0,R=R0), tmax=tmax,
             func=SIR.vector.field,
             parms=c(R_0=4.5,gamma=1/22,p=vary_p[i],mu=0.0000548),
             col=i,
             lty=i # use a different line style for each solution
-  )
+            )
+    }
+    legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p))
 }
-legend("topright",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p))
+
+if (!interactive()) pdf("myplot.pdf")
+plot_pvals()
+plot_pvals(ylim=c(0.2,0.3))
+if (!interactive()) dev.off()
