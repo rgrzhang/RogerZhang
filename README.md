@@ -131,3 +131,11 @@ github repo is at https://github.com/rgrzhang/RogerZhang
 - add a different ${\mathcal R}_0$ for intentional infection (${\mathcal R}_V$) and different recovery rate $\gamma_V$
 - then you can look at how various things depend on the ratio of reproduction numbers and/or ratio of recovery rates
 
+### David's thoughts 28 May 2018
+
+- If you start at the EE for the model without intentional infection (`p=0`) how _long_ does it take to reach equilibrium after introducting intentional infection of proportion `p` of the population (as a function of `p`)?  Answer this using simulations in which the initial state is the EE with `p=0` and simulate until the trajectory is within some distance of the EE for the new `p`.
+    - let `x` be the full vector state, with `x0` being the initial state (EE for `p=0`) and `xf` being the EE for `p` that you choose
+    - integrate (i.e., numerically solve) until `|x-xf|/|xf| < small`  where `small` is a number you experiment with
+
+- from the time to reach the new equilibium and the annual death rate at the new equilibrium vs the old equilibrium, we may be able to say something useful about what infectional infection proportion `p` is optimal.
+
