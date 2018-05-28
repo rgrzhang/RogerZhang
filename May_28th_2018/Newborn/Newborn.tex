@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{lineno}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.2}
+\newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
+\newcommand{\R}{\mathcal{R}}
+\title{Intensional infect proportion of newborn, with disease induced mortality rate}
+\usepackage{color}
+\newcommand{\david}[1]{\textcolor{blue}{$\langle${\slshape{\bfseries David:} #1 }$\rangle$}}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newcommand{\pmV}{p_{V}}
+\newcommand{\pmI}{p_{I}}
+
+\begin{document}
+\linenumbers
+\maketitle
+
+\section{Motivation}
+
+ Being infected intentionally and naturally by pathogen should have different properties in epidemiology. For instance, different transmission rate and different recovery rate. These are, of course, caused by different severity of symptoms in those two cases, and possible involvement of genetic engineering when it comes to modifying gene sequence of vaccine. In this document, I would like to expand on previous analysis, with more parameters involved, and larger degree of complexity.
+
+\section{Introduction}
+
+Again, we consider two intentional infect strategies. One is to intentional infect newborns and the other is to intentional infect susceptible. In this document, we discuss the first strategy only.
+
+\section{System of differential equations}
+Different from previous, we are now considering different transmission rate and different recovery rate, which means, variolated cases and pathogen infected cases should have different $\R_0$ values. The main structure of the system will still be the same, but with more variable.
+
+The following assumptions are used:
+
+\begin{itemize}
+\item Birth and natural death rate are the same.
+\item The latent period is short enough to be ignored.
+\item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
+\end{itemize}
+
+\begin{equation}\label{1}
+\begin{split}
+\dbyd{S}{t}&=\mu(1-p)- \beta_V SV -\beta_I SI-\mu S \,,\\
+\dbyd{V}{t}&=\beta_V SV+\mu p-\gamma_V V -\mu V\,,\\
+\dbyd{I}{t}&=\beta_I SI-\gamma_I I -\mu I\,,\\
+\dbyd{M}{t}&=\pmV\gamma_V V+\pmI\gamma_I I\,,\\
+\dbyd{R}{t}&=(1-\pmV)\gamma_V V+(1-\pmI)\gamma_I I-\mu R\,,
+\end{split}
+\end{equation}
+
+Here, $\beta_V$ and $\beta_I$ represent the transmission rate of variolated cases and pathogen infected cases, respectively. $\gamma_V$ and $\gamma_I$ are the recovery rate of variolated cases and pathogen infected cases, respectively.
+$\mu$ is the \emph{per capita} rate of birth and death, $p$ is the
+proportion of newborns that are intentionally infected.
+
+We non-dimensionalize \autoref{1} by scaling time, by
+\begin{equation}
+\tau=(\gamma_I+\mu)t \,,
+\end{equation}
+
+As the result, we obtain,
+\begin{subequations}\label{eq:base_ODE}
+\begin{align}
+\dbyd{S}{\tau}&=\epsilon(1-p)-\R_{0,V} SV-\R_{0,I} SI-\epsilon S\,, \label{eq:S_by_tau}\\
+\dbyd{V}{\tau}&=\R_{0,V} SV+\epsilon p-\gamma V\,, \label{eq:V_by_tau}\\
+\dbyd{I}{\tau}&=\R_{0,I} SI-I\,, \label{eq:I_by_tau}\\
+\dbyd{M}{\tau}&=\pmV(\gamma-\epsilon) V+\pmI(1-\epsilon) I\,,\\
+\dbyd{R}{\tau}&=(1-\pmV)(\gamma-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
+\end{align}
+\end{subequations}
+
+where $\R_{0,V}=\frac{\beta_V}{\gamma_I+\mu}$, $\R_{0,I}=\frac{\beta_I}{\gamma_I+\mu}$, $\gamma=\frac{\gamma_V+\mu}{\gamma_I+\mu}$, $\epsilon=\frac{\mu}{\gamma_I+\mu}$.
+
+\section{Equilibria}
+
+To solve for all equilibria, we let equations \autoref{eq:S_by_tau}, \autoref{eq:V_by_tau} and \autoref{eq:I_by_tau} equal to 0, we solve for solutions.
+
+We acquired three sets of solutions. However, given conditions that all $\hat{S}$, $\hat{V}$ and $\hat{I}$ have to be a non-negative number between 0 and 1, we can discard two of the solutions, and the only set of solution left is, 
+\begin{subequations}
+\begin{align}
+\hat{S}&= \frac{\R_{0,V}+\gamma-\sqrt{\R_{0,V}^2-2\R_{0,V}\gamma+\gamma^2+4p\R_{0,V}\gamma}}{2\R_{0,V}}\,, \label{eq:Shat}\\
+\hat{V}&= \frac{\epsilon-\frac{\gamma\epsilon}{\R_{0,V}}+\frac{\epsilon\sqrt{\R_{0,V}^2-2\R_{0,V}\gamma+\gamma^2+4p\R_{0,V}\gamma}}{\R_{0,V}}}{2\gamma}\,, \label{eq:Vhat}\\
+\hat{I}&=0\,, \label{eq:Ihat}
+\end{align}
+\end{subequations}
+
+At this equilibrium, since the infected population is non-zero, this is not a disease free equilibrium. It follows that the only equilibrium we found is an endemic equilibrium, and disease free equilibrium does not exist for this model.
+
+It is interesting to notice that the endemic equilibrium of this model is independent on the value of $\R_{0,I}$
+
+\section{Stability of Endemic Equilibrium}\label{section5}
+
+Stability analysis rely on Jacobian Matrix,
+\begin{equation}
+\mathcal{J} =
+\begin{bmatrix}
+    \ -\R_{0,V}V-\R_{0,I}I-\epsilon       & -\R_{0,V}S     &-\R_{0,I}S\\
+    \ \R_{0,V}V       & \R_{0,V}S-\gamma    &0\\
+    \ \R_{0,I}I       &0     &\R_{0,I} S-1\\
+\end{bmatrix}\,.
+\end{equation}
+
+Eigenvalues of Jacobian are given as follow,
+\begin{subequations}
+\begin{align}
+\lambda_1&=-1+\R_{0,I} S \label{eq:lambda1}\\
+\lambda_2&=\frac{-\gamma+\R_{0,V}S-\epsilon-\R_{0,V}V-\sqrt{(-\gamma+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\gamma+\epsilon\gamma-\R_{0,V}S\epsilon)}}{2} \label{eq:lambda2}\\
+\lambda_3&=\frac{-\gamma+\R_{0,V}S-\epsilon-\R_{0,V}V+\sqrt{(-\gamma+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\gamma+\epsilon\gamma-\R_{0,V}S\epsilon)}}{2}\label{eq:lambda3}
+\end{align}
+\end{subequations}
+
+By using \autoref{eq:Shat}, we know that
+\begin{equation}
+0\leq S\leq \frac{\gamma}{\R_{0,V}}\,.{\label{middle}}
+\end{equation}
+Therefore, 
+\begin{equation}
+\Re(\lambda_1) <0
+\end{equation}
+iff 
+\begin{equation}
+\frac{\gamma}{\R_{0,V}}<\frac{1}{\R_{0,I}}
+\end{equation}
+
+Or intuitively, if recovery rate are similar for variolated and normally infected cases, i.e. $\gamma\approx 1$, the endemic equilibrium is unstable if $\R_{0,V}<\R_{0,I}$
+
+For the real part of $\lambda_2$ and $\lambda_3$, first we look at the terms before square root. 
+
+By using \autoref{middle}, we have
+\begin{equation}
+-\gamma+\R_{0,V}S-\epsilon-\R_{0,V}V<0\,,
+\end{equation}
+
+Therefore,
+\begin{equation}
+\Re(\lambda_2)<-\gamma+\R_{0,V}S-\epsilon-\R_{0,V}V<0\,,
+\end{equation}
+
+Next, notice
+\begin{equation}
+\R_{0,V}\gamma+\epsilon\gamma-\R_{0,V}S\epsilon>0\,.
+\end{equation}
+It follows that
+\begin{equation}
+\sqrt{(-\gamma+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\gamma+\epsilon\gamma-\R_{0,V}S\epsilon)}<|-\gamma+\R_{0,V} S-\epsilon-\R_{0,V}V|
+\end{equation}
+Therefore, $\Re(\lambda_3)<0$.
+
+We are not able to conclude the stability of EE, but we have observed that the stability relies on only $\gamma$ and $\R_{0,I}$
+\section{Disease Free Equilibrium}
+As mentioned above in section 4, disease free equilibrium does not exist for this model.
+\section{Parameters}
+As we can see from \autoref{section5}, the stability at EE is largely affected by the values of parameters. Here I would like to discuss their possible values and potential meanings.
+\subsection{$\R_{0,V}$}
+$\R_{0,V}$ is the basic reproduction number of the variolated cases. Previous study have shown a significant decrease in final size even when $\R_{0,V}$ is less than 1, e.g. $\R_{0,V}=0.5$. But here I want to point out that, the final size is going to decrease as $\R_{0,V}$ increases. This is because the faster vaccine transmission will leave less susceptibles for pathogen infections to take place. Realistically, a vaccine should not cause severe symptoms, which will reduce the ability of transmission (symptom is a major route of transmission, e.g. sneeze, rash). That means, $\R_{0,V}<\R_{0,I}$ should be a valid assumption in most cases. 
+\subsection{$\gamma$}
+Here in our system, since $\epsilon$ is much smaller than both $\gamma_I$ and $\gamma_V$, we can consider $\gamma$ to be the ratio between $\gamma_V$ and $\gamma_I$. In our previous model, which there is no difference between intentionally infected and pathogen infected cases, $\gamma=1$. However, the recover rate for intentionally infected cases can vary depends on how this vaccine is made or genetically engineered. Previous studies have suggested a larger deduction to final size when recovery rate of vaccine is increased. Therefore, we expect a larger $\gamma$ value in such case, if a vaccine is genetically engineered to have a faster recovery rate than wild strain, we should be expecting a $\gamma$ value greater than 1. On the other hand, if one tries to make a slow vaccine (small transmission and recovery rate), that will result in a smaller $\gamma$.
+\section{Mortality rate at Endemic equilibrium}
+When performing epidemic analysis, it is important to observe the mortality rate of the population, since this parameter is crucial to the severity of this disease. Here, we emphasize the mortality rate at EE.
+
+By substituting the corresponding values at EE into equation (3d), we obtain,
+\begin{equation}
+\dbyd{M}{\tau}=\pmV(\gamma-\epsilon)V\,, \label{eq:dMdt}
+\end{equation}
+\autoref{eq:dMdt} reveals 3 important points. First, Mortality rate does increases as proportion of intentional infection increases. It is important to notice, though it is more beneficial to increase the proportion at the beginning of epidemics to prevent a severe outbreak, it might lead to heavier casualties in the long run. Second, as expected, the probability of mortality plays a major role in the mortality rate. Meaning intentional infection is not applicable if $\pmV$ is too high. Third, mortality rate also increases as $\R_0$ increases. 
+
+
+\end{document}
