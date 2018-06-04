@@ -139,3 +139,15 @@ github repo is at https://github.com/rgrzhang/RogerZhang
 
 - from the time to reach the new equilibium and the annual death rate at the new equilibrium vs the old equilibrium, we may be able to say something useful about what infectional infection proportion `p` is optimal.
 
+### David's thoughts 4 June 2018
+
+- plot time to EE and time to advantage as a function of `p`
+    - you can do this quickly from your table, but you need code that computes these times automatically so you can have as many values of `p` as you want in the plot
+
+- add some discussion about how you could, in principle, exploit intentional infection to eradicate a disease
+    - define eradication as `I` less than some threshold (e.g., `1e-6`)
+    - set `I` to zero if `I` goes below the threshold
+    - investigate whether you can cause eradication by using intentional infection for some time period and then stopping
+        - if this works it will depend on the threshold being strictly positive and if `S` is sufficiently small
+        - this has to work if you intentionally infect enough people: if you infect _everyone_ then you're done (provided births don't occur fast enough)
+
