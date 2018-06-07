@@ -159,7 +159,9 @@ $\R_0$ & Basic reproductive number & 4.5
   \includegraphics[width=1\textwidth]{Figures/Discriminant_plot_newborn.pdf}
 \end{figure}
 
-The $p$-intercept of this graph is $p=0.104$. Meaning, with a proportion of 10.4 percent or less, there is going to be a damped oscillation.
+The $p$-intercept of this graph is $p=0.104$. Meaning, with a proportion of 10.4 percent or less, there is going to be a damped oscillation. In general, a smaller  proportion of intentional infection will lead to damped oscillation.
+
+
 
 \subsection{Dependence of discriminant on basic reproduction number ($\R_0$)}
 
@@ -181,7 +183,7 @@ By using values in \autoref{tab:params} except $\R_0$, the following plots are m
   \includegraphics[width=0.85\textwidth]{Figures/Plot_R_0_p_0_3.pdf}
 \end{figure}
 
-\autoref{plot:R_0} tells us, With the proportion of intentional infection $p>0.3$, the system has no damped oscillation for a reasonable value of $\R_0$.
+\autoref{plot:R_0} tells us, With the proportion of intentional infection $p>0.3$, the system has no damped oscillation for a reasonable value of $\R_0$. But for lower $p$, the system tends to have damped oscillation if $\R_0$ is larger.
 
 \subsection{Comments and discussion on this model}
 This is the initial model of intentional infection on newborns, compare to vaccination model, the main difference is the whereabouts of the individuals being treated with intentional infection or vaccination. Intentional infected individuals are capable of infecting susceptibles whereas the vaccinated individuals will enter $R$, which is recovered individuals, and not able to impact the dynamics of the system anymore. In ideal cases, once an individual is intentionally infected, either directly or infected by others of the same kind, this individual will not be normally infected anymore. Therefore, we should divide infected compartment into 2 new groups, namely, intentionally infected cases and normally infected cases.
