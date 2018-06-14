@@ -1,8 +1,21 @@
-\documentclass{beamer}
+\documentclass[12pt]{beamer}
 \usetheme{Boadilla}
-%%\setlength{\parindent}{4em}
-%%\setlength{\parskip}{1em}
-%%\renewcommand{\baselinestretch}{1.5}
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.7\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}}%
+  \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{frame in head/foot}%
+    \usebeamerfont{frame in head/foot} \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+
+
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
 \newcommand\dsided[2]{{\mathrm d{#1}}/{\mathrm d{#2}}}
 \newcommand{\R}{\mathcal{R}}
@@ -12,8 +25,8 @@
 \subtitle{Newborn infection}
 \author{Roger Zhang}
 \date{June 18th 2018}
-\institute{McMaster University Department of Mathematics}
-
+\institute{McMaster University}
+\usepackage{paralist}
 \begin{document}
 \begin{frame}
 \titlepage
@@ -21,9 +34,11 @@
 \begin{frame}
 \frametitle{Motivation}
 \begin{itemize}
+\setlength\itemsep{10pt}
 \item What are the historical examples?
 \pause
 \begin{itemize}
+\setlength\itemsep{10pt}
 \item Variolation of smallpox
 \item Pox party
 \end{itemize}
@@ -31,6 +46,7 @@
 \item This method is out of date, banned in some places, why do we care?
 \pause
 \begin{itemize}
+\setlength\itemsep{10pt}
 \item In history, the mechanisms and benefits of intentional infection  on a population level was not quite understood.
 \item New application to immunology, i.e. Transmissible vaccine.
 \end{itemize}
@@ -50,8 +66,12 @@ We start our analysis by modifying standard SIR model:
 \end{equation}
 
 Where $S$, $I$ and $R$ represent susceptible, infected and recovered.
-
-$\mu$ is birth/death rate, $\beta$ is the transmission rate, $\gamma$ is recovery rate. 
+\begin{itemize}
+\setlength\itemsep{10pt}
+\item $\mu$ is birth/death rate
+\item $\beta$ is the transmission rate
+\item $\gamma$ is recovery rate
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -128,32 +148,21 @@ We use Jacobian Matrix,
 \end{equation}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Stability of Equilibria}
-
-Eigenvalues of the Jacobian are,
-\begin{equation}
-\begin{split}
-\lambda_{1,2} = \frac{-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)}{4K} \pm \\ \frac{\sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
-\end{split}
-\end{equation}
-
-Where $K = (\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}$\,,
-
-We can conclude that $\Re(\lambda_{1,2})<0$
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{What else do we need?}
 \pause
+\begin{itemize}\itemsep10pt
+\item It is challenging to compare the results of this model to others for the purpose of observing any advantages.
+\pause
+\item One way of defining ``have advantage'' is to compare total mortality counts. It describes the total death.
+\pause
+\item If intentional infected cases have the same case fatality proportion as normally infected cases, then we will end up killing more people.
 \begin{itemize}
-\item We are unable to compare the results of this model to others for the purpose of observing any advantages.
+\item Therefore, we need to have separate case fatality proportion for each of them.
+\end{itemize}
 \pause
-\item One way of defining "have advantage" is to compare total mortality counts. It describes the total casualty.
-\pause
-\item If intentional infected cases have the same mortality rate as normally infected cases, then clearly it is going to be a disaster. Therefore, we need to have separate disease induce mortality rate for each of them.
-\pause
-\item We need to divide $I$ into two separate infective classes. $V$ for intentionally infected class, $I$ for normally infected class.
+\item We need to divide $I$ into two separate infective classes. $V$ for intentionally infected class, $I$ for naturally infected class.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +180,7 @@ Therefore, our model becomes,
 \end{align}
 \end{subequations}
 
-Where $\pmV$ and $\pmI$ represent the mortality rate for intentionally infected and normally infected cases, respectively.
+Where $\pmV$ and $\pmI$ represent the case fatality proportion for intentionally infected and naturally infected cases, respectively.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -187,7 +196,7 @@ If $p\neq 0$, the equilibrium is,
 \end{align}
 \end{subequations}
 
-It is interesting that, at equilibrium, normally infected cases cease to exist. This may be helpful for eradication of disease.
+It is interesting that, at equilibrium, naturally infected cases cease to exist. This may be helpful for eradication of disease.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -199,18 +208,17 @@ By using the same method as the previous model, we again showed that the equilib
 \begin{center}
 Smallpox
 \end{center}
-\begin{table}[H]
+\begin{table}[H]\label{tab:params}
 \begin{center}
 \caption{Model parameters and smallpox values.}
-\label{tab:params}
 \smallskip
 \begin{tabular}{c|c|r}
 {\bfseries Symbol} & {\bfseries Meaning} & {\bfseries Value} \\\hline
-$\mu$ & Natural \emph{per capita} death rate & $\frac{1}{50\times365}$ per day \\
-$\gamma$ & Recovery rate & $\frac{1}{22}$ per day \\
-$\R_0$ & Basic reproductive number & 4.5\\
-$\pmV$ & Intentionally infected cases death rate & 0.01\\
-$\pmI$ & Normally infected cases death rate & 0.3
+$\frac{1}{\mu}$ & Average lifespan & 50 years \\
+$\frac{1}{\gamma}$ & Mean infectious period & 22 days \\
+$\R_0$ & Basic reproduction number & 4.5\\
+$\pmV$ & Intentionally infected cases fatality proportion & 0.01\\
+$\pmI$ & Naturally infected cases fatality proportion & 0.3
 \end{tabular}
 \end{center}
 \end{table}
@@ -220,41 +228,44 @@ $\pmI$ & Normally infected cases death rate & 0.3
 \frametitle{Effect of intentional infection on total mortality}
 \framesubtitle{Mortality rate at EE}
 \begin{equation}
-\left. \dbyd{M}{t}\right|_{\rm EE}=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,,
+\left. \dbyd{M}{\tau}\right|_{\rm EE}=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,,
 \end{equation}
 \pause
 \begin{itemize}
 \item Mortality rate increases as $p$ increases.
 \pause
-\item In the long run, a larger proportion of intentional infection will lead to more casualties.
+\item In the long run, a larger proportion of intentional infection will lead to more deaths.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{Figures/Mortality_counts.png}
-  \caption{$\dbyd{M}{\tau}$ at EE as a function of $p$.}
-\label{fig:dMdt}
-\end{figure}
+%\begin{frame}
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=0.6\textwidth]{Figures/Mortality_counts.png}
+%  \caption{$\dbyd{M}{\tau}$ at EE as a function of $p$.}
+%\label{fig:dMdt}
+%\end{figure}
 
-Since the magnitude of $\dbyd{M}{\tau}$ is too small to be observed, we can hardly the the difference between the lines.
-\end{frame}
+%Since the magnitude of $\dbyd{M}{\tau}$ is too small to be observed, we can hardly the the difference between the lines.
+%\begin{itemize}
+%\item $\pmV$ is too small
+%\end{itemize}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-To see the dynamics better, assume $\pmV=0.2$.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{Figures/Rplot.pdf}
-  \caption{$\dbyd{M}{\tau}$ at EE as a function of $p$.}
-\label{fig:dMdt}
-\end{figure}
-\end{frame}
+%\begin{frame}
+%To see the dynamics better, assume $\pmV=0.2$.
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=0.9\textwidth]{Figures/Rplot.pdf}
+%  \caption{$\dbyd{M}{\tau}$ at EE as a function of $p$.}
+%\label{fig:dMdt}
+%\end{figure}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Initial state being at equilibrium}
 
-In many historical cases, intentional infect is introduced when the population is at equilibrium, which is the equilibrium for $p=0$.
+In history, intentional infect is introduced when the population is at equilibrium, which is the equilibrium for $p=0$.
 \pause
 \begin{subequations}
 \begin{align}
@@ -270,59 +281,39 @@ In many historical cases, intentional infect is introduced when the population i
 We are interested in the time it takes to reach the new EE. We need to define a threshold for reaching equilibrium.
 \pause
 
-Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium $I\leq 1\times 10^{-6}$ (one in a million).
+Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium by $I\leq 10^{-6}$ (one in a million).
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.9\textwidth]{Figures/I_less_than_0_000001.pdf}
+  \includegraphics[width=0.9\textwidth]{Figures/Time_to_EE_plot.pdf}
   \caption{Determination of time taken to reach equilibrium}
 \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-\begin{frame}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{Figures/dMdt.pdf}
-  \caption{An illustration of intentional infection have advantages over non-intentional infection}
-\end{figure}
-\end{frame}
+%\begin{frame}
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=0.9\textwidth]{Figures/dMdt.pdf}
+%  \caption{An illustration of intentional infection have advantages over non-intentional infection}
+%\end{figure}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-To summarize the figures in the previous two slides,
-\begin{table}[H]
-\begin{center}
-\caption{Time required to reach equilibrium and have advantages over non-intentional infection}
-\label{tab:times}
-\smallskip
-\begin{tabular}{c|c|r}
-{\bfseries $p$} & {\bfseries Time to EE} & {\bfseries Time to have advantages} \\\hline
-0.1 & 4.27 yrs & 5.20 yrs \\
-0.2 & 3.03 yrs & 8.81 yrs \\
-0.4 & 2.27 yrs & 17.45 yrs \\
-0.6 & 1.94 yrs & 28.37 yrs \\
-0.8 & 1.74 yrs & 42.43 yrs \\
-1.0 & 1.60 yrs & 61.46 yrs
-\end{tabular}
-\end{center}
-\end{table}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \begin{frame}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{Figures/time_to_advantage_plot.pdf}
+  \includegraphics[width=0.7\textwidth]{Figures/Time_to_advantage_plot.pdf}
   \caption{Time to advantage, as a function of $p$}
 \end{figure}
-It seems like with a lower proportion of intentional infection, we can gain advantages relative faster.
+With a lower proportion of intentional infection, we can gain advantages relative faster.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Possibility of disease eradication}
 
-We know that $\hat{I}=0$ at EE. We could consider the normally infected cases already been eradicated.
+We know that $\hat{I}=0$ at EE. We could consider the Naturally infected cases already been eradicated.
 
 \pause
 How about intentionally infected cases? Can they burn out?
@@ -339,7 +330,7 @@ $S=\frac{1}{\R_0}$
 \end{center}
 
 \pause
-If $S$ stay below this threshold until $V$ goes extinct, then we can achieve complete eradication of this disease.
+If $S$ stays below this threshold until $V$ goes extinct, then we can achieve complete eradication of this disease.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -365,11 +356,11 @@ For example, if our initial intentional infection has a proportion $p=1$, then
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Future expectation}
-\begin{itemize}
+\begin{itemize}\itemsep10pt
 \item Model extension
 \pause
-\begin{itemize}
-\item Different transmission rate for intentionally or normally infected cases
+\begin{itemize}\itemsep10pt
+\item Different transmission rate for intentionally or naturally infected cases
 \pause
 \item Different recovery rate
 \end{itemize}
@@ -385,7 +376,7 @@ For example, if our initial intentional infection has a proportion $p=1$, then
 \begin{frame}
 \frametitle{Other strategies for intentional infection}
 
-Another common strategy would be to intentionally infect susceptible individuals, with a certain rate.
+Another approach would be to intentionally infect susceptible individuals, with a certain rate $r$.
 \pause
 \begin{equation}
 \begin{split}
@@ -400,8 +391,18 @@ Another common strategy would be to intentionally infect susceptible individuals
 \frametitle{Challenges to this method}
 \begin{itemize}
 \item Identify susceptible individuals
-\item Compare with infecting newborn individuals, this method is largely relied on vaccination pattern (If we consider them using the same pattern),
 \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\begin{frame}{References}
+\begin{thebibliography}{9}
+\bibitem{article}
+Paulinevan den Driessche \emph{Reproduction numbers of infectious disease models}, Infectious Disease Modelling, Volume 2, Issue 3, August 2017, Pages 288-303.
+
+\bibitem{article}
+R.M. Anderson, R.M. May
+\emph{Infectious diseases of humans: Dynamics and control}, Oxford University Press, Oxford, UK (1991)
+\end{thebibliography}
 \end{frame}
 \end{document}
 
