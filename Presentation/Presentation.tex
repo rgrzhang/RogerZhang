@@ -25,7 +25,7 @@
 \subtitle{Newborn infection}
 \author{Roger Zhang}
 \date{June 18th 2018}
-\institute{McMaster University}
+\institute{McMaster University Department of Mathematics and Statistics}
 \usepackage{paralist}
 \begin{document}
 \begin{frame}
@@ -48,14 +48,14 @@
 \begin{itemize}
 \setlength\itemsep{10pt}
 \item In history, the mechanisms and benefits of intentional infection  on a population level was not quite understood.
-\item New application to immunology, i.e. Transmissible vaccine.
+\item New application to immunology, e.g. Transmissible vaccine.
 \end{itemize}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Method}
-We start our analysis by modifying standard SIR model:
+Standard SIR model:
 \pause
 \begin{equation}\label{1}
 \begin{split}
@@ -69,26 +69,26 @@ Where $S$, $I$ and $R$ represent susceptible, infected and recovered.
 \begin{itemize}
 \setlength\itemsep{10pt}
 \item $\mu$ is birth/death rate
-\item $\beta$ is the transmission rate
+\item $\beta$ is transmission rate
 \item $\gamma$ is recovery rate
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Method}
-The following assumptions are made to simplify the model to start with:
+Assumptions:
 \begin{itemize}\itemsep10pt
-\item There is no difference between intentionally infected and normally infected individuals.
-\item There is no disease induced mortality.
-\item Birth and natural death rate are the same, so the total population remains constant.
-\item The latent period is short enough to be ignored.
+\item No difference between intentionally infected and naturally infected individuals.
+\item No disease induced mortality.
+\item Birth and natural death rate are the same, the total population remains constant.
+\item Latent period is short enough to be ignored.
 \item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Method}
-With intentional infection on newborn, we have,
+With intentional infection on newborn, 
 \begin{equation}\label{2}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta SI-\mu S \,,\\
@@ -97,13 +97,11 @@ With intentional infection on newborn, we have,
 \end{split}
 \end{equation}
 
-In addition to the parameters above,
-
-$p$ is the proportion of newborn intentionally infected.
+Where $p$ is the proportion of newborn intentionally infected.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-We non-dimensionalize the above system by scaling time, by
+Non-dimensionalize the above system by scaling time, by
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
@@ -122,7 +120,7 @@ where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Equilibria}
-Solving equations above to find equilibria, we obtain,
+Solving equations above to find equilibria, we obtained only one set of solution,
 \begin{subequations}
 \begin{align}
 \hat{S} &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\,, \label{Shat1}\\
@@ -130,14 +128,15 @@ Solving equations above to find equilibria, we obtain,
     p}}{2\R_0}\,.\label{Ihat1}
 \end{align}
 \end{subequations}
-
-Notice, $\hat{I}\neq 0$ for all $p$ between 0 and 1. Meaning there is always infected cases in the population. Therefore, the equilibrium is an Endemic Equilibrium (EE).
+\begin{itemize}
+\item $\hat{I}\neq 0$ for all $p$ between 0 and 1. \item The equilibrium is an Endemic Equilibrium (EE).
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Stability of Equilibria}
 
-We use Jacobian Matrix,
+Jacobian Matrix,
 \pause
 \begin{equation}
 \mathcal{J} =
@@ -155,11 +154,11 @@ We use Jacobian Matrix,
 \begin{itemize}\itemsep10pt
 \item It is challenging to compare the results of this model to others for the purpose of observing any advantages.
 \pause
-\item One way of defining ``have advantage'' is to compare total mortality counts. It describes the total death.
+\item Define `` Have advantage'' by comparing total number of deaths.
 \pause
-\item If intentional infected cases have the same case fatality proportion as normally infected cases, then we will end up killing more people.
+\item If intentionally infected cases have the same case fatality proportion (CFP) as naturally infected cases, then it will result in more deaths.
 \begin{itemize}
-\item Therefore, we need to have separate case fatality proportion for each of them.
+\item We need to have separate CFP for each of them.
 \end{itemize}
 \pause
 \item We need to divide $I$ into two separate infective classes. $V$ for intentionally infected class, $I$ for naturally infected class.
@@ -180,13 +179,13 @@ Therefore, our model becomes,
 \end{align}
 \end{subequations}
 
-Where $\pmV$ and $\pmI$ represent the case fatality proportion for intentionally infected and naturally infected cases, respectively.
+Where $\pmV$ and $\pmI$ represent the CFP for intentionally infected and naturally infected cases, respectively.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Equilibria}
 
-If $p\neq 0$, the equilibrium is,
+If $p\neq 0$, the only equilibrium is,
 \begin{subequations}
 \begin{align}
 \hat{S}&= \frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0
@@ -196,12 +195,17 @@ If $p\neq 0$, the equilibrium is,
 \end{align}
 \end{subequations}
 
-It is interesting that, at equilibrium, naturally infected cases cease to exist. This may be helpful for eradication of disease.
+\begin{itemize}
+\item Naturally infected cases cease to exist at EE.
+\begin{itemize}
+\item Helpful for disease eradication.
+\end{itemize}
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-By using the same method as the previous model, we again showed that the equilibrium is stable. 
-\end{frame}
+%\begin{frame}
+%By using the same method as the previous model, we %again showed that the equilibrium is stable. 
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Effect of intentional infection on total mortality}
@@ -217,8 +221,8 @@ Smallpox
 $\frac{1}{\mu}$ & Average lifespan & 50 years \\
 $\frac{1}{\gamma}$ & Mean infectious period & 22 days \\
 $\R_0$ & Basic reproduction number & 4.5\\
-$\pmV$ & Intentionally infected cases fatality proportion & 0.01\\
-$\pmI$ & Naturally infected cases fatality proportion & 0.3
+$\pmV$ & Intentionally infected CFP & 0.01\\
+$\pmI$ & Naturally infected CFP & 0.3
 \end{tabular}
 \end{center}
 \end{table}
@@ -232,7 +236,7 @@ $\pmI$ & Naturally infected cases fatality proportion & 0.3
 \end{equation}
 \pause
 \begin{itemize}
-\item Mortality rate increases as $p$ increases.
+\item Mortality rate at EE increases as $p$ increases.
 \pause
 \item In the long run, a larger proportion of intentional infection will lead to more deaths.
 \end{itemize}
@@ -265,7 +269,7 @@ $\pmI$ & Naturally infected cases fatality proportion & 0.3
 \begin{frame}
 \frametitle{Initial state being at equilibrium}
 
-In history, intentional infect is introduced when the population is at equilibrium, which is the equilibrium for $p=0$.
+In history, intentional infection was introduced when the population is at equilibrium, which is the equilibrium for $p=0$.
 \pause
 \begin{subequations}
 \begin{align}
@@ -278,10 +282,15 @@ In history, intentional infect is introduced when the population is at equilibri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Initial state being at equilibrium}
-We are interested in the time it takes to reach the new EE. We need to define a threshold for reaching equilibrium.
+\begin{itemize}
+\item What is the time it takes to reach the new EE?
+\begin{itemize}
+\item Need to define a threshold.
+\end{itemize}
+\end{itemize}
 \pause
 
-Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium by $I\leq 10^{-6}$ (one in a million).
+Since the new equilibrium has $\hat{I}=0$, define reaching equilibrium by $I\leq 10^{-6}$.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -313,10 +322,10 @@ With a lower proportion of intentional infection, we can gain advantages relativ
 \begin{frame}
 \frametitle{Possibility of disease eradication}
 
-We know that $\hat{I}=0$ at EE. We could consider the Naturally infected cases already been eradicated.
+$\hat{I}=0$ at EE. We can consider the Naturally infected cases already been eradicated at EE.
 
 \pause
-How about intentionally infected cases? Can they burn out?
+For intentionally infected cases, if we stop intentional infection after we reach EE, can they burn out?
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -325,18 +334,19 @@ How about intentionally infected cases? Can they burn out?
 Vaccination threshold (Herd immunity): $p_c=1-\frac{1}{\R_0}$
 
 \pause
+
 \begin{center}
-$S=\frac{1}{\R_0}$
+Threshold for susceptible: $S=\frac{1}{\R_0}$
 \end{center}
 
 \pause
-If $S$ stays below this threshold until $V$ goes extinct, then we can achieve complete eradication of this disease.
+If $S$ remains below this threshold until $V$ goes extinct, then we can achieve complete eradication of this disease.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Possibility of disease eradication}
 
-For example, if our initial intentional infection has a proportion $p=1$, then
+Example: $p=1$ initially, stop intentional infection after reaching EE, 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{Figures/Increase_of_S.pdf}
@@ -393,7 +403,15 @@ Another approach would be to intentionally infect susceptible individuals, with 
 \item Identify susceptible individuals
 \end{itemize}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}\itemsep10pt
+\item Intentional infection has positive effects on population level disease control.
+\item Further study is required for determining intentional infection strategies to optimize this method.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{References}
 \begin{thebibliography}{9}
 \bibitem{article}
