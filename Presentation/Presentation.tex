@@ -39,16 +39,22 @@
 \pause
 \begin{itemize}
 \setlength\itemsep{10pt}
-\item Variolation of smallpox
-\item Pox party
+\item Variolation with smallpox
+\begin{itemize}
+\pause\item use scabs from infected person to infect someone else via skin
+\pause\item variolation led to death less often than natural infection.
+\end{itemize}
+\pause\item Pox parties
+\begin{itemize}
+\pause\item increase contact rate to cause more natural infections
+\end{itemize}
 \end{itemize}
 \pause
-\item This method is out of date, banned in some places, why do we care?
-\pause
+\item Now illegal or uncommon -- why do we care?
 \begin{itemize}
 \setlength\itemsep{10pt}
-\item In history, the mechanisms and benefits of intentional infection  on a population level was not quite understood.
-\item New application to immunology, e.g. Transmissible vaccine.
+\pause\item In history, the mechanisms and benefits of intentional infection  on a population level was not quite understood.
+\pause\item New application to disease control: transmissible vaccines
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -61,14 +67,13 @@ Standard SIR model:
 \begin{split}
 \dbyd{S}{t}&=\mu- \beta SI-\mu S \,,\\
 \dbyd{I}{t}&=\beta SI-\gamma I -\mu I\,,\\
-\dbyd{R}{t}&=\gamma I-\mu R\,.
+\dbyd{R}{t}&=\gamma I-\mu R\,,
 \end{split}
 \end{equation}
-
-Where $S$, $I$ and $R$ represent susceptible, infected and recovered.
+where $S$, $I$ and $R$ represent susceptible, infected and recovered.
 \begin{itemize}
 \setlength\itemsep{10pt}
-\item $\mu$ is birth/death rate
+\item $\mu$ is birth/death rate  \qquad(total population size $N$ is constant)
 \item $\beta$ is transmission rate
 \item $\gamma$ is recovery rate
 \end{itemize}
@@ -76,28 +81,30 @@ Where $S$, $I$ and $R$ represent susceptible, infected and recovered.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Method}
-Assumptions:
+{\bfseries Assumptions:}
 \begin{itemize}\itemsep10pt
 \item No difference between intentionally infected and naturally infected individuals.
-\item No disease induced mortality.
-\item Birth and natural death rate are the same, the total population remains constant.
-\item Latent period is short enough to be ignored.
+\item No disease induced mortality \qquad (in first version of model)
+%%\item Birth and natural death rate are the same, the total population remains constant.
+\item Latent period (time from infection to becoming infectious) is short enough to be ignored.
 \item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Method}
-With intentional infection on newborn, 
+With intentional infection of newborns, 
 \begin{equation}\label{2}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta SI-\mu S \,,\\
 \dbyd{I}{t}&=\beta SI+\mu p-\gamma I -\mu I\,,\\
-\dbyd{R}{t}&=\gamma I-\mu R\,.
+\dbyd{R}{t}&=\gamma I-\mu R\,,
 \end{split}
 \end{equation}
-
-Where $p$ is the proportion of newborn intentionally infected.
+where 
+$$
+p  = \text{proportion of newborns intentionally infected}
+$$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -105,22 +112,33 @@ Non-dimensionalize the above system by scaling time, by
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
+so time unit is ``mean time infected''.
 
-which yields
-
+\pause
+Dimensionless system is:
 \begin{subequations}\label{3}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \,,\\
 \dbyd{I}{\tau}&=\R_0 SI+\epsilon p-I \,,
 \end{align}
 \end{subequations}
+where 
+%
+\begin{subequations}
+\begin{align}
+\epsilon&=\frac{\mu}{\gamma+\mu} \qquad\text{(infectious period as
+          proportion of lifetime)}\,,\\
+\R_0&=\frac{\beta}{\gamma+\mu} \qquad\text{(basic reproduction number)}\,.
+\end{align}
+\end{subequations}
+%
 
-where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Equilibria}
-Solving equations above to find equilibria, we obtained only one set of solution,
+Solving equations above to find equilibria, we obtain only one solution,
 \begin{subequations}
 \begin{align}
 \hat{S} &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\,, \label{Shat1}\\
@@ -129,7 +147,13 @@ Solving equations above to find equilibria, we obtained only one set of solution
 \end{align}
 \end{subequations}
 \begin{itemize}
-\item $\hat{I}\neq 0$ for all $p$ between 0 and 1. \item The equilibrium is an Endemic Equilibrium (EE).
+\pause\item $\hat{I}\neq 0$ for all $p$ between 0 and 1. 
+\pause\item This equilibrium is an {\bfseries Endemic Equilibrium (EE)}.
+\pause\item Without intentional infection ($p=0$) EE reduces to
+\begin{equation}
+\hat{S} = \frac{1}{\R_0} \,,\qquad 
+\hat{I} = \epsilon\Big(1-\frac{1}{\R_0}\Big) \,.
+\end{equation}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,7 +161,6 @@ Solving equations above to find equilibria, we obtained only one set of solution
 \frametitle{Stability of Equilibria}
 
 Jacobian Matrix,
-\pause
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -152,13 +175,16 @@ Jacobian Matrix,
 \frametitle{What else do we need?}
 \pause
 \begin{itemize}\itemsep10pt
-\item It is challenging to compare the results of this model to others for the purpose of observing any advantages.
+\item How can we compare the results of this model to others and
+  determine advantages or disadvantages of intentional infection?
 \pause
-\item Define `` Have advantage'' by comparing total number of deaths.
+\item Define ``advantage'' as ``fewer deaths''.
 \pause
-\item If intentionally infected cases have the same case fatality proportion (CFP) as naturally infected cases, then it will result in more deaths.
+\item If intentionally infected cases have the same case fatality proportion (CFP) as naturally infected cases, then it will result in \emph{more} deaths.
 \begin{itemize}
-\item We need to have separate CFP for each of them.
+\item But variolation had lower CFP
+\pause $\implies$ revise model to include different CFP for
+intentional infections.
 \end{itemize}
 \pause
 \item We need to divide $I$ into two separate infective classes. $V$ for intentionally infected class, $I$ for naturally infected class.
@@ -178,8 +204,8 @@ Therefore, our model becomes,
 \dbyd{R}{\tau}&=(1-\pmV)(1-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
 \end{align}
 \end{subequations}
-
-Where $\pmV$ and $\pmI$ represent the CFP for intentionally infected and naturally infected cases, respectively.
+where $\pmV$ and $\pmI$ represent the case fatality proportion (CFP)
+for intentionally infected and naturally infected cases, respectively.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -196,7 +222,7 @@ If $p\neq 0$, the only equilibrium is,
 \end{subequations}
 
 \begin{itemize}
-\item Naturally infected cases cease to exist at EE.
+\item No naturally infected cases at endemic equilibrium (EE).
 \begin{itemize}
 \item Helpful for disease eradication.
 \end{itemize}
@@ -236,9 +262,9 @@ $\pmI$ & Naturally infected CFP & 0.3
 \end{equation}
 \pause
 \begin{itemize}
-\item Mortality rate at EE increases as $p$ increases.
+\item Mortality rate at EE increases as proportion intentionally infected ($p$) increases.
 \pause
-\item In the long run, a larger proportion of intentional infection will lead to more deaths.
+\item In the long run, a larger $p$ will lead to more deaths.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,9 +293,10 @@ $\pmI$ & Naturally infected CFP & 0.3
 %\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Initial state being at equilibrium}
+\frametitle{Initial state near equilibrium}
 
-In history, intentional infection was introduced when the population is at equilibrium, which is the equilibrium for $p=0$.
+In history, intentional infection was introduced when the population
+was endemic, so near the equilibrium for $p=0$.
 \pause
 \begin{subequations}
 \begin{align}
@@ -316,7 +343,7 @@ Since the new equilibrium has $\hat{I}=0$, define reaching equilibrium by $I\leq
   \includegraphics[width=0.7\textwidth]{Figures/Time_to_advantage_plot.pdf}
   \caption{Time to advantage, as a function of $p$}
 \end{figure}
-With a lower proportion of intentional infection, we can gain advantages relative faster.
+With a lower proportion of intentional infection, we can gain advantages relatively faster.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -365,7 +392,7 @@ Example: $p=1$ initially, stop intentional infection after reaching EE,
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Future expectation}
+\frametitle{Future directions}
 \begin{itemize}\itemsep10pt
 \item Model extension
 \pause
@@ -379,7 +406,10 @@ Example: $p=1$ initially, stop intentional infection after reaching EE,
 \pause
 \item Comparison to traditional vaccination
 \pause
-\item Other strategies for intentional infection
+\item Other approaches for intentional infection
+\pause
+\item Use intentional infection models to improve understanding of
+  historical smallpox dynamics
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
