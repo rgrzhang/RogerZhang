@@ -151,3 +151,22 @@ github repo is at https://github.com/rgrzhang/RogerZhang
         - if this works it will depend on the threshold being strictly positive and if `S` is sufficiently small
         - this has to work if you intentionally infect enough people: if you infect _everyone_ then you're done (provided births don't occur fast enough)
 
+### David's thoughts 25 June 2018
+
+- Figure 1 in `Some_plots.pdf`:
+    - label the axes
+	- make another version in which $\R_0-1$ is on a log scale show it all the way to where there is no longer damped osccilation again (assuming that happens as in the normal SIR model).
+    - show curves for several values of $\epsilon$
+    - also show in the $\epsilon$ vs $\R_0-1$ plane, for several values of $p$
+
+- organize your folder so that:
+    - all the R scripts (or Mathematica scripts) that create the figures are in a subfolder and so the whole project can be made by anybody who has access to this full folder.
+	- have a `README.md` file that explains exactly how to build the paper, i.e., exactly the steps that need to be take to make all the figures and then compile the full document.  Ideally, you want either a `Makefile` and/or a single `Rnw` file that compiles into the final document.
+    - do not include superfluous files that are not used by the project; save old version _etc_ in other folders
+
+- We need to find some historical comments about whether people who got infected from variolated individuals got "normal" or "less deadly" smallpox.  How often did they end up with a full-blown respiratory infection?  If we can't find answer to this, then we at least need comment on this.
+
+- What is the correct formulation for smallpox and variolation?  And what is the correct formulation for a transmissible vaccine that we design?  The latter seems more like our current model, but we need to think about this carefully.
+
+- Think in terms of telling a coherent story.  That will guide exactly what investigations you do and what plots you make.
+
