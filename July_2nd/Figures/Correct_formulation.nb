@@ -1,0 +1,143 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4183,        133]
+NotebookOptionsPosition[      3759,        117]
+NotebookOutlinePosition[      4102,        132]
+CellTagsIndexPosition[      4059,        129]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Epsilon]", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "p"}], ")"}]}], "-", 
+       RowBox[{"R", "*", "S", "*", 
+        RowBox[{"(", 
+         RowBox[{"V", "+", "Ihat"}], ")"}]}], "-", 
+       RowBox[{"\[Epsilon]", "*", "S"}]}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Epsilon]", "*", "p"}], "-", "V"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"R", "*", "S", "*", 
+        RowBox[{"(", 
+         RowBox[{"V", "+", "Ihat"}], ")"}]}], "-", "Ihat"}], "\[Equal]", 
+      "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"S", ",", "V", ",", "Ihat"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7395023459357977`*^9, 3.7395024753058205`*^9}, {
+  3.7395025254626737`*^9, 3.7395025487663097`*^9}, {3.73950258226574*^9, 
+  3.7395026537305727`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"0f95fd75-bae4-495c-9e96-a8316d38782c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"S", "\[Rule]", 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "-", "R", "+", 
+         SqrtBox[
+          RowBox[{"1", "-", 
+           RowBox[{"2", " ", "R"}], "+", 
+           RowBox[{"4", " ", "p", " ", "R"}], "+", 
+           SuperscriptBox["R", "2"]}]]}], 
+        RowBox[{"2", " ", "R"}]]}]}], ",", 
+     RowBox[{"V", "\[Rule]", 
+      RowBox[{"p", " ", "\[Epsilon]"}]}], ",", 
+     RowBox[{"Ihat", "\[Rule]", 
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Epsilon]", "-", 
+         RowBox[{"2", " ", "p", " ", "\[Epsilon]"}], "-", 
+         FractionBox["\[Epsilon]", "R"], "+", 
+         FractionBox[
+          RowBox[{
+           SqrtBox[
+            RowBox[{"1", "-", 
+             RowBox[{"2", " ", "R"}], "+", 
+             RowBox[{"4", " ", "p", " ", "R"}], "+", 
+             SuperscriptBox["R", "2"]}]], " ", "\[Epsilon]"}], "R"]}], 
+        ")"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"S", "\[Rule]", 
+      FractionBox[
+       RowBox[{"1", "+", "R", "+", 
+        SqrtBox[
+         RowBox[{"1", "-", 
+          RowBox[{"2", " ", "R"}], "+", 
+          RowBox[{"4", " ", "p", " ", "R"}], "+", 
+          SuperscriptBox["R", "2"]}]]}], 
+       RowBox[{"2", " ", "R"}]]}], ",", 
+     RowBox[{"V", "\[Rule]", 
+      RowBox[{"p", " ", "\[Epsilon]"}]}], ",", 
+     RowBox[{"Ihat", "\[Rule]", 
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Epsilon]", "-", 
+         RowBox[{"2", " ", "p", " ", "\[Epsilon]"}], "-", 
+         FractionBox["\[Epsilon]", "R"], "-", 
+         FractionBox[
+          RowBox[{
+           SqrtBox[
+            RowBox[{"1", "-", 
+             RowBox[{"2", " ", "R"}], "+", 
+             RowBox[{"4", " ", "p", " ", "R"}], "+", 
+             SuperscriptBox["R", "2"]}]], " ", "\[Epsilon]"}], "R"]}], 
+        ")"}]}]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7395026544965243`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"d64f6fcf-3b8d-43d2-bd65-c88d3fddc2bd"]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1018, 28, 28, "Input",ExpressionUUID->"0f95fd75-bae4-495c-9e96-a8316d38782c"],
+Cell[1601, 52, 2142, 62, 135, "Output",ExpressionUUID->"d64f6fcf-3b8d-43d2-bd65-c88d3fddc2bd"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
