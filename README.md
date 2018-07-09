@@ -170,3 +170,16 @@ github repo is at https://github.com/rgrzhang/RogerZhang
 
 - Think in terms of telling a coherent story.  That will guide exactly what investigations you do and what plots you make.
 
+### David's thoughts 9 July 2018
+
+In `July9th.tex`:
+- choose values of `epsilon` that cover the range so we understand all the possible dynamics: `epsilon=10^c(-4,-3,-2,-1,), 0.5`.
+- always show the limit of the SIR model too (`p=0`).  Figure 4 should have `p=0`, then go on to `p>0` figures.
+
+
+There are a few points to consider wrt mode of transmission of natural or variolated smallpox.  We may not want to model all the possibilities, but at least mentioning them in the Discussion (or in the motivating section earlier) in the paper would be good:
+- A variolated person might scratch their scabs and then touch their face and end up with a respiratory infection (I have no idea how common this was, but it seems plausible).
+- A susceptible individual could be naturally infect via the normal respiratory route either from someone who was naturally infected, or from a variolatd individual who developed a respiratory infections, or by touch the scabs of a variolated individual and then touching their face.
+
+- It is time to stop writing little documents and work on one coherent manuscript.
+

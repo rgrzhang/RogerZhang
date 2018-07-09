@@ -23,7 +23,11 @@
 \begin{document}
 \maketitle
 \clearpage
-\section{Dependence of discriminant on proportion of intentional infection ($p$) and basic reproduction number ($\R_0$)}
+
+\section{Region of $(\R_0,p)$ plane where there are damped
+  oscillations (fixed $\epsilon$)}
+
+$p$ is the proportion of intentional infection and $\R_0$ is the basic reproduction number.
 
 Here I show several plot with different $\epsilon$ in increasing order. In the following graphs, the shaded area represent the region where the system has damped oscillation.
 \subsection{$\epsilon=\frac{7}{18257}$}
@@ -48,7 +52,8 @@ Here I show several plot with different $\epsilon$ in increasing order. In the f
 \end{figure}
 \clearpage
 
-\section{Plot $\epsilon$ as a function of $\R_0$}
+\section{Region of $(\R_0,\epsilon)$ plane where there are damped
+  oscillations (fixed $p$)}
 
 Again, I made plots with different $p$ in increasing order, the shade area between the blue curve and the orange curve represent the region where the system has damped oscillation.
 \subsection{$p=0.2$}
@@ -178,12 +183,16 @@ We assume that, transmission rate for variolated cases is slower than naturally 
   \caption{Total Mortality as a function of time}
 \end{figure}
 
-We are also interested in the time it takes for variolation to take advantage over non-variolation.
+We are also interested in the time it takes for variolation ($p>0$) to become
+advantagous compared with not variolating anybody ($p=0$).
 
 \begin{figure}[H]
   \centering\label{Variolation_advantage}
   \includegraphics[width=1\textwidth]                 {Figures/Variolation_advantage_time.pdf}
-  \caption{Time for variolation to take advantage over non-variolation}\label{Variolation_time_advantage}
+  \caption{Time required for variolation to become advantagous after
+    it is introduced into a population at the SIR endemic
+    equilibrium.  Note that the vertical scale is quite narrow in this
+  graph.}\label{Variolation_time_advantage}
 \end{figure}
 
 From \autoref{Variolation_time_advantage}, we can see that $p=1$ is not only proven to be more beneficial in the long run, but also takes less time to gain advantage over non-variolation, by having less total mortality.
