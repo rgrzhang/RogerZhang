@@ -183,3 +183,16 @@ There are a few points to consider wrt mode of transmission of natural or variol
 
 - It is time to stop writing little documents and work on one coherent manuscript.
 
+### David's thoughts 16 July 2018
+
+In `July_16th.tex`:
+- make a graph with all the curves associated with the various values of `epsilon` on the same plot so we can easily see the differences
+- if you can figure out to do it, then try direct labelling of the curves (which means placing the value of `epsilon` on the curve itself so you don't have to look at a legend to interpret)
+- in section 2, show all the graphs going to lower `R_0`, even `10^(-10)`, for example, so you can determine whether there is eventually turnover in the curves, i.e., if we still avoid damped osillation for all `epsilon` if `R_0` if small enough.
+
+For paper draft:
+- consider doing some phase plane analysis.  For example, if you plot the phase portraits and/or direction fields for several values of `p`, then you'll find out how intentional infection affects the _global_ dynamics, even if you can't prove anything about the global dynamics.
+- use your model to express an informed opinion about whether the practice of variolation in the 18th century actually made matters better or worse.  Did more or fewer people get infected?  Did more or fewer people die? (compared with what would have been expected without variolation)
+- if your modelling doesn't give you satisfactory answers and you don't have time to develop it further, then comment in the Discussion section of the paper about what you think should be done in the future to do a better job of addressing these questions.
+- The second approach should be a second major section of the paper, not a distinct paper.
+
