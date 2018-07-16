@@ -5,7 +5,6 @@
 \usepackage{float}
 \usepackage[margin=1in]{geometry}
 \usepackage{lineno}
-\setlength{\parindent}{4em}
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.5}
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
@@ -14,7 +13,7 @@
 \title{Intentional infection as a method of\\population-level disease
   control\\I.~Intentional infection of newborns (Draft)}
 \author{Roger Zhang}
-\date{June 7th 2018}
+\date{June 16th 2018}
 \usepackage{color}
 \newcommand{\david}[1]{\textcolor{blue}{$\langle${\slshape{\bfseries David:} #1 }$\rangle$}}
 \newcommand{\roger}[1]{\textcolor{red}{$\langle${\slshape{\bfseries Roger:} #1 }$\rangle$}}
@@ -26,7 +25,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-In this paper, we study the possible advantage of intentional infection. It is a generalized version of variolation, which was invented in 15th century, and widely used around the world in 17th and 18th century. People believed that by variolation, a mild but protective infection would result, which give them a higher chance of survival compared to being normally infected. This paper aims to provide a mathematical model which describes the dynamics of infected classes, when intentional infection is introduced on a population level, and perform predictions based on the model.
+In this paper, we study the possible advantages of intentional infection, as a method of population-level disease control. Intentional infection is a generalization of variolation, which was invented in 15th century, and widely used around the world in 17th and 18th century. People believed that by variolation, a mild but protective infection would result, which give them a higher chance of survival compared to being naturally infected. This paper aims to provide a mathematical model which describes the dynamics of infected classes, when intentional infection is introduced on a population level, and perform predictions based on the model.
 \end{abstract}
 \tableofcontents
 
@@ -40,10 +39,10 @@ coupled direct intentional infection and transmission of intentionally infected 
 \subsection{System of differential equations}
 We begin our analysis by modifying SIR model. Our first strategy is to intentionally infect newborn individuals, with a certain proportion.  The following assumptions are made to simplify the model to start with:
 \begin{itemize}
-\item There is no difference between intentionally infected and normally infected individuals.
-\item There is no disease induced mortality.
-\item Birth and natural death rate are the same, so the total population remains constant.
-\item The latent period is short enough to be ignored.
+\item No difference between intentionally infected and naturally infected individuals.
+\item No disease induced mortality(Addition of disease induced mortality will be ).
+\item Birth and natural death rate are the same(total population $N$ remains constant).
+\item The latent period(time from infection to becoming infectious) is short enough to be ignored.
 \item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
 \end{itemize}
 Equipped with the assumptions above, we now setup our system of differential equations.
@@ -64,7 +63,9 @@ We non-dimensionalize \autoref{1} by scaling time, by
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
-which yields
+so the time unit now is ``mean time infected".
+
+The dimensionless system is:
 \begin{subequations}\label{3}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \,,\\
@@ -73,7 +74,7 @@ which yields
 \end{subequations}
 where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
 
-We are not considering $\dbyd{R}{\tau}$ since it does not impact the dynamics of $S$ or $I$, and we do not need to track the proportion of recovered individuals in this model.
+We are not considering $\dbyd{R}{\tau}$ since it does not impact the dynamics of $S$ and $I$, and we do not need to track the proportion of recovered individuals in this model.
 \subsection{Equilibria}
 By letting \autoref{3} equal to 0, we solve for equilibria. The only equilibrium for this model is,
 \begin{subequations}
@@ -84,7 +85,7 @@ By letting \autoref{3} equal to 0, we solve for equilibria. The only equilibrium
 \end{align}
 \end{subequations}
 
-Notice \autoref{Ihat1} does not return 0 for any $p$ value between 0 and 1, it means there is always infected individuals present in the population. Therefore, we can claim that this is not a disease free equilibrium. It follows that the equilibrium above is an endemic equilibrium (EE).
+Notice, \autoref{Ihat1} does not return 0 for any $p$ value between 0 and 1, meaning there is always infected individuals present in the population. Therefore, we can claim that this is not a disease free equilibrium. It follows that the equilibrium above is an endemic equilibrium (EE).
 
 We would like to know if the EE is stable, therefore we need the Jacobian matrix of \autoref{3}. The Jacobian is, 
 \begin{equation}
@@ -97,8 +98,10 @@ We would like to know if the EE is stable, therefore we need the Jacobian matrix
 
 Now for simplicity, let 
 \begin{equation}\label{E:}
-K = (\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
+K = (\R_0-1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
 \end{equation}
+
+For the purpose of our discussion, we are interested in disease that transmits fast enough to result in an epidemic. Therefore, the $\R_0$ value for the disease has to be greater than 1.
 
 Notice, $K>0$ if $p\neq 0$.
 
@@ -116,7 +119,7 @@ The eigenvalues of \autoref{Jacobian1} are,
 \lambda_{1,2} = \frac{-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0) \pm \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
 \end{equation}
 
-Since $(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)>0$, therefore, if the discriminant is positive, we have
+Since $(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)>0$, if the discriminant is positive, we have
 \begin{equation}
 \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon
   K^3+8\epsilon Kp\mathcal{R}_0)}
@@ -130,7 +133,7 @@ But if the discriminant is negative, we have
 \Re(\lambda_1)=\Re(\lambda_2)=-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)<0  \,,
 \end{equation}
 
-Therefore, we can conclude that EE is stable.
+As a result, we can conclude that EE is stable.
 
 To fully investigate the dynamics of the system, we're also interested in whether the eigenvalues could be complex, which will lead to damped oscillation. 
 
@@ -152,49 +155,114 @@ $\R_0$ & Basic reproductive number & 4.5
 \end{center}
 \end{table}
 
-\subsection{Dependence of discriminant on proportion intentionally infected ($p$)}
+\subsection{Region of $(\R_0,p)$ plane where there are damped
+  oscillations (fixed $\epsilon$)}
+
+$p$ is the proportion of intentional infection and $\R_0$ is the basic reproduction number.
+
+In the following graphs, the shaded area represent the region where the system has damped oscillation.
+\subsubsection{$\epsilon=\frac{7}{18257}$}
 \begin{figure}[H]
-  \caption{Discriminant as a function of $p$.}
+  \caption{}
   \centering
-  \includegraphics[width=1\textwidth]{Figures/Discriminant_plot_newborn.pdf}
+  \includegraphics[width=0.9\textwidth]{Figures/50_7.pdf}
 \end{figure}
 
-The $p$-intercept of this graph is $p=0.104$. Meaning, with a proportion of 10.4 percent or less, there is going to be a damped oscillation. In general, a smaller  proportion of intentional infection will lead to damped oscillation.
-
-
-
-\subsection{Dependence of discriminant on basic reproduction number ($\R_0$)}
-
-In general, it is often the case where people have limited resources and ability to apply medical treatment, therefore, when an alien pathogen is introduced to a population, it is interesting to see the effect of $\R_0$ on discriminant.
-
-By using values in \autoref{tab:params} except $\R_0$, the following plots are made.
-
-\begin{figure}[H] 
-  \caption{Plot discriminant with $\R_0$ to be the variable.$p=0.1$, the $R_0$ -intercept is $\R_0 = 0, 5.75$}
+\subsubsection{$\epsilon=\frac{11}{9136}$}
+\begin{figure}[H]
+  \caption{}
   \centering
-  \includegraphics[width=1\textwidth]{Figures/Plot_R_0_p_0_1.pdf}
+  \includegraphics[width=0.9\textwidth]{Figures/50_22.pdf}
 \end{figure}
 
-\begin{figure}[H] \label{plot:R_0}
-  \caption{Plot discriminant with $\R_0$ to be the variable. With $p=0.2$ for the top panel and $p=0.3$ for the bottom panel, the $\R_0$ -intercept is $\R_0 = 0, 17.05$ for the top panel, $\mathcal{R}_0 = 0, 37.45$ for the bottom panel}
+\subsubsection{$\epsilon=\frac{1}{51}$}
+\begin{figure}[H]
+  \caption{}
   \centering
-  \includegraphics[width=0.9\textwidth]{Figures/Plot_R_0_p_0_2.pdf}
-  \centering
-  \includegraphics[width=0.85\textwidth]{Figures/Plot_R_0_p_0_3.pdf}
+  \includegraphics[width=0.9\textwidth]{Figures/50_365.pdf}
 \end{figure}
 
-\autoref{plot:R_0} tells us, With the proportion of intentional infection $p>0.3$, the system has no damped oscillation for a reasonable value of $\R_0$. But for lower $p$, the system tends to have damped oscillation if $\R_0$ is larger.
+\subsubsection{$\epsilon=\frac{1}{10000}$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/epsilon_0_0001.pdf}
+\end{figure}
+
+\subsubsection{$\epsilon=\frac{1}{1000}$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/epsilon_0_001.pdf}
+\end{figure}
+
+\subsubsection{$\epsilon=\frac{1}{100}$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/epsilon_0_01.pdf}
+\end{figure}
+
+\subsubsection{$\epsilon=\frac{1}{10}$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/epsilon_0_1.pdf}
+\end{figure}
+
+\subsubsection{$\epsilon=0.5$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/epsilon_0_5.pdf}
+\end{figure}
+
+
+\subsection{Region of $(\R_0,\epsilon)$ plane where there are damped
+  oscillations (fixed $p$)}
+
+Again, I made plots with different $p$ in increasing order, the shade area between the blue curve and the orange curve represent the region where the system has damped oscillation.
+\subsubsection{$p=0$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/p_0.pdf}
+\end{figure}
+
+\subsubsection{$p=0.2$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/p_0_2.pdf}
+\end{figure}
+
+\subsubsection{$p=0.5$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/p_0_5.pdf}
+\end{figure}
+
+\subsubsection{$p=0.8$}
+\begin{figure}[H]
+  \caption{}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/p_0_8.pdf}
+\end{figure}
+\clearpage
 
 \subsection{Comments and discussion on this model}
-This is the initial model of intentional infection on newborns, compare to vaccination model, the main difference is the whereabouts of the individuals being treated with intentional infection or vaccination. Intentional infected individuals are capable of infecting susceptibles whereas the vaccinated individuals will enter $R$, which is recovered individuals, and not able to impact the dynamics of the system anymore. In ideal cases, once an individual is intentionally infected, either directly or infected by others of the same kind, this individual will not be normally infected anymore. Therefore, we should divide infected compartment into 2 new groups, namely, intentionally infected cases and normally infected cases.
+This is the initial model of intentional infection on newborns, compare to vaccination model, the main difference is the direction of flow of the individuals being treated with intentional infection or vaccination. Intentionally infected individuals are capable of transmitting the disease to susceptible individuals, whereas the vaccinated individuals will enter $R$ directly, therefore not able to impact the dynamics of the system anymore. 
 
-In the past, people believed that ones being intentionally infected would have a lower fatality rate, in comparison with normally infected cases. One way of defining "have advantages" would be comparing total disease induced mortality. Therefore, we need to involve a new parameter, namely, disease induced mortality rate.
+In ideal cases, once an individual is intentionally infected, either directly or infected by others of the same kind, this individual will not be naturally infected anymore. Therefore, we should divide infected compartment into 2 new groups, namely, intentionally infected cases and naturally infected cases.
 
-\section{Model: Addition of disease induced mortality rate}
+In the past, people believed that individuals that are intentionally infected die less often, in comparison with naturally infected cases. Here we define "advantageous" by fewer total death. More specifically, we would be comparing total disease induced mortality. Therefore, we need to involve a new parameter, namely, case fatality proportion.
+
+\section{Model: Addition of disease induced mortality}
 \subsection{System of differential equations}
-Historic application of variolation have shown that intentional infection has a lower mortality rate in comparison with being normally infected. Therefore, we need to assign different mortality rate to each classes. That also require us to divide $I$ from our previous model into two distinct infected classes. Here, we call them "Intentionally infected" ($V$) and "Normally infected" ($I$). 
+Historic application of variolation have shown a lower case fatality proportion, compared to being naturally infected. Therefore, we need to assign different case fatality proportion to each classes. This also requires us to divide $I$ from our previous model into two distinct infective classes. Here, we call them "Intentionally infected" ($V$) and "Naturally infected" ($I$). 
 
-With all other assumptions still being valid, we have to remove the first one, which claimed intentionally and normally infected cases have no difference.
+In this model, we still assume no latent period, and similar to the last assumption in our previous model, we assume that all individuals in the same infective class are equally infectious.
 
 Therefore, our model becomes,
 \begin{equation}\label{2}
@@ -203,11 +271,11 @@ Therefore, our model becomes,
 \dbyd{V}{t}&=\beta SV+\mu p-\gamma V -\mu V\,,\\
 \dbyd{I}{t}&=\beta SI-\gamma I -\mu I\,,\\
 \dbyd{M}{t}&=\pmV\gamma V+\pmI\gamma I\,,\\
-\dbyd{R}{t}&=(1-\pmV)\gamma V+(1-\pmI)\gamma I-\mu R\,,
+\dbyd{R}{t}&=(1-\pmV)\gamma V+(1-\pmI)\gamma I-\mu R\,.
 \end{split}
 \end{equation}
 
-In addition to the previous model, $\pmV$ and $\pmI$ represent the mortality rate for intentionally infected and normally infected cases, respectively.
+In addition to the previous model, $\pmV$ and $\pmI$ represent the case fatality proportion for intentionally infected and naturally infected cases, respectively.
 
 Again, we non-dimensionalize \autoref{2} by time, by
 \begin{equation}
@@ -216,9 +284,9 @@ Again, we non-dimensionalize \autoref{2} by time, by
 which yields,
 \begin{subequations}\label{eq:base_ODE}
 \begin{align}
-\dbyd{S}{\tau}&=\epsilon(1-p)- \R_0 S(V+I)-\epsilon S\,, \label{eq:S_by_tau}\\
-\dbyd{V}{\tau}&=\R_0 SV+\epsilon p-V\,, \label{eq:V_by_tau}\\
-\dbyd{I}{\tau}&=\R_0 SI-I\,, \label{eq:I_by_tau}\\
+\dbyd{S}{\tau}&=\epsilon(1-p)- \R_0 S(V+I)-\epsilon S\,, \label{eq:13a}\\
+\dbyd{V}{\tau}&=\R_0 SV+\epsilon p-V\,, \label{eq:13b}\\
+\dbyd{I}{\tau}&=\R_0 SI-I\,, \label{eq:13c}\\
 \dbyd{M}{\tau}&=\pmV(1-\epsilon) V+\pmI(1-\epsilon) I\,,\\
 \dbyd{R}{\tau}&=(1-\pmV)(1-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
 \end{align}
@@ -226,9 +294,11 @@ which yields,
 
 \subsection{Equilibria}
 
-By letting \autoref{eq:S_by_tau}, \autoref{eq:V_by_tau} and \autoref{eq:I_by_tau} equal to 0, we solve for solutions.
+By letting \autoref{eq:13a}, \autoref{eq:13b} and \autoref{eq:13c} equal to 0, we solve for solutions.
 
-If $p=0$, meaning there is no intentional infection, then the equilibrium is the standard equilibrium for SIR model, which is,
+If $p=0$, meaning there is no intentional infection, our system reduces to the standard SIR model.
+
+There are two equilibriums for the standard SIR model, an Endemic equilibrium,
 \begin{subequations}
 \begin{align}
 \hat{S} &= \frac{1}{\R_0}\,,\\
@@ -237,7 +307,7 @@ If $p=0$, meaning there is no intentional infection, then the equilibrium is the
 \end{align}
 \end{subequations}
 
-Or,
+And a disease free equilibrium(since both $\hat{V}$ and $\hat{I}$ are 0),
 \begin{subequations}
 \begin{align}
 \hat{S} &= 1\,,\\
@@ -250,7 +320,7 @@ However, if $p\neq 0$, the equilibrium is,
 \begin{subequations}
 \begin{align}
 \hat{S}&= \frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0
-         p}}\,, \label{eq:Shat}\\
+         p}}\,, \label{eq:3Shat}\\
 \hat{V}&= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:Vhat}\\
 \hat{I}&=0\,. \label{eq:Ihat}
 \end{align}
@@ -271,13 +341,13 @@ Stability analysis relies on Jacobian matrix, which is,
 Eigenvalues of Jacobian are given as follow,
 \begin{subequations}
 \begin{align}
-\lambda_1&=-1+\R_0 S \label{eq:lambda1}\\
+\lambda_1&=-1+\R_0 S \label{eq:3lambda1}\\
 \lambda_2&=\frac{-1+\R_0 S-\epsilon-\R_0 V-\sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}}{2} \label{eq:lambda2}\\
 \lambda_3&=\frac{-1+\R_0 S-\epsilon-\R_0 V+\sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}}{2}\label{eq:lambda3}
 \end{align}
 \end{subequations}
 
-By using \autoref{eq:Shat} and \autoref{eq:lambda1}, we obtain
+By using \autoref{eq:3Shat} and \autoref{eq:3lambda1}, we obtain
 \begin{equation}
 -1+\R_0 S = - \frac{2p\R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}<0
 \end{equation}
@@ -287,7 +357,7 @@ Therefore,
 \end{equation}
 To determine the real part of $\lambda_2$ and $\lambda_3$, we need to determine the sign of the quantity under the square root. 
 
-By using \autoref{eq:Shat} again, we have
+By using \autoref{eq:3Shat} again, we have
 \begin{equation}
 \R_0 S\epsilon<\epsilon\,,
 \end{equation}
@@ -296,7 +366,7 @@ Therefore,
 \begin{equation}
 (\R_0+\epsilon-\R_0 S\epsilon)>\R_0 >0\,,
 \end{equation}
-which means, if the sign of the quantity under the square root is positive, we necessarily have
+which means, if the sign of the quantity under the square root is positive, we will have
 \begin{equation}
 \sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}<|(-1+\R_0 S-\epsilon-\R_0 V)|
 \end{equation}
@@ -309,24 +379,26 @@ Certainly, if the sign of the quantity under the square root is negative,
 
 We are able to conclude that EE is stable.
 
-\subsection{Effect of intentional infection in terms of total mortality}
+\subsection{Effect of intentional infection on total mortality}
 
-In epidemic analysis, one way of measuring whether a certain method has advantage over another is to compare the total disease induced mortality. 
+In epidemic analysis, one way of measuring whether a certain method is more advantageous than another is to compare the total disease induced mortality. 
 
-We first want to mention that, if we look at the mortality rate at EE,
+We first take a look at the mortality rate at EE,
 \begin{equation}
-\dbyd{M}{\tau}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
+\dbyd{M}{\tau}|_{EE}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
 \end{equation}
 
-An important observation is, at EE, mortality rate increases as $p$ increases. This tells us, in the long run, having a larger proportion of intentional infection is not wise, since it leads extra casualties.
+An important observation is, at EE, mortality rate increases as $p$ increases. This tells us, in the long run, having a larger proportion of intentional infection is unwise, since it leads extra deaths.
 
-In history, smallpox has a much longer history than variolation, therefore variolation is not immediately invented as smallpox was introduced into human society, but rather appeared at an equilibrium state. So, we are interested in the scenario where intentional infection is only introduced after the population is in equilibrium, with no intentional infection.
+In history, smallpox was present in human population long before variolation was invented. When variolation was introduced, the population was already near equilibrium, with no intentional infection($p=0$). We are interested in the scenario where intentional infection is introduced after the population is in equilibrium, with no intentional infection.
 
-We are interested in the time it takes to reach the new EE. Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium $I\leq 1\times 10^{-6}$ (one in a million).
+One of the questions we want to answer is how long does it take for our system to reach the new EE. In fact the system will only infinitely approach the equilibrium instead of reaching it, therefore we need to define a threshold, which mean, how close does it need to be away from the equilibrium, do we consider it being at the equilibrium.
 
-To help us observe the dynamics better, here we assume variolation mortality rate equal 20 percent.
+Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium by $I\leq 1\times 10^{-6}$ (one in a million).
 
-by plotting, we obtain \autoref{figure:0.0001}
+In fact, if the case fatality proportion for intentionally infected cases is 1\%, we can hardly observe any difference between different proportion of intentional infection. To help us observe the dynamics better, we assume intentional infection has a 20\% case fatality proportion.
+
+by plotting, we obtain \autoref{figure:0.0001}, we can see that it takes shorter time to reach the new EE for a larger proportion of intentional infection.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/I_less_than_0_000001.pdf}
@@ -334,7 +406,7 @@ by plotting, we obtain \autoref{figure:0.0001}
 \label{figure:0.0001}
 \end{figure}
 
-We are also interested in the time it takes for intentional infection to take advantage over non-intentional infection, by comparing total mortality.
+We are also interested in the time it takes for intentional infection to be more advantageous than non-intentional infection, by comparing total mortality.
 
 From previous analysis, we learned that $\dbyd{M}{\tau}$ decreases over time, and stabilizes at a constant rate when reaching the new EE. But at the new EE, $\dbyd{M}{\tau}$ is higher when $p$ is higher. 
 
@@ -345,7 +417,7 @@ From previous analysis, we learned that $\dbyd{M}{\tau}$ decreases over time, an
 \label{figure:advantage}
 \end{figure}
 
-\autoref{figure:advantage} shows, at earlier times, intentional infections have steeper slopes than the black line, which is non-intentional infection. The slopes for intentional infection decreases over time, and eventually all of them have smaller slope than the black line.
+\autoref{figure:advantage} shows, at earlier times, intentional infections have steeper slopes than the black line, which is non-intentional infection. The slopes for intentional infection decreases over time, and eventually intentional infection with any proportion will have fewer total death than non-intentional infection.
 
 \autoref{tab:times} summarize the times required to reach the new EE and time required to have advantages over non-intentional infection.
 
@@ -369,28 +441,40 @@ The table showed that as $p$ increases, the system reaches the new EE faster, bu
 
 In fact, if $\pmV=0.01$, then the time required to have advantages over non-intentional infection is minimal, and the difference between different $p$ is also insignificant on a scale of years.
 
-\autoref{figure:advantage_by_p} shows us a relationship between time to advantage and $p$.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{Figures/time_to_advantage_plot.pdf}
+  \includegraphics[width=0.9\textwidth]{Figures/Time_to_advantage_plot.pdf}
   \caption{Time to advantage, as a function of $p$}
 \label{figure:advantage_by_p}
 \end{figure}
 
+\autoref{figure:advantage_by_p} shows us a relationship between time to advantage and $p$.
+
+Here it shows, with a lower proportion of intentional infection, we gain advantage relatively faster. This conclusion is misleading, because it is suggesting that, with a minimal proportion of intentional infection, we can minimize the time it takes to gain advantage.
+
+We found that, if $p$ is small, though it gains advantage faster, the number of deaths actually stays very close to non-intentional infection. In another word, the advantage is very insignificant.
+
+Therefore, we want to suggest that, we can define a method being ``More advantageous'' than another to be: mortality by intentional infection is at least 10\% lower than mortality with no intentional infection.
+
+\begin{figure}[H]
+  \caption{Time for mortality of intentional infection is at least 10\% lower than non-intentional infection}\label{advantage2}
+  \centering
+  \includegraphics[width=1\textwidth]{Figures/New_time_to_advantage_plot.pdf}
+\end{figure}
+\autoref{advantage2} suggests, under our new definition of ``Have advantage'', the situation is reversed and larger proportion of intentional infection can be more advantageous relatively faster.
+
 \subsection{Comments and discussion on this model}
 
-In this model, we have shown that intentional infection has advantages over non-intentional infection in terms of total mortality. However, interestingly, since a larger $p$ will lead to more death in the long run, it is unwise to keep intentional infecting a larger proportion of newborns. 
-
-From \autoref{tab:times} and \autoref{figure:advantage_by_p}, time required to have advantage over non-intentional infection has inverse relationship with $p$. It seems to suggest that we can intentional infect a minimal proportion of newborn, and we are able to optimize total mortality. However, in such case, it will take a much longer time to reach EE, and we can deduce that the initial behavior of mortality will be very close to the black line, though it crosses it and goes beneath in a very short time, but since the slope changes extremely slowly, the difference between intentional infection and non-intentional infection increases at a very slow rate. 
+In this model, we have shown that intentional infection has advantages over non-intentional infection in terms of total mortality. However, interestingly, since a larger $p$ will lead to more death in the long run. Though a larger proportion of intentional infection can reduce total death and become more advantageous than non-intentional infection faster, it is unwise to keep infecting such a larger proportion of newborns. 
 
 To summarize the above argument, if our strategy of intentional infection remain the same at all time, then in the long run, with a minimal proportion of intentional infection, total mortality could be minimized. However, in real life scenario, strategy does not need to be constant, it may be possible to intentionally infect at a relatively higher proportion initially, and decrease the proportion, or even stop intentional infection, with a combination of strategies like that, we could possibly minimize the total mortality. Or even eradicate the disease.
 
-Other than strategic evolvement, there could still be some development to the model itself to make it more suitable to a realistic scenario. Since Intentional infection has a lower death rate, we could assume a milder symptom for intentionally infected cases. As a result, since aggressive symptoms are typical routes of disease transmission, lack of such pathways will lead to a decrease of transmission rate. Besides, intentionally and normally infected cases could have different recovery rate. Therefore, our next model could consider various possibilities of these parameters, and draw conclusions to its behavior.
+Other than strategic evolvement, there could still be some development to the model itself to make it more suitable to a realistic scenario. Since Intentional infection has a lower death rate, we could assume a milder symptom for intentionally infected cases. As a result, since aggressive symptoms are typical routes of disease transmission, lack of such pathways will lead to a decrease of transmission rate. Besides, intentionally and naturally infected cases could have different recovery rate. Therefore, our next model could consider various possibilities of these parameters, and draw conclusions to its behavior.
 
 \subsection{Possibility of eradication}
 If we define the disease been eradicated if the proportion of infected is less than one in a million. Then, our model is able to predict possible eradication of the disease.
 
-At EE, $I=0$, although $I$ is going to approach 0 asymptotically, it will never completely cease to exist. However, we know that there is a point in forward time where $I<1\times10^{-6}$. Therefore, we can claim that normally infected cases could be eradicated.
+At EE, $I=0$, although $I$ is going to approach 0 asymptotically, it will never completely cease to exist. However, we know that there is a point in forward time where $I<1\times10^{-6}$. Therefore, we can claim that naturally infected cases could be eradicated(we will show an example in the next section).
 
 The next question would be whether it is possible for intentionally infected cases to burn out. After $I$ being wiped out, we could stop intentional infecting any other newborns. From then on if $S<\frac{1}{\R_0}$ for a long enough period of time, which means the effective $\R_0$ is less than 1, we could possibly observe $V<1\times10^{-6}$, which in return, represent the eradication of intentionally infected cases as well.
 
@@ -527,7 +611,7 @@ Parameters of this model such as $\R_{0,V}$ and $\gamma_V$ are custom to the des
 
 Previous study have shown that, for a similar model which does not consider death, a significant decrease in final size is expected, for a transmissible vaccine, even when $\R_{0,V}$ is less than 1, e.g. $\R_{0,V}=0.5$, we would expect similar results for our model, the difference is, with the addition of birth and death rate, since our system have shown that the disease cannot be completely eradicated, there will always be newly infected cases, therefore, we do not have a final size estimation. 
 
-If one tries to make a fast vaccine (high transmission rate and fast recovery rate), we would expect a bigger $\beta_V$ and $\tilde{\gamma}$ value, $\R_{0,V}$ is indeterminate.
+
 
 \section{Future work}
 This section elaborates some ideas for future use and needs to be investigated later.
