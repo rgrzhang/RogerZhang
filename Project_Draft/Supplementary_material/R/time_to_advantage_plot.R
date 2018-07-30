@@ -1,5 +1,5 @@
 library(ggplot2)
-ggplot(data=Time_to_advantage,mapping=aes(x=p,y=Time))+
+ggplot(data=Susceptible_Equilibrium,mapping=aes(x=¦Ç,y=Years))+
   geom_line()+
   geom_point()+
   labs(y="Years")
