@@ -57,6 +57,7 @@ We begin our analysis by modifying SIR model. Our first strategy is to intention
 Equipped with the assumptions above, we now setup our system of differential equations.
 
 Just like in SIR model, $S$, $I$ and $R$ represent the proportion of susceptible, infected and recovered with respect to total population.
+\begin{linenomath*}
 \begin{equation}\label{1}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta SI-\mu S \,,\\
@@ -64,22 +65,27 @@ Just like in SIR model, $S$, $I$ and $R$ represent the proportion of susceptible
 \dbyd{R}{t}&=\gamma I-\mu R\,.
 \end{split}
 \end{equation}
+\end{linenomath*}
 Here, $\beta$ is the transmission rate, $\gamma$ is the recovery rate,
 $\mu$ is the \emph{per capita} rate of birth and death, $p$ is the
 proportion of newborns that are intentionally infected.
 
 We non-dimensionalize \autoref{1} by scaling time, by
+\begin{linenomath*}
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
+\end{linenomath*}
 so the time unit now is ``mean time infected".
 
 The dimensionless system is:
 \begin{subequations}\label{3}
+\begin{linenomath*}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0  SI-\epsilon S \,,\\
 \dbyd{I}{\tau}&=\R_0 SI+\epsilon p-I \,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$.
 
@@ -87,16 +93,19 @@ We are not considering $\dbyd{R}{\tau}$ since it does not impact the dynamics of
 \subsubsection{Equilibria}
 By letting \autoref{3} equal to 0, we solve for equilibria. The only equilibrium for this model is,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S} &=\frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}\,, \label{Shat1}\\
 \hat{I} &= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0
     p}}{2\R_0}\,.\label{Ihat1}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Notice, \autoref{Ihat1} does not return 0 for any $p$ value between 0 and 1, meaning there is always infected individuals present in the population. Therefore, we can claim that this is not a disease free equilibrium. It follows that the equilibrium above is an endemic equilibrium (EE).
 
 We would like to know if the EE is stable, therefore we need the Jacobian matrix of \autoref{3}. The Jacobian is, 
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -104,17 +113,21 @@ We would like to know if the EE is stable, therefore we need the Jacobian matrix
     \ \R_0 I       & \R_0 S-1 \\
 \end{bmatrix} \,.
 \end{equation}
+\end{linenomath*}
 
 Now for simplicity, let 
+\begin{linenomath*}
 \begin{equation}\label{E:}
 K = (\R_0-1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
 \end{equation}
+\end{linenomath*}
 
 For the purpose of our discussion, we are interested in disease that transmits fast enough to result in an epidemic. Therefore, the $\R_0$ value for the disease has to be greater than 1.
 
 Notice, $K>0$ if $p\neq 0$.
 
 Thus, the Jacobian evaluated at endemic equilibrium is,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J}|_{EE} =
 \begin{bmatrix}
@@ -122,25 +135,32 @@ Thus, the Jacobian evaluated at endemic equilibrium is,
     \ \frac{\epsilon K}{2}       & -\frac{2p \R_0}{K} \\
 \end{bmatrix} \label{Jacobian1} \,,
 \end{equation}
+\end{linenomath*}
 
 The eigenvalues of \autoref{Jacobian1} are,
+\begin{linenomath*}
 \begin{equation}
 \lambda_{1,2} = \frac{-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0) \pm \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)}}{4K}
 \end{equation}
+\end{linenomath*}
 
 Since $(2\epsilon K^3+8\epsilon Kp\mathcal{R}_0)>0$, if the discriminant is positive, we have
+\begin{linenomath*}
 \begin{equation}
 \sqrt{(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)^2-4(2\epsilon
   K^3+8\epsilon Kp\mathcal{R}_0)}
  \leq|\epsilon K^2+2\epsilon K +4p\mathcal{R}_0|  \,,
 \end{equation}
+\end{linenomath*}
 
 thus, $\Re(\lambda_{1,2})<0$.
 
 But if the discriminant is negative, we have
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_1)=\Re(\lambda_2)=-(\epsilon K^2+2\epsilon K +4p\mathcal{R}_0)<0  \,,
 \end{equation}
+\end{linenomath*}
 
 As a result, we can conclude that EE is stable.
 
@@ -224,6 +244,7 @@ Historic application of variolation have shown a lower case fatality proportion 
 In this model, we still assume no latent period, and similar to the last assumption in our previous model, we assume that all infected individuals(including $V$ and $I$) are equally infectious.
 
 Therefore, our model becomes,
+\begin{linenomath*}
 \begin{equation}\label{2}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta S(V+I)-\mu S \,,\\
@@ -233,15 +254,19 @@ Therefore, our model becomes,
 \dbyd{R}{t}&=(1-\pmV)\gamma V+(1-\pmI)\gamma I-\mu R\,.
 \end{split}
 \end{equation}
+\end{linenomath*}
 
 In addition to the previous model, $\pmV$ and $\pmI$ represent the case fatality proportion for intentionally infected and naturally infected cases, respectively.
 
 Again, we non-dimensionalize \autoref{2} by time, by
+\begin{linenomath*}
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
+\end{linenomath*}
 which yields,
 \begin{subequations}\label{eq:base_ODE}
+\begin{linenomath*}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0 S(V+I)-\epsilon S\,, \label{eq:13a}\\
 \dbyd{V}{\tau}&=\R_0 SV+\epsilon p-V\,, \label{eq:13b}\\
@@ -249,6 +274,7 @@ which yields,
 \dbyd{M}{\tau}&=\pmV(1-\epsilon) V+\pmI(1-\epsilon) I\,,\\
 \dbyd{R}{\tau}&=(1-\pmV)(1-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 \subsubsection{Equilibria}
@@ -259,35 +285,42 @@ If $p=0$, meaning there is no intentional infection, our system reduces to the s
 
 There are two equilibriums for the standard SIR model, an Endemic equilibrium,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S} &= \frac{1}{\R_0}\,,\\
 \hat{V} &= 0\,,\\
 \hat{I} &= \epsilon(1-\frac{1}{\R_0})\,.
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 And a disease free equilibrium(since both $\hat{V}$ and $\hat{I}$ are 0),
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S} &= 1\,,\\
 \hat{V} &= 0\,,\\
 \hat{I} &= 0\,.
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 However, if $p\neq 0$, the equilibrium is,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S}&= \frac{1}{\R_0}-\frac{2p}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0
          p}}\,, \label{eq:3Shat}\\
 \hat{V}&= \frac{\epsilon(\R_0 -1)+ \epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:Vhat}\\
 \hat{I}&=0\,. \label{eq:Ihat}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Since $\hat{V}\neq 0$, for any $p$ between 0 and 1, this equilibrium is not disease free. It follows that this equilibrium is the endemic equilibrium.
 
 Stability analysis relies on Jacobian matrix, which is,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -296,45 +329,60 @@ Stability analysis relies on Jacobian matrix, which is,
     \ \R_0 I       &0     &\R_0 S-1\\
 \end{bmatrix}\,.
 \end{equation}
+\end{linenomath*}
 
 Eigenvalues of Jacobian are given as follow,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \lambda_1&=-1+\R_0 S \label{eq:3lambda1}\\
 \lambda_2&=\frac{-1+\R_0 S-\epsilon-\R_0 V-\sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}}{2} \label{eq:lambda2}\\
 \lambda_3&=\frac{-1+\R_0 S-\epsilon-\R_0 V+\sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}}{2}\label{eq:lambda3}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 By using \autoref{eq:3Shat} and \autoref{eq:3lambda1}, we obtain
+\begin{linenomath*}
 \begin{equation}
 -1+\R_0 S = - \frac{2p\R_0}{(\R_0 -1)+ \sqrt{(\R_0-1)^2+4\R_0 p}}<0
 \end{equation}
+\end{linenomath*}
 Therefore,
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_1) =-1+\R_0 S<0\,,
 \end{equation}
+\end{linenomath*}
 To determine the real part of $\lambda_2$ and $\lambda_3$, we need to determine the sign of the quantity under the square root. 
 
 By using \autoref{eq:3Shat} again, we have
+\begin{linenomath*}
 \begin{equation}
 \R_0 S\epsilon<\epsilon\,,
 \end{equation}
+\end{linenomath*}
 
 Therefore,
+\begin{linenomath*}
 \begin{equation}
 (\R_0+\epsilon-\R_0 S\epsilon)>\R_0 >0\,,
 \end{equation}
+\end{linenomath*}
 which means, if the sign of the quantity under the square root is positive, we will have
+\begin{linenomath*}
 \begin{equation}
 \sqrt{(-1+\R_0 S-\epsilon-\R_0 V)^2-4(\R_0+\epsilon-\R_0 S\epsilon)}<|(-1+\R_0 S-\epsilon-\R_0 V)|
 \end{equation}
+\end{linenomath*}
 Therefore, $\Re(\lambda_2)<\Re(\lambda_3)<0$.
 
 Certainly, if the sign of the quantity under the square root is negative,
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_2)=\Re(\lambda_3)=-1+\R_0 S-\epsilon-\R_0 V<0
 \end{equation}
+\end{linenomath*}
 
 We are able to conclude that EE is stable.
 
@@ -343,9 +391,11 @@ We are able to conclude that EE is stable.
 In epidemic analysis, one way of measuring whether a certain method is more advantageous than another is to compare the total disease induced mortality. 
 
 We first take a look at the mortality rate at EE,
+\begin{linenomath*}
 \begin{equation}
 \dbyd{M}{\tau}|_{EE}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
 \end{equation}
+\end{linenomath*}
 
 An important observation is, at EE, mortality rate increases as $p$ increases. This tells us, in the long run, having a larger proportion of intentional infection is unwise, since it leads extra deaths.
 
@@ -459,6 +509,7 @@ We use one example to illustrate the occurrence of such scenario. Assume we have
 As we mentioned above, we need to involve new parameters for different transmission and recovery rate. Here, we let $\beta_V$ and $\beta_I$ represent the transmission rate of variolated cases and pathogen infected cases, respectively. $\gamma_V$ and $\gamma_I$ are the recovery rate of variolated cases and pathogen infected cases, respectively.
 
 With the new parameters in hand, we now setup our system of differential equation,
+\begin{linenomath*}
 \begin{equation}\label{model:complex}
 \begin{split}
 \dbyd{S}{t}&=\mu(1-p)- \beta_V SV -\beta_I SI-\mu S \,,\\
@@ -468,14 +519,18 @@ With the new parameters in hand, we now setup our system of differential equatio
 \dbyd{R}{t}&=(1-\pmV)\gamma_V V+(1-\pmI)\gamma_I I-\mu R\,,
 \end{split}
 \end{equation}
+\end{linenomath*}
 
 We non-dimensionalize \autoref{model:complex} by scaling time, by
+\begin{linenomath*}
 \begin{equation}
 \tau=(\gamma_I+\mu)t \,,
 \end{equation}
+\end{linenomath*}
 
 As the result, we obtain,
 \begin{subequations}\label{eq:base_ODE}
+\begin{linenomath*}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon(1-p)-\R_{0,V} SV-\R_{0,I} SI-\epsilon S\,, \label{eq:S_by_tau}\\
 \dbyd{V}{\tau}&=\R_{0,V} SV+\epsilon p-\tilde{\gamma} V\,, \label{eq:V_by_tau}\\
@@ -483,6 +538,7 @@ As the result, we obtain,
 \dbyd{M}{\tau}&=\pmV(\tilde{\gamma}-\epsilon) V+\pmI(1-\epsilon) I\,,\\
 \dbyd{R}{\tau}&=(1-\pmV)(\tilde{\gamma}-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Where $\R_{0,V}=\frac{\beta_V}{\gamma_I+\mu}$, $\R_{0,I}=\frac{\beta_I}{\gamma_I+\mu}$, $\tilde{\gamma}=\frac{\gamma_V+\mu}{\gamma_I+\mu}$, $\epsilon=\frac{\mu}{\gamma_I+\mu}$.
@@ -493,16 +549,19 @@ To solve for all equilibria, we let equations \autoref{eq:S_by_tau}, \autoref{eq
 
 We acquired three sets of solutions. However, given conditions that all $\hat{S}$, $\hat{V}$ and $\hat{I}$ have to be a non-negative number between 0 and 1, we can discard two of the solutions, and the only set of solution left is, 
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S}&= \frac{\R_{0,V}+\tilde{\gamma}-\sqrt{\R_{0,V}^2-2\R_{0,V}\tilde{\gamma}+\tilde{\gamma}^2+4p\R_{0,V}\tilde{\gamma}}}{2\R_{0,V}}\,, \label{eq:Shat}\\
 \hat{V}&= \frac{\epsilon-\frac{\tilde{\gamma}\epsilon}{\R_{0,V}}+\frac{\epsilon\sqrt{\R_{0,V}^2-2\R_{0,V}\tilde{\gamma}+\tilde{\gamma}^2+4p\R_{0,V}\tilde{\gamma}}}{\R_{0,V}}}{2\tilde{\gamma}}\,, \label{eq:Vhat}\\
 \hat{I}&=0\,, \label{eq:Ihat}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Similar to our previous models, since infected population at equilibrium is non-zero, this is not a disease free equilibrium but rather an endemic equilibrium.
 
 Stability analysis rely on Jacobian Matrix,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -511,55 +570,74 @@ Stability analysis rely on Jacobian Matrix,
     \ \R_{0,I}I       &0     &\R_{0,I} S-1\\
 \end{bmatrix}\,.
 \end{equation}
+\end{linenomath*}
 
 Eigenvalues of Jacobian are given as follow,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \lambda_1&=-1+\R_{0,I} S \label{eq:lambda1}\\
 \lambda_2&=\frac{-\tilde{\gamma}+\R_{0,V}S-\epsilon-\R_{0,V}V-\sqrt{(-\tilde{\gamma}+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\tilde{\gamma}+\epsilon\tilde{\gamma}-\R_{0,V}S\epsilon)}}{2} \label{eq:lambda2}\\
 \lambda_3&=\frac{-\tilde{\gamma}+\R_{0,V}S-\epsilon-\R_{0,V}V+\sqrt{(-\tilde{\gamma}+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\tilde{\gamma}+\epsilon\tilde{\gamma}-\R_{0,V}S\epsilon)}}{2}\label{eq:lambda3}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 By using \autoref{eq:Shat}, we know that
+\begin{linenomath*}
 \begin{equation}
 0\leq S\leq \frac{\tilde{\gamma}}{\R_{0,V}}\,.{\label{middle}}
 \end{equation}
+\end{linenomath*}
 Therefore, 
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_1) <0
 \end{equation}
+\end{linenomath*}
 iff 
+\begin{linenomath*}
 \begin{equation}
 \frac{\tilde{\gamma}}{\R_{0,V}}<\frac{1}{\R_{0,I}}
 \end{equation}
+\end{linenomath*}
 
 Or equivalently 
+\begin{linenomath*}
 \begin{equation}
 \frac{\beta_V}{\beta_I}<\tilde{\gamma}^2
 \end{equation}
+\end{linenomath*}
 Intuitively, if recovery rate are similar for variolated and normally infected cases, i.e. $\tilde{\gamma}\approx 1$, the endemic equilibrium is unstable if $\R_{0,V}<\R_{0,I}$
 
 For the real part of $\lambda_2$ and $\lambda_3$, first we look at the terms before square root. 
 
 By using \autoref{middle}, we have
+\begin{linenomath*}
 \begin{equation}
 -\tilde{\gamma}+\R_{0,V}S-\epsilon-\R_{0,V}V<0\,,
 \end{equation}
+\end{linenomath*}
 
 Therefore,
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_2)<-\tilde{\gamma}+\R_{0,V}S-\epsilon-\R_{0,V}V<0\,,
 \end{equation}
+\end{linenomath*}
 
 Next, notice
+\begin{linenomath*}
 \begin{equation}
 \R_{0,V}\tilde{\gamma}+\epsilon\tilde{\gamma}-\R_{0,V}S\epsilon>0\,.
 \end{equation}
+\end{linenomath*}
 It follows that
+\begin{linenomath*}
 \begin{equation}
 \sqrt{(-\tilde{\gamma}+\R_{0,V} S-\epsilon-\R_{0,V}V)^2-4(\R_{0,V}\tilde{\gamma}+\epsilon\tilde{\gamma}-\R_{0,V}S\epsilon)}<|-\tilde{\gamma}+\R_{0,V} S-\epsilon-\R_{0,V}V|
 \end{equation}
+\end{linenomath*}
 Therefore, $\Re(\lambda_3)<0$.
 
 As a result, we cannot directly conclude the stability of EE, but we have observed that stability depends on $\tilde{\gamma}$ and $\R_{0,I}$
@@ -583,6 +661,7 @@ The following assumptions are made:
 \item All susceptible individuals are equally likely to be infected, and all infected individuals are equally infectious.
 \end{itemize}
 
+\begin{linenomath*}
 \begin{equation}\label{1}
 \begin{split}
 \dbyd{S}{t}&=\mu- \beta SI-rS-\mu S\,, \\
@@ -590,16 +669,20 @@ The following assumptions are made:
 \dbyd{R}{t}&=\gamma I-\mu R\,.
 \end{split}
 \end{equation}
+\end{linenomath*}
 
 Here, $\beta$ is transmission rate, $\gamma$ is recovery rate, $\mu$ is the \emph{per capita} rate of birth and death, $r$ is the rate of intensional infection on susceptible individuals. We will discuss the reasonable value of $r$ in later sections.
 
 We convert our system into dimensionless form, by scaling time, by
 
+\begin{linenomath*}
 \begin{equation}
 \tau=(\gamma+\mu)t\,.
 \end{equation}
+\end{linenomath*}
 
 Therefore, the dimensionless system is:
+\begin{linenomath*}
 \begin{equation}
 \begin{split}
 \dbyd{S}{\tau}&=\epsilon- \R_0  SI-\eta S-\epsilon S\,, \\
@@ -607,20 +690,24 @@ Therefore, the dimensionless system is:
 \dbyd{R}{\tau}&=(1-\epsilon)I-\epsilon R\,,
 \end{split}
 \end{equation}
+\end{linenomath*}
 
 where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$, $\eta=\frac{r}{\gamma+\mu}$
 
 \subsubsection{Equilibrium}
 We obtain only one solution by solving the system:
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \hat{S} &= \frac{1}{\R_0}-\frac{2\eta}{\R_0(-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}+2\eta)}\\
 \hat{I} &= \frac{-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}}{2\R_0}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 Notice, for any non-zero $\eta$, $\hat{I}\neq 0$, it follows that this equilibrium is also an endemic equilibrium, since there is always proportion of population that are infected.
 
 Stability analysis rely on Jacobian matrix, which is,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -628,14 +715,18 @@ Stability analysis rely on Jacobian matrix, which is,
     \ \eta+\R_0 I       & \R_0 S-1 \\
 \end{bmatrix}\,.
 \end{equation}
+\end{linenomath*}
 
 For simplicity. Let 
+\begin{linenomath*}
 \begin{equation}
 G=-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}.
 \end{equation}
+\end{linenomath*}
 Notice, if $\epsilon,\eta\neq 0$, $G>0$. 
 
 So Jacobian at EE becomes,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J}|_{E.E.}=
 \begin{bmatrix}
@@ -643,20 +734,25 @@ So Jacobian at EE becomes,
     \ \eta+\frac{G}{2}       & -\frac{2\eta}{G+2\eta} \\
 \end{bmatrix}\,.
 \end{equation}
+\end{linenomath*}
 
 The eigenvalues of of Jacobian are:
 
+\begin{linenomath*}
 \begin{align}
 \lambda_{1,2} &= \frac{-(G^2+4\eta G+2\epsilon G+4\eta^2+4\epsilon\eta+4\eta) }{4(G+2\eta)}\\
 & \pm \frac{\sqrt{((G^2+4\eta G+2\epsilon G+4\eta^2+4\epsilon\eta+4\eta)^2-4(2G^3+12\eta G^2+24\eta^2 G+8\epsilon\eta G+16\eta^3+16\epsilon\eta^2)}}{4(G+2\eta)}
 \end{align}
+\end{linenomath*}
 
 We know that $G>0$, and since the rate of intentional infection is non-zero, so $\eta >0$
 
 Since we are only interested in the case where the rate of intentional infection is non-zero, we assume that $\eta>0$. Together with the fact that $G>0$, the discriminant($\Delta$) satisfies the following inequality,
+\begin{linenomath*}
 \begin{equation}
 \Delta<|(G^2+4\eta G+2\epsilon G+4\eta^2+4\epsilon\eta+4\eta)|
 \end{equation}
+\end{linenomath*}
 
 Therefore, we can conclude that Re($\lambda$)$<0$, which means, EE is stable.
 
@@ -705,6 +801,7 @@ Here, we are doing exactly the same adjustment as we did in \autoref{Newborn sec
 Our new system is,
 
 \begin{subequations}\label{1}
+\begin{linenomath*}
 \begin{align}
 \dbyd{S}{t}&=\mu- \beta S(V+I)-rS-\mu S \,,\\
 \dbyd{V}{t}&=\beta SV+rS-\gamma V -\mu V\,,\\
@@ -712,18 +809,22 @@ Our new system is,
 \dbyd{M}{t}&=\pmV\gamma V+\pmI\gamma I\,,\\
 \dbyd{R}{t}&=(1-\pmV)\gamma V+(1-\pmI)\gamma I-\mu R\,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 where $\beta$ is transmission rate, $\gamma$ is recovery rate, $\mu$ is the \emph{per capita} rate of birth and death, $r$ is the rate of intensional infection on susceptible individuals.
 
 We non-dimensionalize \autoref{1} by scaling time, by
+\begin{linenomath*}
 \begin{equation}
 \tau=(\gamma+\mu)t \,,
 \end{equation}
+\end{linenomath*}
 
 As the result, we obtain,
 
 \begin{subequations}\label{eq:base}
+\begin{linenomath*}
 \begin{align}
 \dbyd{S}{\tau}&=\epsilon-\eta S-\R_0 S(V+I)-\epsilon S\,, \label{3a}\\
 \dbyd{V}{\tau}&=\R_0 SV+\eta S-V\,, \label{3b}\\
@@ -731,6 +832,7 @@ As the result, we obtain,
 \dbyd{M}{\tau}&=\pmV(1-\epsilon) V+\pmI(1-\epsilon) I\,,\\
 \dbyd{R}{\tau}&=(1-\pmV)(1-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$, $\eta=\frac{r}{\gamma+\mu}$
@@ -741,11 +843,13 @@ If $\eta=0$, the system will again be simplified to the standard SIR model, the 
 The only solution we obtain by solving the system is:
 
 \begin{subequations}\label{eq:EE}
+\begin{linenomath*}
 \begin{align}
 \hat{S} &= \frac{1}{\R_0}-\frac{2\eta}{\R_0(-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}+2\eta)}\,, \label{eq:Shat}\\
 \hat{V} &= \frac{-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}}{2\R_0}\,, \label{eq:Vhat}\\
 \hat{I} &= 0\,,
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 Notice, $\hat{V}$ is non-zero, therefore this equilibrium is not a disease free equilibrium. It follows that it is the endemic equilibrium.
@@ -753,6 +857,7 @@ Notice, $\hat{V}$ is non-zero, therefore this equilibrium is not a disease free 
 \subsubsection{Stability of Endemic Equilibrium}
 
 The Jacobian matrix of this system is,
+\begin{linenomath*}
 \begin{equation}
 \mathcal{J} =
 \begin{bmatrix}
@@ -761,47 +866,62 @@ The Jacobian matrix of this system is,
     \ \R_0 I       &0     &\R_0 S-1\\
 \end{bmatrix}\,.
 \end{equation}
+\end{linenomath*}
 
 Eigenvalues of Jacobian are ,
 \begin{subequations}
+\begin{linenomath*}
 \begin{align}
 \lambda_1&=-1+\R_0 S \label{eq:lambda1}\\
 \lambda_2&=\frac{-1+\R_0 S-\eta-\epsilon-\R_0 V+\sqrt{(-1+\R_0 S-\eta-\epsilon-\R_0 V)^2-4(\eta+\R_0 V+\epsilon-\R_0 S\epsilon)}}{2}\\
 \lambda_3&=\frac{-1+\R_0 S-\eta-\epsilon-\R_0 V-\sqrt{(-1+\R_0 S-\eta-\epsilon-\R_0 V)^2-4(\eta+\R_0 V+\epsilon-\R_0 S\epsilon)}}{2}
 \end{align}
+\end{linenomath*}
 \end{subequations}
 
 By using \autoref{eq:Shat} and \autoref{eq:lambda1}, we get
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_1)=-1+\R_0 S=-\frac{2\eta}{(-(\eta+\epsilon-\epsilon\R_0)+\sqrt{(\eta+\epsilon-\epsilon\R_0)^2+4\R_0\epsilon \eta}+2\eta)}<0
 \end{equation}
+\end{linenomath*}
 
 To decide the real parts of $\lambda_2$ and $\lambda_3$, we need to determine the sign of the quantity under the square root.
 
 By using \autoref{eq:Shat} again, we have
+\begin{linenomath*}
 \begin{equation}
 \R_0 S\epsilon<\epsilon\,,
 \end{equation}
+\end{linenomath*}
 
 Therefore
+\begin{linenomath*}
 \begin{equation}
 (\eta+\R_0 V+\epsilon-\R_0 S\epsilon)>0\,,
 \end{equation}
+\end{linenomath*}
 
 It follows that
+\begin{linenomath*}
 \begin{equation}
 \sqrt{(-1+\R_0 S-\eta-\epsilon-\R_0 V)^2-4(\eta+\R_0 V+\epsilon-\R_0 S\epsilon)}<|(-1+\R_0 S-\eta-\epsilon-\R_0 V)|\,.
 \end{equation}
+\end{linenomath*}
 
 It follows that we have two cases, if the quantity under square root is negative, then
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_2)=\Re(\lambda_3)=-1+\R_0 S-\eta-\epsilon-\R_0 V<0\,,
 \end{equation}
+\end{linenomath*}
 
 Otherwise, we have
+\begin{linenomath*}
 \begin{equation}
 \Re(\lambda_3)<\Re(\lambda_2)<0
 \end{equation}
+\end{linenomath*}
 
 We are able to conclude that EE is stable.
 
@@ -809,9 +929,11 @@ We are able to conclude that EE is stable.
 We will again start by looking at the mortality rate at EE.
 
 By using \autoref{eq:base} and \autoref{eq:Vhat}, we can find the mortality rate at EE,
+\begin{linenomath*}
 \begin{equation}
 \dbyd{M}{\tau}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
 \end{equation}
+\end{linenomath*}
 as shown the following graph,
 \begin{figure}[H]
   \centering
