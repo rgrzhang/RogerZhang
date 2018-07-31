@@ -4,7 +4,11 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[margin=1in]{geometry}
+%%
+\usepackage{color}
 \usepackage{lineno}
+\renewcommand\thelinenumber{\color{cyan}\arabic{linenumber}}
+%%
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.5}
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
@@ -22,6 +26,7 @@
 
 
 \begin{document}
+\linenumbers
 \maketitle
 \begin{abstract}
 In this paper, we study the possible advantages of intentional infection, as a method of population-level disease control. Intentional infection is a generalization of variolation, which was invented in 15th century, and widely used around the world in 17th and 18th century. People believed that by variolation, a mild but protective infection would result, which give them a higher chance of survival compared to being naturally infected. This paper aims to provide mathematical models which describes the dynamics of infected classes, when intentional infection is introduced on a population level, and perform predictions based on the models.
