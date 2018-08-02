@@ -71,3 +71,35 @@ Also, the legend makes no sense to me here.
 
 - line 379.  What previous study?  You _must_ cite references!
 
+# 3 Model: Intentionally infect susceptibles
+
+- Figure 12-15 would be much better as a single four-panel figure.
+
+- line 455.  Don't begin a new paragraph in the middle of a sentence.  You should not have  blank lines before or after equations.
+
+- line 499.  Replace this sentence with "Thus, for any $\eta > 0$, we can conclude that the EE is locally asymptotically stable regardless of the values of the other parameters."
+
+- lines 508-509.   Add a comment explaining why this makes sense.
+
+- Figures 17 and 18.  You need an `x` axis label.
+
+- lines 513-516.  I don't think I'm following your logic here.  We should talk about this paragraph and rewrite it together so that I can follow.  I will then probably want to rephrase the comments that follow in section 3.2.5 slightly.
+
+# 4 Conclusion
+
+- lines 524-525.  This makes no sense.  I have no idea what you are thinking.
+
+- line 527.  Never say "Nevertheless however".  Only one of these two words can be used at the start of a sentence.
+
+- line 542.  You don't need this information to determine mathematically whether or not obtaining such information could alter your conclusions in a significant way.  This sentence needs to be revised.   You could list this kind of investigation as something to do in future work.
+
+- line 546.  The goal will not be to show intentional infection if more effective (you don't know that).  The goal will be to investigate whether it is more effective.
+
+# Overall comments
+
+- The quality of the writing is very poor.   This is not something that can be solved before you submit this finally, but you should really consider taking some English writing courses to improve your written communication skills.  This will help you a lot in life.
+
+- Most of the conclusions are based on linear stability analyses.  It would be much better to investigate global stability as well.  This could be done quickly numerically by plotting the phase portrait for a bunch of initial conditions.  A rigorous proof would take more time and effort.
+
+
+
