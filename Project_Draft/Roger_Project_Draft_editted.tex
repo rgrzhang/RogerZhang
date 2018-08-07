@@ -285,7 +285,7 @@ which yields,
 \dbyd{S}{\tau}&=\epsilon(1-p)- \R_0 S(V+I)-\epsilon S\,, \label{eq:13a}\\
 \dbyd{V}{\tau}&=\R_0 SV+\epsilon p-V\,, \label{eq:13b}\\
 \dbyd{I}{\tau}&=\R_0 SI-I\,, \label{eq:13c}\\
-\dbyd{M}{\tau}&=\pmV(1-\epsilon) V+\pmI(1-\epsilon) I\,,\\
+\dbyd{M}{\tau}&=\pmV(1-\epsilon) V+\pmI(1-\epsilon) I\,, \label{eq:dMdtau}\\
 \dbyd{R}{\tau}&=(1-\pmV)(1-\epsilon) V+(1-\pmI)(1-\epsilon) I-\epsilon R\,.
 \end{align}
 \end{linenomath*}
@@ -404,19 +404,19 @@ We are able to conclude that EE is locally asymptotically stable.
 
 In epidemic analysis, one way of measuring whether a certain intervention is more advantageous than another is to compare the total disease induced mortality. 
 
-We first take a look at the mortality rate at EE,
+We first take a look at the mortality rate at EE, and insert $\hat{V}$ [\autoref{eq:Vhat}]
+and $\hat{I}$ ($=0$) in \autoref{eq:dMdtau} to obtain
 \begin{linenomath*}
 \begin{equation}
 \left. \dbyd{M}{\tau}\right|_{\rm EE}=\pmV(1-\epsilon)V=\frac{\pmV(1-\epsilon)\epsilon(\R_0 -1)+ \pmV(1-\epsilon)\epsilon \sqrt{(\R_0-1)^2+4\R_0 p}}{2\R_0}\,, \label{eq:dMdt}
 \end{equation}
 \end{linenomath*}
 
-An important observation is, at EE, mortality rate increases as $p$ increases. This tells us, in the long run, having a larger proportion of intentional infection is unwise, since it leads extra deaths.
+An important observation is, at EE, mortality rate increases as $p$ increases. This tells us, in the long run, having a larger proportion of intentional infection is unwise, since it leads to extra deaths.
 
-In history, smallpox was present in human population long before variolation was invented. When variolation was introduced, the population was already near equilibrium, with no intentional infection($p=0$). We are interested in the scenario where intentional infection is introduced after the population is in equilibrium, with no intentional infection.
+In history, smallpox was present in human population long before variolation was invented. When variolation was introduced, the population was already near equilibrium, with no intentional infection ($p=0$). We are interested in the scenario where intentional infection is introduced after the population is in equilibrium, with no intentional infection.
 
-One of the questions we want to answer is how long does it take for our system to reach the new EE. In fact the system will only infinitely approach the equilibrium instead of reaching it, therefore we need to define a threshold, which mean, how close does it need to be away from the equilibrium, do we consider it being at the equilibrium.
-
+One of the questions we want to answer is how long does it take for our system to reach the new EE. In fact the system will reach the equilibrium only after infinite time.  Therefore, we need to define a threshold distance from the equilibrium that we will consider to be ``at equilibrium''.
 Since the new equilibrium has $\hat{I}=0$, we define reaching equilibrium by $I\leq 1\times 10^{-6}$ (one in a million).
 
 In fact, if the case fatality proportion for intentionally infected cases is 1\%, we can hardly observe any differences between different proportion of intentional infection. To help us observe the dynamics better, we assume intentional infection has a 20\% case fatality proportion.
@@ -425,7 +425,7 @@ In fact, if the case fatality proportion for intentionally infected cases is 1\%
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/I_less_than_0_000001.pdf}
-  \caption{Determination of time taken to reach equilibrium}
+  \caption{Determination of time taken to reach equilibrium.  The horizontal line at $I=10^{-6}$ is the threshold we define to be ``at equilibrium''.}
 \label{figure:0.0001}
 \end{figure}
 
@@ -436,7 +436,10 @@ From previous analysis, we learned that $\dbyd{M}{\tau}$ decreases over time, an
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/dMdt.pdf}
-  \caption{An illustration of intentional infection have advantages over non-intentional infection}
+  \caption{An illustration of intentional infection have advantages over non-intentional infection, with a case fatality proportion from intentional infection of $\pmV=0.2$.
+Cumulative mortality ($M$) increases linearly with time without intentional infection ($p=0$, black line).
+For any $p>0$, cumulative mortality is initially greater than for $p=0$, but eventually crosses the black line so is eventually lower (i.e., fewer deaths).
+\david{You must have title for the legend so we know what is the curves refer to.}}
 \label{figure:advantage}
 \end{figure}
 
@@ -446,7 +449,7 @@ From previous analysis, we learned that $\dbyd{M}{\tau}$ decreases over time, an
 
 \begin{table}[H]
 \begin{center}
-\caption{Time required to reach equilibrium and have advantages over non-intentional infection}
+\caption{Time required to get close to the equilibrium ($\hat{I}<10^{-6}$) and time to have advantages over non-intentional infection (i.e., lower cumulative mortality $M$).}
 \label{tab:times}
 \smallskip
 \begin{tabular}{c|c|r}
@@ -460,9 +463,10 @@ From previous analysis, we learned that $\dbyd{M}{\tau}$ decreases over time, an
 \end{tabular}
 \end{center}
 \end{table}
-The table showed that as $p$ increases, the system reaches the new EE faster, but the time required to have advantages over non-intentional infection increase.
+The table showed that as $p$ increases, the system reaches the new EE faster, but the time required to have advantages over non-intentional infection increases.
 
-In fact, if $\pmV=0.01$, then the time required to have advantages over non-intentional infection is minimal, and the difference between different $p$ is also insignificant on a scale of years.
+If we were to make the equivalent of \autoref{figure:advantage} with the CFP for intentional infection $\pmV=0.01$, then the time required to have advantages over non-intentional infection is minimal for any $p$ (the difference in time to advantage is less than a year regardless of the value of $p$).
+\autoref{figure:advantage_by_p} shows the general relationship between time to advantage and $p$.
 
 \begin{figure}[H]
   \centering
@@ -471,20 +475,15 @@ In fact, if $\pmV=0.01$, then the time required to have advantages over non-inte
 \label{figure:advantage_by_p}
 \end{figure}
 
-\autoref{figure:advantage_by_p} shows us a relationship between time to advantage and $p$.
-
-Here it shows, with a lower proportion of intentional infection, we gain advantage relatively faster. This conclusion is misleading, because it is suggesting that, with a minimal proportion of intentional infection, we can minimize the time it takes to gain advantage.
-
-We found that, if $p$ is small, though it gains advantage faster, the number of deaths actually stays very close to non-intentional infection. In another word, the advantage is very insignificant.
-
-Therefore, we want to suggest that, we can define a method being ``More advantageous'' than another to be: mortality by intentional infection is at least 10\% lower than mortality with no intentional infection.
+\autoref{figure:advantage_by_p} shows that with a lower proportion of intentional infection $p$, we gain advantage faster. This conclusion is misleading, because it is suggesting that, with a minimal proportion of intentional infection, we can minimize the time it takes to gain advantage.
+We found that, if $p$ is small, though it gains advantage faster, the number of deaths actually stays very close to non-intentional infection. In another words, although the advantage is obtained quickly, its magnitude is too small to be significant.  With this in mind, we will consider one intentional infection strategy ($p$ value) to be ``More advantageous'' than another if mortality with the strategic value of $p$ is at least 10\% lower than mortality with no intentional infection ($p=0$)
 
 \begin{figure}[H]
   \caption{Time for mortality of intentional infection is at least 10\% lower than non-intentional infection}\label{advantage2}
   \centering
   \includegraphics[width=1\textwidth]{Figures/New_time_to_advantage_plot.pdf}
 \end{figure}
-\autoref{advantage2} suggests, under our new definition of ``Have advantage'', the situation is reversed and larger proportion of intentional infection can be more advantageous relatively faster.
+\autoref{advantage2} indicates that under our new definition of ``more advantageous'', the situation is reversed: a larger proportion of intentional infection yields an advantage more quickly.
 
 \subsubsection{Comments and discussion on this model}
 
