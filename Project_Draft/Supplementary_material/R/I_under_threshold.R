@@ -17,34 +17,33 @@ draw.soln <- function(ic=c(S=1,V=0,I=0,M=0,R=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"S"], lwd=1,...)
+  lines(times, soln[,"M"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
 
 ## Plot solutions of the SIR model
-plot_pvals <- function( tmax=25, # end time for numerical integration of the ODE
-                        V0=0.00120403, I0=0, S0=0, R0=0, M0=0, # initial conditions
-                        vary_p=c(0),  # p values to use
+plot_pvals <- function( tmax=20, # end time for numerical integration of the ODE
+                        V0=0, I0=0.000936466, S0=1/4.5, R0=0, M0=0, # initial conditions
+                        vary_p=c(0,0.1,0.2,0.4,0.6,0.8,1),  # p values to use
                         ylim=c(0,1), 
                         ... ) {
   ## draw box for plot:
   plot(0,0,xlim=c(0,tmax),ylim=ylim,
-       type="n",main="S as a function of time, after we stop intentional infection",xlab="Time (years)",ylab="S",las=1)
+       type="n",main="Naturally Infected",xlab="Time (years)",ylab="M",las=1)
   for (i in 1:length(vary_p)) {
     draw.soln(ic=c(S=S0,V=V0,I=I0,M=M0,R=R0), tmax=tmax,
               func=SIR.vector.field,
               parms=c(R_0=4.5,gamma=1/(22/365),p=vary_p[i],mu=1/50),
-              col="blue",
+              col=i,
               lty=i # use a different line style for each solution
     )
   }
-  legend("topright",legend="S after direct intentional infection stops",col="blue",lty=1:length(vary_p))
+  legend("topleft",title="p",legend=vary_p,col=1:length(vary_p),lty=1:length(vary_p),cex = 0.75)
 }
 
 if (!interactive()) pdf("myplot.pdf")
 plot_pvals()
-plot_pvals(ylim=c(0,1))
+plot_pvals(ylim=c(0,0.12))
 if (!interactive()) dev.off()
-abline(h=1/4.5)
-text(5, 0.3, "Vaccination threshold", col = "red") 
+
