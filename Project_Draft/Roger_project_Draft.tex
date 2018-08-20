@@ -12,6 +12,7 @@
 \renewcommand\thelinenumber{\color{cyan}\arabic{linenumber}}
 %%
 \setlength{\parskip}{1em}
+\setlength{\parindent}{0ex}
 \renewcommand{\baselinestretch}{1.5}
 \newcommand\dbyd[2]{\frac{\mathrm d{#1}}{\mathrm d{#2}}}
 \newcommand\dsided[2]{{\mathrm d{#1}}/{\mathrm d{#2}}}
@@ -37,13 +38,14 @@ In this paper, we study the possible advantages of intentional infection, as a m
 \tableofcontents
 \clearpage
 \section{Introduction}
+
 Disease control has drawn people's attention since the early age of human civilization. Other than curing diseases by medication, people have also discovered and attempted a vast range of method for disease prevention. Nowadays, people have vaccination as a primary method to protect the population \cite{bloom2006priorities}. However, before vaccination became a developed technology, people had limited power when encountering fatal diseases such as smallpox.
 
 A practice called variolation was invented as an attempt to contain smallpox \cite{henderson1976eradication}. The earliest record of such method can be found in 15th century's ancient Chinese documentation \cite{leung2011variolation}. It is a method used to immunize individuals against smallpox, with materials taken from other smallpox patient or recently variolated individuals. People have found that, by variolation, a mild, but protective infection will likely occur \cite{leung2011variolation}. Instead of having a considerable chance of becoming gravely ill, a vast majority of variolated cases will survive after an infection. As a result, variolated individuals die much less often.
 
-More generally speaking, a similar method may be applied to other diseases for disease control as well. Fundamentally speaking, variolation is an example of intentional infection, since individuals are deliberately exposed living virus. Although an individual benefits from intentional infection when there is threat of being transmitted with fatal disease, people did not understand whether intentional infection can also bring positive effects when applied on a population level. 
+More generally speaking, a similar method may be applied to other diseases for disease control as well. Fundamentally, variolation is an example of intentional infection, since individuals are deliberately exposed living virus. Although an individual benefits from intentional infection when there is threat of being transmitted with fatal disease \cite{leung2011variolation}, people did not understand whether intentional infection can also bring positive effects when applied on a population level. 
 
-Similar to vaccination, there are different strategies for variolation. One example of strategies is to intentional infect newborn individuals. In fact, newborn infection does not mean instant infection when people are born, but rather after their maternal immunity wanes. Another strategy we consider in this paper is to intentionally infect susceptible individuals in the population, at a certain rate. 
+Similar to vaccination, there are different strategies for variolation. One example of strategies is to intentional infect newborn individuals \cite{dabrera2014case}. In fact, newborn infection does not mean instant infection when people are born, but rather after their maternal immunity wanes \cite{elgert2009immunology}. Another strategy we consider in this paper is to intentionally infect susceptible individuals in the population, at a certain rate \cite{streefland1999patterns}. 
 
 \section{Models: Intentional infect proportion of Newborn}
 \subsection{Model: Modification to SIR model}
@@ -411,7 +413,7 @@ If EE is GAS, the output of the distance function with any initial condition wil
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{Figures/Model_1_2_distance_20.pdf}
-  \caption{Distance between the dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, no matter which initial condition is chosen. This figure shows the distance function of 50 different initial conditions. We have enough confidence to conclude that EE is GAS.}
+  \caption{Distance between the dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, no matter which initial condition is chosen. This figure shows the distance function of 50 random initial conditions. We have enough confidence to conclude that EE is GAS.}
 \end{figure}
 
 \subsubsection{Effect of intentional infection on total mortality}\label{section2.2.3}
@@ -699,7 +701,7 @@ Therefore, the dimensionless system is:
 \end{equation}
 \end{linenomath*}
 
-where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$, $\eta=\frac{r}{\gamma+\mu}$
+where $\epsilon=\frac{\mu}{\gamma+\mu}$, $\R_0=\frac{\beta}{\gamma+\mu}$, $\eta=\frac{r}{\gamma+\mu}$.
 
 \subsubsection{Equilibrium}
 We obtain only one solution by solving the system:
@@ -770,7 +772,7 @@ The identical distance function was used to run the simulation, and the result i
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{Figures/Model_2_2_distance_20.pdf}
-  \caption{Distance between the dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, no matter which initial condition is chosen. This figure shows the distance function of 50 different initial conditions. We have enough confidence to conclude that EE is GAS.}
+  \caption{Distance between the dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, no matter which initial condition is chosen. This figure shows the distance function of 50 random initial conditions. We have enough confidence to conclude that EE is GAS.}
 \end{figure}
 
 To fully understand the dynamics of the system, we want to know whether or not there is a damped oscillation. This is done by determining the sign of the discriminant.
@@ -971,7 +973,8 @@ as shown the following graph,
   \caption{$\dbyd{M}{\tau}$ at EE as a function of $\eta$. $\dbyd{M}{\tau}$ increases as the rate of intentional infection on susceptible increase. The magnitude of $\dbyd{M}{\tau}$ eventually reaches an asymptote at $\dbyd{M}{\tau}=0.00001202$.}
 \end{figure}
 
-It is worthwhile noticing that, as we increase the rate of intentional infection, the mortality rate eventually reaches an asymptote at around $1.2\times10^{-5}$, which is very close to the mortality rate when we intentionally infect newborn individuals with a highest proportion ($p=1$). This suggests, in the long run, a high proportion of newborn infection would have similar results as intentionally infect susceptible at a high rate. A logical explanation to that is, when $p=1$ for newborn infection model or when $r$ is very high for susceptible model, at EE, there is almost nobody that is still susceptible ($\hat{S}=0$). The only individuals entering the system are the newborns, but newborn model will intentionally infect 100\% of them before they become susceptible. Similarly, susceptible model will intentionally infect almost all of them immediately after they become susceptible. As a result, the magnitude of $\hat{V}$ are essentially the same. Therefore, due to the fact that $\dbyd{M}{\tau}$ is directly proportional to $\hat{V}$, the magnitude of $\dbyd{M}{\tau}$ are similar.
+It is worthwhile noticing that, as we increase the rate of intentional infection, the mortality rate eventually reaches an asymptote at around $1.2\times10^{-5}$, which is very close to the mortality rate when we intentionally infect newborn individuals with a highest proportion ($p=1$). This suggests, in the long run, a high proportion of newborn infection would have similar results as intentionally infect susceptible at a high rate. A logical explanation to that is, when $p=1$ for newborn infection model or when $r$ is very high for susceptible model, at EE, there is almost nobody that is still susceptible ($\hat{S}=0$ or $\hat{S}\approx0$). The only individuals entering the system are the newborns, but newborn model will intentionally infect 100\% of them before they become susceptible. Similarly, susceptible model will intentionally infect almost all of them immediately after they become susceptible. As a result, the increasing rates of $V$ (intentionally infected) are essentially the same for both approaches. Therefore, due to the fact that $\dbyd{M}{\tau}$ is directly proportional to $\hat{V}$, the magnitude of $\dbyd{M}{\tau}$ are similar.
+
 
 As we did in the newborn model, we also want to know the time it takes for susceptible intentional infection to reach the new equilibrium, as well as the time it takes to be advantageous over non-intentional infection.
 
@@ -989,20 +992,23 @@ As we did in the newborn model, we also want to know the time it takes for susce
 
 Recall in \autoref{section2.2.3}, we initially found that in the newborn infection model, with a larger proportion of newborn intentional infection, it becomes more advantageous over non-intentional infection more slowly. But after we change the definition of ``more advantageous'' to be: The cumulative mortality rate of the system with intentional infection is at least 10\% less than of the system with no intentional infection, the situation was reversed. However, unlike the newborn infection model, in susceptible infection, the situation remain the same, even after the definition of ``more advantageous'' was changed. The time required for intentional infection to be more advantageous still increases as the rate of intentional infection increases. This means, with a very low rate of intentional infection on susceptible, not only can we ensure a lower cumulative mortality in the long run, but also able to be advantageous more quickly. This also means, we cannot conclude an optimal rate of intentional infection on susceptible.
 \subsubsection{Comments and discussion to this model}
-This model has proven the benefit of intentional infection on susceptible individuals. We have shown that, with any positive rate of intentional infection on susceptible, we can always reduce the cumulative disease induced mortality. As we discussed in the previous section, we cannot conclude an optimal rate of intentional infection, since we have shown that the benefit is maximized, in every aspect, when the rate of intentional infection is at minimal. Further study is required to answer this question.
-\section{Conclusion}
-In our models, we have shown that both strategies can bring us benefit, in terms of having fewer deaths, in the long run. Though it may not be able to completely eradicate the disease, but both methods can greatly reduce disease induced mortalities, in the case of smallpox, death. This suggests, practices of smallpox variolation in history indeed saved many lives.
+This model has proven the benefit of intentional infection with the approach of infecting susceptible individuals. We have shown that, with any positive rate of intentional infection on susceptible, we can always reduce the cumulative disease induced mortality, compared to not doing so. However, as we discussed in the previous section, we cannot conclude an optimal rate of intentional infection, since we have shown that the benefit is maximized, in every aspect, when the rate of intentional infection is minimal. Further study is required to answer this question.
+\section{Discussion}
+We have used several simple models to illustrate that both approaches of intentional infection could help restrain epidemics, by reducing the number of total death caused by life-threatening diseases, in our case, smallpox. This suggests, practices of smallpox variolation in history have indeed saved many lives. 
 
-Due to the existence of special events or accidents in realistic scenario, which can alter the pattern of disease spread, we have many different factor not being considered in our models. For both strategies, the models can still be modified and developed to higher complexity. For example, in real life, smallpox variolation is done via skin. However, since the subject used to variolate is live smallpox virus, there could be some other pathways for live smallpox virus to enter respiratory system of the individual being variolated, or other people who has contacted this individual. An example of such a pathway could be touching the area of variolation followed by touching nose or mouth. 
+In addition to demonstrating the utility of intentional infection, one of our models have also shown that, under certain circumstances, the disease could be completely eradicated. Future research could perform stochastic analysis using similar systems of differential equations, in order to rigorously prove its possibility.
 
-In such scenario, though the individual infected via skin might have symptoms much less severe than naturally infection, when the virus happens to enter respiratory system, a natural infection with much more serious symptoms could still occur. In our construction of models, the result of that will be the individual entering naturally infected class.
-\section{Future work}
-This section elaborates some ideas for future use and needs to be investigated later.
-\begin{itemize}
-\item Comparison between intentional infection and traditional vaccine, which does not transmit. This can tell us if intentional infection can be a more effective method than vaccination in disease control. This may also lead us to the discussion of transmissible vaccine.
-\item We can use our model to see how well they fit the historical data for smallpox. This could help us much better understand the variolation history of smallpox.
-\item As described in discussion section, a more complicated model involving more parameter could be considered.
-\end{itemize}
+Even though our results have revealed that intentional infection can be an effective tool against epidemics, our mathematical models rely on several important assumptions. First, we assume that recovered individuals acquires permanent immunity against this infectious disease. Although unrealistic for many diseases, such as flu, but still applicable to many others, specifically, diseases such that infection could provide long term immunity up to several decades, for example, measles, whooping cough, etc \cite{amanna2007duration}. Secondly, in addition to our first assumption, we ignored the possibility of evolution, which is extremely common in viruses, as they mutate much faster than most of the organisms on earth \cite{purcell2000hepatitis}. Mutations may lead to different strains of viruses, so that the old immunity may not be effective anymore. Finally, we assumed a single homogeneous population, which does not account for spatial, seasonal and individual heterogeneity.
+
+Moreover, due to the existence of special events or accidents in realistic scenarios, patterns of disease spread could be significantly altered, meaning, we have many different factor not yet being considered in our models. For both approaches, the models can still be modified and developed to higher complexity. For instance, in real life, smallpox variolation is done via skin. However, since the subject used to variolate is live smallpox virus, there could be other pathways for live smallpox virus to enter respiratory system of the variolated individual, or of the other people who has physically contacted such individual. A specific example of such pathway could be touching the area of variolation, followed by touching nose or mouth. 
+
+In such scenario, though the variolated individual might acquire symptoms much less severe than natural infections, when virus happens to enter respiratory system, a natural infection with much more serious symptoms could still occur. Therefore, possibility still exists for a variolated individual to become gravely ill. In our construction of models, the consequence of that will be, a proportion of variolated individuals ($V$) entering naturally infected class ($I$).
+
+It is meaningful to compare the utility of intentional infection to traditional vaccination. Unlike intentional infection, a traditional vaccine is unable to transmit from one individual to another. Therefore, intuitively, if intentional infection and traditional vaccination have the same pattern of distribution, the former could spread faster than the latter. Nevertheless, the trade-off for intentional infection is to have a proportion of people still die after being intentionally infected, whereas vaccination is assumed to provide a perfect protection against infectious disease.
+
+We may also investigate the potential of the combination of intentional infection and traditional vaccination, which is known as transmissible vaccine. It is a vaccine that is capable of spreading from one individual to another, therefore utilizes the advantage of intentional infection, as well as providing perfect protection.
+
+At last, we could compare the results of our models to historical data of smallpox. This may help us understand the variolation history of smallpox, which can innovate us in developing safer and more effective methods for disease prevention and control.
 
 \printbibliography
 
