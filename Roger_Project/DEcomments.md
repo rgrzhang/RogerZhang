@@ -25,7 +25,7 @@
 
 - l.243.  Figure 3 would be more informative with a log scale vertically.
 It also is not clear what you mean precisely by "random initial conditions".
-How did you select your 50 initial states?  What convinces you that you have sufficient numerical evidence to infer GAS?
+How did you select your 50 initial states? [Answer: uniform in biologically meaningfully simplex.] What convinces you that you have sufficient numerical evidence to infer GAS?  [50 took about 10 seconds; would have been better to do 1000 at least.  It would also be better to use Latin hypercube sampling.]
 
 - l.265.  This could also be deduced from the eigenvalues analytically.
 
@@ -47,10 +47,11 @@ How did you select your 50 initial states?  What convinces you that you have suf
 
 - l.521.  Some good biological interpretation in this paragraph.
 
-- p.38.  Figure 14 decreases with $\eta$, whereas Figure 6 (p.19) increases with $p$.  Why is this opposite?  You don't comment on this.
+- p.38.  Figure 14 decreases with $\eta$, whereas Figure 6 (p.19) increases with $p$.  Why is this opposite?  You don't comment on this.  [Answer: Figure 14 is to be compared with Table 2 on p.18, not Figure 6 on p.19; it would have been much cleaer to use tables and figures consistently for the two models.]
 	- also, why is $0<\eta<1$ a sensible range?  Does $\eta$ have to be less than 1?
 
 - l.543.  It isn't the same.  You also have a reversal of trends, but in the opposite way.  What is going on?  I don't follow your logic in the remainder of this section.
+[Answer: comparing apples and oranges; see above.]
 
 ## 4. Discussion
 
