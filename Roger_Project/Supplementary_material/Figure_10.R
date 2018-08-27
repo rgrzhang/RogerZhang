@@ -17,7 +17,7 @@ draw.soln <- function(ic=c(S=1,V=0,I=0,M=0,R=0), tmax=1,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
-  lines(times, soln[,"S"], lwd=1,...)
+  lines(times, soln[,"V"], lwd=1,...)
   
   return(invisible(as.data.frame(soln)))
 }
@@ -30,7 +30,7 @@ plot_pvals <- function( tmax=25, # end time for numerical integration of the ODE
                         ... ) {
   ## draw box for plot:
   plot(0,0,xlim=c(0,tmax),ylim=ylim,
-       type="n",main="S as a function of time, after we stop intentional infection",xlab="Time (years)",ylab="S",las=1)
+       type="n",main="V as a function of time, after we stop intentional infection",xlab="Time (years)",ylab="V",las=1)
   for (i in 1:length(vary_p)) {
     draw.soln(ic=c(S=S0,V=V0,I=I0,M=M0,R=R0), tmax=tmax,
               func=SIR.vector.field,
@@ -39,12 +39,12 @@ plot_pvals <- function( tmax=25, # end time for numerical integration of the ODE
               lty=i # use a different line style for each solution
     )
   }
-  legend("topright",legend="S after direct intentional infection stops",col="blue",lty=1:length(vary_p))
+  legend("topright",legend="V after direct intentional infection stops",col="blue",lty=1:length(vary_p))
 }
 
 if (!interactive()) pdf("myplot.pdf")
 plot_pvals()
-plot_pvals(ylim=c(0,1))
+plot_pvals(ylim=c(0,0.0000025))
 if (!interactive()) dev.off()
-abline(h=1/4.5)
-text(5, 0.3, "Vaccination threshold", col = "red") 
+abline(h=0.000001)
+text(7, 0.0000012, "Vaccination threshold", col = "red") 

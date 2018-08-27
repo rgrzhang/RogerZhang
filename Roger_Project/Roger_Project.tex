@@ -120,7 +120,7 @@ We would like to know if the EE is stable, therefore we need the Jacobian matrix
 \end{equation}
 \end{linenomath*}
 
-Now for simplicity, let 
+Now for convenience, let 
 \begin{linenomath*}
 \begin{equation}\label{E:}
 K = (\R_0-1)+ \sqrt{(\R_0-1)^2+4\R_0 p} \,.
@@ -246,15 +246,13 @@ The plots below were made with different $p$ in increasing order, the shaded are
 \subsubsection{Comments and discussion on this model}
 This is the initial model of intentional infection on newborns, which we obtained by directly modifying standard SIR model. Notice, the main difference between intentional infection model and vaccination model is the direction of flow of individuals being treated with intentional infection or vaccination. Intentionally infected individuals are capable of transmitting the disease to susceptible individuals, whereas the vaccinated individuals will enter $R$(recovered) directly, therefore not being able to impact the dynamics of the system anymore. 
 
-In our construction of the model, once an individual is intentionally infected, either directly or indirectly, this individual will not be naturally infected anymore. Therefore, we should divide the infected compartment into two separate infective classes, namely, intentionally infected and naturally infected.
-
-In the past, for the case of smallpox, people believed that individuals that are variolated have a much better chance of survival, compared with naturally infected cases. Here we define ``advantageous'' as fewer total death. More specifically, we will be comparing total disease induced mortality. To achieve this, we need to involve a new parameter, namely, case fatality proportion.
+In the past, for the case of smallpox, people believed that individuals that are variolated have a much better chance of survival, compared with naturally infected cases. Therefore, we should divide the infected compartment into two separate infective classes, namely, intentionally infected and naturally infected. To investigate the benefit of intentional infection, here we define ``advantageous'' as fewer total death. More specifically, we will be comparing total disease induced mortality. To achieve this, we need to involve a new parameter, namely, case fatality proportion.
 
 \subsection{Model: Addition of disease induced mortality}\label{Newborn section}
 \subsubsection{System of differential equations}
 Disease induced mortality is created by deaths of infected population, with a ratio. This ratio is also known as case fatality proportion. 
 
-Historic application of variolation have shown a lower case fatality proportion for those being variolated, compared to those being naturally infected. Thus, we need to assign different case fatality proportion to each class. This also requires us to divide $I$ from our previous model into two distinct infective classes, "Intentionally infected" ($V$) and "Naturally infected" ($I$). 
+Historic application of variolation have shown a lower case fatality proportion for those being variolated, compared to those being naturally infected. Thus, we need to assign different case fatality proportion to each class. This also requires us to divide $I$ from our previous model into two distinct infective classes, ``Intentionally infected'' ($V$) and ``Naturally infected'' ($I$).
 
 In this model, we still assume no latent period, and similar to the last assumption in our previous model, we assume that all infected individuals(including $V$ and $I$) are equally infectious.
 
@@ -292,6 +290,8 @@ which yields,
 \end{linenomath*}
 \end{subequations}
 Notice here that $\R_0$, which is equal to $\frac{\beta}{\gamma+\mu}$, is again the basic reproduction number of the naturally infected cases. Since we assume that the transmission rate of naturally infected and intentionally infected cases are identical, $\R_0$ also plays a role as the basic reproduction number of intentionally infected cases. 
+
+Our construction of the model suggests, once an individual is intentionally infected, either directly or indirectly, this individual will not be naturally infected anymore. 
 
 \subsubsection{Equilibria}\label{Equilibrium_analysis}
 
@@ -412,8 +412,8 @@ If EE is GAS, the output of the distance function with any initial condition wil
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{Figures/Model_1_2_distance_20.pdf}
-  \caption{Distance between the dynamics of the system to EE, as a function of time. If EE is GAS, distance function should approach 0, indifferent of which initial condition was chosen. This figure shows the distance function of 50 random initial conditions. We have enough confidence to conclude that EE is GAS.}
+  \includegraphics[width=0.7\textwidth]{Figures/Model_1_2_distance_500.pdf}
+  \caption{Distance between the dynamics of the system to EE, as a function of time. If EE is GAS, distance function should approach 0, indifferent of which initial condition was chosen. This figure shows the distance function of 1000 random initial conditions. In the long run, the distance between dynamics of the system to EE decays exponentially. We have enough confidence to conclude that EE is GAS.}
 \end{figure}
 
 \subsubsection{Effect of intentional infection on total mortality}\label{section2.2.3}
@@ -478,7 +478,14 @@ For any $p>0$, cumulative mortality is initially greater than for $p=0$, but eve
 \end{tabular}
 \end{center}
 \end{table}
-Above table shows that as $p$ increases, the system reaches the new EE faster, but time required to gain advantages over the non-intentional infection case increases.
+Above table shows that as $p$ increases, the system reaches the new EE faster (as shown in \autoref{figure:EE_by_p}), but time required to gain advantages over the non-intentional infection case increases.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/TTE.pdf}
+  \caption{Time to EE as a function of $p$.}
+\label{figure:EE_by_p}
+\end{figure}
 
 If we were to make the equivalent of \autoref{figure:advantage} with the CFP for intentional infection $\pmV=0.01$, then the time required to have advantages over non-intentional infection is minimal for any $p$ (the difference in time to advantage is less than a year regardless of the value of $p$).
 \autoref{figure:advantage_by_p} shows the general relationship between time to advantage and $p$.
@@ -575,7 +582,7 @@ where $\R_{0,V}=\frac{\beta_V}{\gamma_I+\mu}$, $\R_{0,I}=\frac{\beta_I}{\gamma_I
 
 To solve for all equilibria, we set equations \autoref{eq:S_by_tau}, \autoref{eq:V_by_tau} and \autoref{eq:I_by_tau} equal to 0.
 
-We acquired three solutions. However, given conditions that all $\hat{S}$, $\hat{V}$ and $\hat{I}$ have to be a non-negative number between 0 and 1, we can discard two of the solutions. The only solution left is, 
+We acquired three solutions. However, given conditions that all $\hat{S}$, $\hat{V}$ and $\hat{I}$ have to be a non-negative number between 0 and 1. The only solution that is biologically meaningful regardless of parameter value is, 
 \begin{subequations}
 \begin{linenomath*}
 \begin{align}
@@ -587,6 +594,20 @@ We acquired three solutions. However, given conditions that all $\hat{S}$, $\hat
 \end{subequations}
 
 Similar to our previous models, since infected population at equilibrium is non-zero, it is not a disease free equilibrium but rather an endemic equilibrium.
+
+There exist another solution, but only valid with restrictions on parameter values, 
+
+\begin{subequations}
+\begin{linenomath*}
+\begin{align}
+\hat{S}&= \frac{1}{\R_{0,V}}\,, \label{eq:Shat-1-1-1}\\
+\hat{V}&= \frac{p\R_{0,V}\epsilon}{-\R_{0,I}+\R_{0,V}\tilde{\gamma}}\,, \label{eq:Vhat-1-1-1}\\
+\hat{I}&=\frac{\R_{0,I}\epsilon-\R_{0,V}\R_{0,I}\epsilon-\R_{0,V}\tilde{\gamma}\epsilon+\R_{0,V}^2\tilde{\gamma}\epsilon-p\R_{0,V}^2\tilde{\gamma}\epsilon}{\R_{0,V}(-\R_{0,I}+\R_{0,V}\tilde{\gamma})}\,. \label{eq:Ihat-1-1-1}
+\end{align}
+\end{linenomath*}
+\end{subequations}
+
+This equilibrium will be discussed in later subsection.
 
 Stability analysis rely on Jacobian Matrix,
 \begin{linenomath*}
@@ -649,13 +670,24 @@ We set $\R_{0,I}=4.5$. As $\R_{0,V}$ should be logically less than $\R_{0,I}$, w
   \centering
   \includegraphics[width=1\textwidth]{Figures/Complex_model_eigenvalue_analysis.pdf}
   \caption{($\gamma,p$) plane when $\R_{0,V}=2.5, \R_{0,I}=4.5$. Shaded area is the region where $\Re(\lambda_1)<0$, meaning the system is locally asymptotically stable.}
+  \label{Figure_gamma_p}
 \end{figure}
+
+It is necessary to investigate the dynamics when EE is unstable. Recall the other equilibrium which is only valid for some parameter values. We discovered that, at the boundary condition in \autoref{Figure_gamma_p}, our first equilibrium loses stability. But we also found that the second equilibrium becomes biologically meaningful at the same time. In order to identify whether the second equilibrium is stable, we compute the eigenvalues of the Jacobian again,
+
+$\Re(\lambda_2)$ and $\Re(\lambda_3)$ are still both negative.
+
+\begin{equation}
+\Re(\lambda_1)=-1+\frac{\R_{0,V}}{\R_{0,I}}\,.
+\end{equation}
+
+With our intuition that $\R_{0,V}<\R_{0,I}$, we can conclude that $\Re(\lambda_1)<0$. Therefore, when the first equilibrium is unstable, the system approaches another equilibrium. Hence, the stability of the system switches between two equilibria at the boundary of \autoref{Figure_gamma_p}.
 
 \subsubsection{Comments and discussion on this model}
 
 Parameters of this model such as $\R_{0,V}$ and $\gamma_V$ can be immensely different depending on the design of the pathogen used for intentional infection. 
 
-Previous studies have shown that, For a transmissible vaccine, in a similar model which does not consider natural birth and death, as well as no disease induced mortality. Even if $\R_{0,V}$ is less than 1, such as $\R_{0,V}=0.5$, a significant decrease in the final size of an epidemics is expected \cite{nuismer2018controlling}. In our model, birth and death rate are considered. Knowing that in our system, the disease can never be eradicated, there will always be newly infected cases. For that reason, we have an infinite population. Therefore, we cannot estimate final size for this model. But we are expecting that, the cumulative disease induced mortality will be reduced.
+Previous studies have shown that, for a transmissible vaccine, in a similar model which does not consider natural birth and death, as well as no disease induced mortality. Even if $\R_{0,V}$ is less than 1, such as $\R_{0,V}=0.5$, a significant decrease in the final size of an epidemics is expected \cite{nuismer2018controlling}. In our model, birth and death rate are considered. Knowing that in our system, the disease can never be eradicated, there will always be newly infected cases. For that reason, we cannot estimate final size for this model. But we are expecting that, the cumulative disease induced mortality will be reduced.
 
 \section{Model: Intentionally infect susceptible with a certain rate}
 \subsection{Model: Modification to SIR model}
@@ -763,7 +795,7 @@ As we are only interested in the case where the rate of intentional infection is
 \end{equation}
 \end{linenomath*}
 
-Therefore, we can conclude that Re($\lambda$)$<0$, which means, EE is stable.
+Therefore, we can conclude that Re($\lambda$)$<0$, which means, EE is locally asymptotically stable.
 
 For global stability analysis, we apply the same method as in \autoref{Equilibrium_analysis}, which is by using distance function.
 
@@ -772,7 +804,7 @@ The identical distance function was used to run the simulation, and the result i
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{Figures/Model_2_2_distance_20.pdf}
-  \caption{Distance between dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, regardless of which initial condition is chosen. This figure shows the distance function of 50 random initial conditions. We have enough confidence to conclude that EE is GAS.}
+  \caption{Distance between dynamics of the system to the EE, as a function of time. If EE is GAS, distance function should approach 0, regardless of which initial condition is chosen. This figure shows the distance function of 1000 random initial conditions. Similar to the newborn model, in the long run, the distance decays exponentially. We have enough confidence to conclude that EE is GAS.}
 \end{figure}
 
 To fully understand the dynamics of the system, we need to identify whether or not there is a damped oscillation. This is done by determining the sign of the discriminant.
@@ -1004,7 +1036,7 @@ Moreover, due to the existence of special events or accidents in realistic scena
 
 In such scenario, though the variolated individual might acquire symptoms much less severe than the symptoms of natural infections, when virus happens to enter respiratory system, a natural infection with much more serious symptoms could still occur. Therefore, possibility still exists for a variolated individual to become gravely ill. In our construction of the models, the consequence of that will be, a proportion of variolated individuals ($V$) entering naturally infected class ($I$).
 
-It is meaningful to compare the utility of intentional infection to traditional vaccination. Unlike intentional infection, a traditional vaccine is unable to transmit from one individual to another. Intuitively, if intentional infection and traditional vaccination have the same pattern of distribution, the former could spread faster than the latter. Nevertheless, the trade-off for intentional infection is to have a proportion of people still die after being intentionally infected, whereas vaccination is assumed to provide a perfect protection against infectious disease.
+It is meaningful to compare the utility of intentional infection to traditional vaccination. Unlike intentional infection, most traditional vaccines are unable to transmit from one individual to another. Intuitively, if intentional infection and traditional vaccination have the same pattern of distribution, the former could spread faster than the latter. Nevertheless, the trade-off for intentional infection is to have a proportion of people still die after being intentionally infected, whereas vaccination is assumed to provide a perfect protection against infectious disease.
 
 We may also investigate the potential of combining intentional infection and traditional vaccination, which is known as transmissible vaccine. It is a vaccine that is capable of spreading from one individual to another, therefore utilizes the advantage of intentional infection, as well as providing perfect protection.
 
@@ -1012,7 +1044,7 @@ At last, we could compare the results of our models to historical data of smallp
 
 \section{Appendix}
 
-Figures used in this document were created by ``R (Version 1.1.423)'' or ``Mathematica (Version 11.3)''. The files used to construct figures are under the folder named ``Supplementary material''
+Figures used in this document were created by ``R'' or ``Mathematica (Version 11.3)''. The files used to construct figures are under the folder named ``Supplementary material''
 
 \printbibliography
 

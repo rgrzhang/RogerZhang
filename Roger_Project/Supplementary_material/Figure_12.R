@@ -12,7 +12,7 @@ SIR.vector.field <- function(t, vars, parms) {
   })
 }
 
-draw.soln <- function(ic=c(S=S,V=V,I=I), tmax=2,
+draw.soln <- function(ic=c(S=S,V=V,I=I), tmax=3,
                       times=seq(0,tmax,by=tmax/500),
                       func, parms, ... ) {
   soln <- ode(ic, times, func, parms)
@@ -20,7 +20,7 @@ draw.soln <- function(ic=c(S=S,V=V,I=I), tmax=2,
   return(invisible(as.data.frame(soln)))
 }
 df_W <- list() # made a list store runs in loops
-runs <- 50 # assign number of loops
+runs <- 1000 # assign number of loops
 
 for (i in 1:runs){
   S <- runif(1, 0, 1)
@@ -36,7 +36,7 @@ for (i in 1:runs){
   Vhat <- (-(2/(1/(22/365)+1/50)+11/9136-11*4.5/9136)+((2/(1/(22/365)+1/50)+11/9136-11*4.5/9136)^2+4*4.5*11/9136*2/(1/(22/365)+1/50))^(0.5))/(9)
   Df$dS <- Df$S-Shat
   Df$dV <- Df$V-Vhat
-  Df$W <-(Df$dS^2 + Df$dV^2 + Df$I^2)^(1/2)
+  Df$W <-log10((Df$dS^2 + Df$dV^2 + Df$I^2)^(1/2))
   
   df_W[[i]] <- data.frame(time=Df$time, W=Df$W, runNum = rep(i, length(Df$time)))
 }
@@ -50,7 +50,7 @@ df_W <- rlist::list.rbind(df_W)
 
 ggplot(data = df_W,mapping = aes(x=years,y=Distance))+
   geom_line(aes(x=time, y=W, colour = factor(runNum)))+
-  ylim(0,1) +
   theme(legend.position = "none")+
-  labs(title="Distance between dynamics of the system to the EE")
+  labs(title="Distance between dynamics of the system to the EE")+
+  ylab("log(Distance)")
 

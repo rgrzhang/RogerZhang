@@ -37,7 +37,7 @@ for (i in series) {
   mydiff <- draw.soln(func=SIR.vector.field,
                       parms=c(R_0=4.5,gamma=1/(22/365),p=i,mu=1/50))
   time <- 0
-  while (mydiff[501,5]>0.9*mydiff[501,7]) {
+  while (mydiff[501,5]>mydiff[501,7]) {
     draw.soln <- function(ic=c(S=mydiff[501,2],V=mydiff[501,3],I=mydiff[501,4],M=mydiff[501,5],R=mydiff[501,6],N=mydiff[501,7]), tmax=1,
                           times=seq(0,tmax,by=tmax/500),
                           func, parms, ... ) {

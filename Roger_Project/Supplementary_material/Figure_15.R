@@ -1,6 +1,6 @@
 library(deSolve)
 ## Vector Field for SIR model
-series <- c(0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1)
+series <- c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2)
 for (i in series) {
   SIR.vector.field <- function(t, vars, parms) {
     with(as.list(c(parms, vars)), {
@@ -38,7 +38,7 @@ for (i in series) {
   mydiff <- draw.soln(func=SIR.vector.field,
                       parms=c(R_0=4.5,gamma=1/(22/365),r=i,mu=1/50))
   time <- 0
-  while (mydiff[501,5]>0.9*mydiff[501,7]) {
+  while (mydiff[501,4]>0.000001) {
     draw.soln <- function(ic=c(S=mydiff[501,2],V=mydiff[501,3],I=mydiff[501,4],M=mydiff[501,5],R=mydiff[501,6],N=mydiff[501,7]), tmax=1,
                           times=seq(0,tmax,by=tmax/500),
                           func, parms, ... ) {
@@ -64,7 +64,7 @@ for (i in series) {
   }
   
   step <- 1
-  while (mydiff[step,5]>mydiff[step,7]) {
+  while (mydiff[step,4]>0.000001) {
     step <- step + 1
     time <- time + 0.002
   }
