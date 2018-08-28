@@ -673,15 +673,15 @@ We set $\R_{0,I}=4.5$. As $\R_{0,V}$ should be logically less than $\R_{0,I}$, w
   \label{Figure_gamma_p}
 \end{figure}
 
-It is necessary to investigate the dynamics when EE is unstable. Recall the other equilibrium which is only valid for some parameter values. We discovered that, at the boundary condition in \autoref{Figure_gamma_p}, our first equilibrium loses stability. But we also found that the second equilibrium becomes biologically meaningful at the same time. In order to identify whether the second equilibrium is stable, we compute the eigenvalues of the Jacobian again,
+It is necessary to investigate the dynamics when EE is unstable. Recall the other equilibrium which is only valid for some parameter values. We discovered that, at the boundary of the shaded area in \autoref{Figure_gamma_p}, our first equilibrium loses stability as $\Re(\lambda_1)$ goes from negative to positive. However, we also found that the second equilibrium becomes biologically meaningful at the same time. In order to confirm that the system will asymptotically approach the second equilibrium, and to identify whether the second equilibrium is stable, we compute the eigenvalues of the Jacobian,
 
-$\Re(\lambda_2)$ and $\Re(\lambda_3)$ are still both negative.
+$\Re(\lambda_2)$ and $\Re(\lambda_3)$ are still both negative using the same equation as before.
 
 \begin{equation}
 \Re(\lambda_1)=-1+\frac{\R_{0,V}}{\R_{0,I}}\,.
 \end{equation}
 
-With our intuition that $\R_{0,V}<\R_{0,I}$, we can conclude that $\Re(\lambda_1)<0$. Therefore, when the first equilibrium is unstable, the system approaches another equilibrium. Hence, the stability of the system switches between two equilibria at the boundary of \autoref{Figure_gamma_p}.
+With our intuition that $\R_{0,V}<\R_{0,I}$, we can conclude that $\Re(\lambda_1)<0$. Therefore, when the first equilibrium becomes unstable, the system approaches the other equilibrium. Hence, the stability of the system switches between two equilibria as the condition of parameter values crosses the boundary of \autoref{Figure_gamma_p}.
 
 \subsubsection{Comments and discussion on this model}
 
@@ -1044,7 +1044,7 @@ At last, we could compare the results of our models to historical data of smallp
 
 \section{Appendix}
 
-Figures used in this document were created by ``R'' or ``Mathematica (Version 11.3)''. The files used to construct figures are under the folder named ``Supplementary material''
+Figures used in this document were created by ``R (Version 3.5)'' or ``Mathematica (Version 11.3)''. The files used to construct figures are under the folder named ``Supplementary material''
 
 \printbibliography
 
